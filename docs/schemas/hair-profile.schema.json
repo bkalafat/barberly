@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "length": { "enum": ["short", "medium", "long"] },
+    "texture": { "enum": ["straight", "wavy", "curly", "coily"] },
+    "density": { "enum": ["low", "medium", "high"] },
+    "fade": { "enum": ["none", "low", "mid", "skin"] },
+    "guards": { "type": "array", "items": { "type": "number" } }
+  },
+  "additionalProperties": false
+}

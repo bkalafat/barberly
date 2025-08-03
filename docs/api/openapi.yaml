@@ -1,0 +1,26 @@
+openapi: 3.1.0
+info:
+  title: Barberly API
+  version: 1.0.0
+paths:
+  /v1/barbers/{id}/availability:
+    get:
+      summary: Get barber availability
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+        - in: query
+          name: date
+          required: true
+          schema: { type: string, format: date }
+        - in: query
+          name: serviceId
+          required: false
+          schema: { type: string }
+      responses:
+        "200":
+          description: Slots
+components:
+  schemas: {}

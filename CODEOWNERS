@@ -1,0 +1,4 @@
+# CODEOWNERS
+/docs/ @barberly-team
+/backend/ @barberly-backend
+/web/ @barberly-frontend

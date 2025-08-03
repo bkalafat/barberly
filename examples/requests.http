@@ -1,0 +1,25 @@
+### GET Barber Availability
+GET http://localhost:5000/v1/barbers/123/availability?date=2025-08-04&serviceId=abc
+
+### POST Appointment (Idempotency-Key)
+POST http://localhost:5000/v1/appointments
+Idempotency-Key: test-key
+Content-Type: application/json
+
+{
+  "userId": "...",
+  "barberId": "...",
+  "serviceId": "...",
+  "start": "2025-08-04T10:00:00Z",
+  "end": "2025-08-04T10:30:00Z"
+}
+
+### POST Hair Profile
+POST http://localhost:5000/v1/hair-profiles
+Content-Type: application/json
+
+{
+  "length": "short",
+  "texture": "wavy",
+  "density": "medium"
+}
