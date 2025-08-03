@@ -1,10 +1,29 @@
-# .NET build
+# .NET build artifacts
 bin/
 obj/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
+
+# .NET specific
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
 
 # VSCode
 .vscode/
@@ -40,8 +59,13 @@ coverage/
 .idea/
 *.iml
 
-# Misc
+# Misc - Build artifacts and caches
 *.cache
+*.tmp
+*.temp
+**/obj/**
+**/bin/**
+**/.vs/**
 
 # Ignore local kube configs
 .kube/
