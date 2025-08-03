@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using System.Security.Claims;
-using MediatR;
+using Barberly.Api.Endpoints;
 using FluentValidation;
 using System.Reflection;
 using Barberly.Api.Models;
@@ -221,6 +221,9 @@ app.MapGet("/admin-only", () => "This endpoint is for admins only")
    .WithName("AdminOnly")
    .WithOpenApi()
    .RequireAuthorization("AdminPolicy");
+
+// Directory endpoints
+app.MapDirectoryEndpoints();
 
 // Auth endpoints with simplified approach (to be enhanced later)
 app.MapPost("/auth/register", async (RegisterRequest request) =>
