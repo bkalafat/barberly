@@ -71,8 +71,8 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 
 ## 8. Test & Kalite
 
-- [ ] Unit testler (Domain, Application layer)
-- [ ] Integration testler (API + EFCore)
+- [x] Unit testler (Domain, Application layer)
+- [x] Integration testler (API + EFCore)
 - [ ] Contract testler (Pact)
 - [ ] E2E testler (Playwright)
 - [ ] Load testler (k6/Gatling)
