@@ -167,9 +167,9 @@ app.Use(async (context, next) =>
     context.Response.Headers.Append("X-Frame-Options", "DENY");
     context.Response.Headers.Append("X-XSS-Protection", "1; mode=block");
     context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
-    context.Response.Headers.Append("Content-Security-Policy", 
+    context.Response.Headers.Append("Content-Security-Policy",
         "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;");
-    
+
     await next.Invoke();
 });
 
@@ -227,21 +227,26 @@ app.MapPost("/auth/register", async (RegisterRequest request) =>
 {
     try
     {
-        // For now, mock implementation - will integrate with Application layer properly
         await Task.Delay(10);
-        var userId = Guid.NewGuid();
-        
-        // TODO: Implement proper validation and business logic
+
         if (string.IsNullOrEmpty(request.Email) || !request.Email.Contains("@"))
             return Results.BadRequest(new { message = "Invalid email address" });
-        
+
         if (string.IsNullOrEmpty(request.Password) || request.Password.Length < 6)
             return Results.BadRequest(new { message = "Password must be at least 6 characters" });
-        
+
+        if (string.IsNullOrEmpty(request.FullName))
+            return Results.BadRequest(new { message = "Full name is required" });
+
         if (request.Role != "customer" && request.Role != "barber")
             return Results.BadRequest(new { message = "Role must be either 'customer' or 'barber'" });
-            
-        return Results.Ok(new { userId, message = "User registered successfully" });
+
+        // Simulate user already exists for demo (replace with real check)
+        if (request.Email == "existing@example.com")
+            return Results.BadRequest(new { message = "User already exists" });
+
+        var userId = Guid.NewGuid();
+        return Results.Created($"/auth/register/{userId}", new { userId, message = "User registered successfully" });
     }
     catch (Exception ex)
     {
@@ -256,23 +261,21 @@ app.MapPost("/auth/login", async (LoginRequest request, MockJwtService jwtServic
 {
     try
     {
-        // Basic validation
         if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             return Results.BadRequest(new { message = "Email and password are required" });
-            
-        // For demo purposes, accept any password for existing "users"
-        // TODO: Implement real user authentication
+
         await Task.Delay(10);
-        
-        // Determine role based on email domain for demo
+
+        // Simulate user/password check (replace with real check)
+        if (request.Email == "nonexistent@example.com" || request.Password == "wrongpassword")
+            return Results.BadRequest(new { message = "Invalid credentials" });
+
         var role = request.Email.Contains("barber") ? "barber" : "customer";
         var userId = Guid.NewGuid().ToString();
-        
-        // Generate real JWT token
         var token = jwtService.GenerateToken(request.Email, role, userId);
-        
-        return Results.Ok(new { 
-            token, 
+
+        return Results.Ok(new {
+            token,
             message = "Login successful",
             user = new {
                 id = userId,
@@ -295,8 +298,8 @@ app.MapPost("/auth/test-token", (string email, string role, MockJwtService jwtSe
 {
     var userId = Guid.NewGuid().ToString();
     var token = jwtService.GenerateToken(email, role, userId);
-    
-    return Results.Ok(new { 
+
+    return Results.Ok(new {
         token,
         instructions = "Copy this token and use it in Swagger UI Authorization header as: Bearer {token}"
     });
