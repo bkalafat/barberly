@@ -13,8 +13,6 @@ public class AuthValidationTests
     [Theory]
     [InlineData("customer")]
     [InlineData("barber")]
-    [InlineData("shop_owner")]
-    [InlineData("admin")]
     public void RegisterRequest_ValidRole_ShouldBeValid(string role)
     {
         // Arrange
@@ -34,7 +32,10 @@ public class AuthValidationTests
     [InlineData("")]
     [InlineData("invalid")]
     [InlineData("CUSTOMER")]
+    [InlineData("BARBER")]
     [InlineData("user")]
+    [InlineData("shop_owner")]
+    [InlineData("admin")]
     public void RegisterRequest_InvalidRole_ShouldBeInvalid(string role)
     {
         // Arrange
@@ -176,8 +177,8 @@ public class AuthValidationTests
     // Helper methods for validation
     private static bool IsValidRole(string role)
     {
-        var validRoles = new[] { "customer", "barber", "shop_owner", "admin" };
-        return validRoles.Contains(role?.ToLower());
+        var validRoles = new[] { "customer", "barber" };
+        return validRoles.Contains(role);
     }
 
     private static bool IsValidEmail(string email)

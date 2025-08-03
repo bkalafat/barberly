@@ -31,7 +31,6 @@
     <ProjectReference Include="..\..\src\Barberly.Api\Barberly.Api.csproj" />
     <ProjectReference Include="..\..\src\Barberly.Application\Barberly.Application.csproj" />
     <ProjectReference Include="..\..\src\Barberly.Domain\Barberly.Domain.csproj" />
-    <ProjectReference Include="..\..\src\Barberly.Infrastructure\Barberly.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

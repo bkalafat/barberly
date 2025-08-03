@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="97a43242-f795-4ac0-81f3-84a0c4268d18" name="Burak@BKALAFAT 2025-08-04 01:00:07" runUser="BKALAFAT\Burak" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-08-04T01:00:08.0005989+03:00" queuing="2025-08-04T01:00:08.0005992+03:00" start="2025-08-04T01:00:06.3052904+03:00" finish="2025-08-04T01:00:08.1358877+03:00" />
+  <TestSettings name="default" id="4d6bb112-b150-4938-9ee9-b9b8fe59947c">
+    <Deployment runDeploymentRoot="Burak_BKALAFAT_2025-08-04_01_00_07" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="30724288-a770-4f7f-af2e-d10c34000773" testId="eb2878aa-0146-721a-bd9f-191fa31db2ec" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;customer&quot;)" computerName="BKALAFAT" duration="00:00:00.0000131" startTime="2025-08-04T01:00:08.0572242+03:00" endTime="2025-08-04T01:00:08.0572243+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="30724288-a770-4f7f-af2e-d10c34000773" />
+    <UnitTestResult executionId="aa853115-5f1d-4391-9667-bdeaa3ef3eb7" testId="ec9c45ec-adc5-fb28-f172-1a98c941e42f" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_MultipleCallsWithSameInput_ShouldReturnDifferentTokens" computerName="BKALAFAT" duration="00:00:00.0005779" startTime="2025-08-04T01:00:08.0194775+03:00" endTime="2025-08-04T01:00:08.0194776+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="aa853115-5f1d-4391-9667-bdeaa3ef3eb7" />
+    <UnitTestResult executionId="947ffd43-938c-4ea7-a458-d445682807ca" testId="13959218-de79-3467-06a0-dad4705eebb1" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldReturnValidJwtToken" computerName="BKALAFAT" duration="00:00:00.0615340" startTime="2025-08-04T01:00:07.9963069+03:00" endTime="2025-08-04T01:00:07.9963073+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="947ffd43-938c-4ea7-a458-d445682807ca" />
+    <UnitTestResult executionId="4fb54e19-3cdd-49ea-bf02-4cf70da05948" testId="21a4328a-7df2-d1a6-eddb-bdde726beae4" testName="Barberly.Application.Tests.Models.AuthModelsTests.RegisterUserCommand_ShouldImplementIRequest" computerName="BKALAFAT" duration="00:00:00.0005729" startTime="2025-08-04T01:00:07.9681634+03:00" endTime="2025-08-04T01:00:07.9681635+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4fb54e19-3cdd-49ea-bf02-4cf70da05948" />
+    <UnitTestResult executionId="76c80331-f6f7-404d-ade6-1f14035b82be" testId="29e819bc-b7f2-f6bb-253f-53f242216588" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidEmail_ShouldBeValid(email: &quot;customer+tag@barberly.com&quot;)" computerName="BKALAFAT" duration="00:00:00.0000106" startTime="2025-08-04T01:00:08.0577477+03:00" endTime="2025-08-04T01:00:08.0577478+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="76c80331-f6f7-404d-ade6-1f14035b82be" />
+    <UnitTestResult executionId="a95593ca-3029-4094-a178-46c1acc48e93" testId="ada0cc98-7130-ed32-a603-37db4f1d3380" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidPassword_ShouldBeInvalid(password: &quot;&quot;)" computerName="BKALAFAT" duration="00:00:00.0001544" startTime="2025-08-04T01:00:08.0579772+03:00" endTime="2025-08-04T01:00:08.0579773+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a95593ca-3029-4094-a178-46c1acc48e93" />
+    <UnitTestResult executionId="0c080f9d-822b-4f0a-892a-1b51b885a993" testId="ffd12275-be1e-7c4a-3361-750ed6dc168f" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidPassword_ShouldBeInvalid(password: &quot;ab&quot;)" computerName="BKALAFAT" duration="00:00:00.0000124" startTime="2025-08-04T01:00:08.0580771+03:00" endTime="2025-08-04T01:00:08.0580771+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0c080f9d-822b-4f0a-892a-1b51b885a993" />
+    <UnitTestResult executionId="62b3be03-75a1-450a-86de-40f9623e52bc" testId="bd903a3e-f20b-46d3-9285-d60827f022c8" testName="Barberly.Application.Tests.Models.AuthModelsTests.LoginUserCommand_ShouldImplementIRequest" computerName="BKALAFAT" duration="00:00:00.0034524" startTime="2025-08-04T01:00:07.9678984+03:00" endTime="2025-08-04T01:00:07.9678986+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="62b3be03-75a1-450a-86de-40f9623e52bc" />
+    <UnitTestResult executionId="6f39cf5c-819c-4a8b-83c5-9a96bc08b6d9" testId="651ed0fa-8cdc-388a-d082-8a558fc52697" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidPassword_ShouldBeInvalid(password: &quot;12345&quot;)" computerName="BKALAFAT" duration="00:00:00.0004371" startTime="2025-08-04T01:00:08.0578735+03:00" endTime="2025-08-04T01:00:08.0578736+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6f39cf5c-819c-4a8b-83c5-9a96bc08b6d9" />
+    <UnitTestResult executionId="9c58f8f6-67b0-471e-959a-dc24e7c2e18d" testId="4c5cc50d-e6cf-f3ba-edf5-b2b96ae625eb" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;barber&quot;, expected: &quot;Barber&quot;)" computerName="BKALAFAT" duration="00:00:00.0000136" startTime="2025-08-04T01:00:08.0554548+03:00" endTime="2025-08-04T01:00:08.0554549+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c58f8f6-67b0-471e-959a-dc24e7c2e18d" />
+    <UnitTestResult executionId="de2b7b64-112a-4f06-a08d-a3dc83227df7" testId="1d1b3361-05de-9e2c-fa33-b1dd59404b09" testName="Barberly.Application.Tests.Models.AuthModelsTests.LoginRequest_ShouldBeImmutable" computerName="BKALAFAT" duration="00:00:00.2413122" startTime="2025-08-04T01:00:07.7066167+03:00" endTime="2025-08-04T01:00:07.7066386+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="de2b7b64-112a-4f06-a08d-a3dc83227df7" />
+    <UnitTestResult executionId="ce9cc7a6-8992-4ce3-9802-6df40dbbedb6" testId="ea1f5553-2e38-6ba7-7012-2b6b170731e6" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;invalid-email&quot;)" computerName="BKALAFAT" duration="00:00:00.0001325" startTime="2025-08-04T01:00:08.0593589+03:00" endTime="2025-08-04T01:00:08.0593590+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ce9cc7a6-8992-4ce3-9802-6df40dbbedb6" />
+    <UnitTestResult executionId="c7c38bda-f283-4d72-8288-8873fa7b449e" testId="6dabe448-7ff5-dc2a-2213-5d9b783c21e9" testName="Barberly.Application.Tests.Models.AuthModelsTests.RegisterRequest_EqualityComparison_ShouldWorkCorrectly" computerName="BKALAFAT" duration="00:00:00.0025612" startTime="2025-08-04T01:00:07.9268822+03:00" endTime="2025-08-04T01:00:07.9268823+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c7c38bda-f283-4d72-8288-8873fa7b449e" />
+    <UnitTestResult executionId="e591feb2-513e-467a-ac66-15083c6a2c10" testId="1248eb99-e26a-dfdb-9501-820744216dd8" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;BARBER&quot;, expected: &quot;Barber&quot;)" computerName="BKALAFAT" duration="00:00:00.0000119" startTime="2025-08-04T01:00:08.0557542+03:00" endTime="2025-08-04T01:00:08.0557543+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e591feb2-513e-467a-ac66-15083c6a2c10" />
+    <UnitTestResult executionId="61469640-d913-4d1b-9fc2-399d356c7c72" testId="132f6c2e-a5db-8384-3768-18c7c8cf4f24" testName="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: -10, expectedFahrenheit: 14)" computerName="BKALAFAT" duration="00:00:00.0011592" startTime="2025-08-04T01:00:07.9266796+03:00" endTime="2025-08-04T01:00:07.9266799+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="61469640-d913-4d1b-9fc2-399d356c7c72">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected fahrenheit to be 14, but found 15 (difference of 1).</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+   at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Int32 celsius, Int32 expectedFahrenheit) in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs:line 139&#xD;
+   at InvokeStub_AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="1de71eb1-f964-4b33-be4d-ebb7e8f28ce6" testId="e3fa7edd-6900-ae82-49c0-e620c3066f57" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;&quot;)" computerName="BKALAFAT" duration="00:00:00.0001966" startTime="2025-08-04T01:00:08.0594594+03:00" endTime="2025-08-04T01:00:08.0594595+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="1de71eb1-f964-4b33-be4d-ebb7e8f28ce6" />
+    <UnitTestResult executionId="75559590-a5d4-413c-a512-ca3842e2d2d2" testId="e79471e1-0fce-0346-0bd3-a6ba5db99244" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(email: null)" computerName="BKALAFAT" duration="00:00:00.0006735" startTime="2025-08-04T01:00:08.0534675+03:00" endTime="2025-08-04T01:00:08.0534676+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="75559590-a5d4-413c-a512-ca3842e2d2d2">
+      <Output>
+        <ErrorInfo>
+          <Message>System.ArgumentNullException : Value cannot be null. (Parameter 'value')</Message>
+          <StackTrace>   at System.ArgumentNullException.Throw(String paramName)&#xD;
+   at System.ArgumentNullException.ThrowIfNull(Object argument, String paramName)&#xD;
+   at System.Security.Claims.Claim..ctor(String type, String value, String valueType, String issuer, String originalIssuer, ClaimsIdentity subject, String propertyKey, String propertyValue)&#xD;
+   at System.Security.Claims.Claim..ctor(String type, String value)&#xD;
+   at Barberly.Api.Services.MockJwtService.GenerateToken(String email, String role, String userId) in C:\dev\barberly\backend\src\Barberly.Api\Services\MockJwtService.cs:line 23&#xD;
+   at Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(String email) in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Services\MockJwtServiceTests.cs:line 155&#xD;
+   at InvokeStub_MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="bb864687-9fcf-461a-b1dc-aab243348c8d" testId="b9eb3fb5-eba1-e2ad-43d0-4154dc9b5ed6" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;@domain.com&quot;)" computerName="BKALAFAT" duration="00:00:00.0000129" startTime="2025-08-04T01:00:08.0598567+03:00" endTime="2025-08-04T01:00:08.0598568+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="bb864687-9fcf-461a-b1dc-aab243348c8d" />
+    <UnitTestResult executionId="7f7ebd96-26ab-40c2-86b4-4b00f34f4edc" testId="2beb1790-0a47-f9e2-3c99-fdfee091baf5" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;&quot;, expected: &quot;&quot;)" computerName="BKALAFAT" duration="00:00:00.0000113" startTime="2025-08-04T01:00:08.0556219+03:00" endTime="2025-08-04T01:00:08.0556220+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7f7ebd96-26ab-40c2-86b4-4b00f34f4edc" />
+    <UnitTestResult executionId="f001e6fe-e36d-4d22-955c-fad46bebe9ae" testId="669797d5-5d86-db59-0a55-f57baaf22783" testName="Barberly.Application.Tests.Auth.AuthValidationTests.LoginResponse_ShouldContainValidData" computerName="BKALAFAT" duration="00:00:00.0001947" startTime="2025-08-04T01:00:08.0592219+03:00" endTime="2025-08-04T01:00:08.0592221+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f001e6fe-e36d-4d22-955c-fad46bebe9ae" />
+    <UnitTestResult executionId="0f945102-1bfc-4000-bf00-d04785928dca" testId="3fdf31eb-5589-e501-de86-df32c80ac94b" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidEmail_ShouldBeValid(email: &quot;user.name@domain.co.uk&quot;)" computerName="BKALAFAT" duration="00:00:00.0001909" startTime="2025-08-04T01:00:08.0576446+03:00" endTime="2025-08-04T01:00:08.0576447+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0f945102-1bfc-4000-bf00-d04785928dca" />
+    <UnitTestResult executionId="71d8c0ee-7d19-4cab-bf40-69b3f877ac03" testId="d23b8850-75bd-1958-e811-eff53ec7d6b9" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;invalid&quot;)" computerName="BKALAFAT" duration="00:00:00.0000238" startTime="2025-08-04T01:00:08.0626774+03:00" endTime="2025-08-04T01:00:08.0626775+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="71d8c0ee-7d19-4cab-bf40-69b3f877ac03" />
+    <UnitTestResult executionId="c0fb5465-e714-4126-b985-6277facb39bb" testId="3f0a127f-3dd6-a296-dd87-5d9a2b9147fc" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;user.domain.com&quot;)" computerName="BKALAFAT" duration="00:00:00.0000150" startTime="2025-08-04T01:00:08.0596224+03:00" endTime="2025-08-04T01:00:08.0596225+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c0fb5465-e714-4126-b985-6277facb39bb" />
+    <UnitTestResult executionId="303f5a0d-dc21-4e7f-8d42-70028f7cfd5a" testId="e3286fba-a209-7eda-a430-4d57e80e99a7" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldContainCorrectClaims" computerName="BKALAFAT" duration="00:00:00.0150421" startTime="2025-08-04T01:00:08.0357638+03:00" endTime="2025-08-04T01:00:08.0357642+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="303f5a0d-dc21-4e7f-8d42-70028f7cfd5a">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected jsonToken.Claims {nameid: e1f68574-48d4-4781-8972-3c836b2d983c, unique_name: test@example.com, email: test@example.com, extension_UserType: Customer, emails: test@example.com, sub: e1f68574-48d4-4781-8972-3c836b2d983c, jti: 542a161f-1cf6-4ddc-8ffa-944fb6082384, nbf: 1754258408, exp: 1754344808, iat: 1754258408, iss: https://barberly-dev.b2clogin.com/mock-tenant-id/v2.0/, aud: mock-api-client-id} to have an item matching ((c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier") AndAlso (c.Value == value(Barberly.Application.Tests.Services.MockJwtServiceTests+&lt;&gt;c__DisplayClass4_0).userId)).</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Collections.GenericCollectionAssertions`3.Contain(Expression`1 predicate, String because, Object[] becauseArgs)&#xD;
+   at Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldContainCorrectClaims() in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Services\MockJwtServiceTests.cs:line 57&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="51f6ca9b-f02a-400e-9855-aecfb88813c2" testId="e394efd5-5d96-fe4e-2f59-11d799840011" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldHaveCorrectIssuerAndAudience" computerName="BKALAFAT" duration="00:00:00.0020044" startTime="2025-08-04T01:00:08.0368905+03:00" endTime="2025-08-04T01:00:08.0368909+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="51f6ca9b-f02a-400e-9855-aecfb88813c2" />
+    <UnitTestResult executionId="4d44dfa0-9e40-4389-bee2-d19c423fc529" testId="83ab2c6c-aed9-b74a-89a1-8f0a3759ac4e" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldHaveValidExpiration" computerName="BKALAFAT" duration="00:00:00.0014897" startTime="2025-08-04T01:00:08.0188053+03:00" endTime="2025-08-04T01:00:08.0188054+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4d44dfa0-9e40-4389-bee2-d19c423fc529" />
+    <UnitTestResult executionId="4e32a8ed-c29e-46f0-b3ba-babb592f5807" testId="3d3dafa1-91cc-15dd-73d4-a7e29e19cf71" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;CUSTOMER&quot;)" computerName="BKALAFAT" duration="00:00:00.0015230" startTime="2025-08-04T01:00:08.0625232+03:00" endTime="2025-08-04T01:00:08.0625235+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4e32a8ed-c29e-46f0-b3ba-babb592f5807">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected IsValidRole(request.Role) to be false, but found True.</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Primitives.BooleanAssertions`1.BeFalse(String because, Object[] becauseArgs)&#xD;
+   at Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(String role) in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Auth\AuthValidationTests.cs:line 49&#xD;
+   at InvokeStub_AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="77c15239-d16c-406f-b19a-959f76ca28c5" testId="04ebe657-641e-8248-6c6a-9725d2f1f7bd" testName="Barberly.Application.Tests.Models.AuthModelsTests.LoginResponse_ShouldContainTokenAndMessage" computerName="BKALAFAT" duration="00:00:00.0005270" startTime="2025-08-04T01:00:07.9682310+03:00" endTime="2025-08-04T01:00:07.9682310+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="77c15239-d16c-406f-b19a-959f76ca28c5" />
+    <UnitTestResult executionId="0cc879e8-148d-4703-a4ed-24727c257774" testId="7a6a82f9-0864-fcc9-012c-e03fae103d58" testName="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 0, expectedFahrenheit: 32)" computerName="BKALAFAT" duration="00:00:00.0002572" startTime="2025-08-04T01:00:07.9236428+03:00" endTime="2025-08-04T01:00:07.9236430+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0cc879e8-148d-4703-a4ed-24727c257774" />
+    <UnitTestResult executionId="790c9ae9-a2ea-4be4-a237-0532a21baabb" testId="2dd8b5e3-8b0f-b8f6-4b1b-a0ecfa646280" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;shop_owner&quot;, expected: &quot;Shop_owner&quot;)" computerName="BKALAFAT" duration="00:00:00.0000139" startTime="2025-08-04T01:00:08.0550701+03:00" endTime="2025-08-04T01:00:08.0550702+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="790c9ae9-a2ea-4be4-a237-0532a21baabb" />
+    <UnitTestResult executionId="0ff9698f-7c39-41b7-8a29-9e2fbd66e6fd" testId="07f46054-d3a9-3fa0-3227-e40ee232e994" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;user@&quot;)" computerName="BKALAFAT" duration="00:00:00.0000137" startTime="2025-08-04T01:00:08.0597338+03:00" endTime="2025-08-04T01:00:08.0597339+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0ff9698f-7c39-41b7-8a29-9e2fbd66e6fd" />
+    <UnitTestResult executionId="cdf86d30-283a-414f-b12a-32622e09880d" testId="f28ec25d-48d0-ee65-6888-5b02dec7ca49" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(email: &quot;&quot;)" computerName="BKALAFAT" duration="00:00:00.0009447" startTime="2025-08-04T01:00:08.0381165+03:00" endTime="2025-08-04T01:00:08.0381167+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="cdf86d30-283a-414f-b12a-32622e09880d" />
+    <UnitTestResult executionId="ab572387-b0f9-4a21-9203-b1522a2f220f" testId="f5bd3062-f68c-7e04-c181-3dc7c26899af" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;shop_owner&quot;, expectedRole: &quot;Shop_owner&quot;)" computerName="BKALAFAT" duration="00:00:00.0001738" startTime="2025-08-04T01:00:08.0183226+03:00" endTime="2025-08-04T01:00:08.0183228+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ab572387-b0f9-4a21-9203-b1522a2f220f" />
+    <UnitTestResult executionId="190fe7ff-3f1e-48fc-b8c2-3a972464905d" testId="1e375d2f-4b72-d32c-8b94-64331e559421" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;BARBER&quot;, expectedRole: &quot;Barber&quot;)" computerName="BKALAFAT" duration="00:00:00.0002388" startTime="2025-08-04T01:00:08.0167906+03:00" endTime="2025-08-04T01:00:08.0167907+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="190fe7ff-3f1e-48fc-b8c2-3a972464905d" />
+    <UnitTestResult executionId="a29c8ac8-e61f-45d4-a96a-fec8c507a457" testId="bbbf7616-f9b9-219d-8e70-c94eda01e4ba" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;admin&quot;, expected: &quot;Admin&quot;)" computerName="BKALAFAT" duration="00:00:00.0000211" startTime="2025-08-04T01:00:08.0551626+03:00" endTime="2025-08-04T01:00:08.0551626+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a29c8ac8-e61f-45d4-a96a-fec8c507a457" />
+    <UnitTestResult executionId="7138e3d7-fa16-4133-be29-b605d6a14c8e" testId="d44b1e58-bd88-ffb5-3025-3840f586bb15" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;barber&quot;, expectedRole: &quot;Barber&quot;)" computerName="BKALAFAT" duration="00:00:00.0006424" startTime="2025-08-04T01:00:08.0160813+03:00" endTime="2025-08-04T01:00:08.0160814+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7138e3d7-fa16-4133-be29-b605d6a14c8e" />
+    <UnitTestResult executionId="736115be-e9c4-4565-9f56-ee2091840ce2" testId="940148cc-c976-99cd-4b8a-1eb027c15eab" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidPassword_ShouldBeValid(password: &quot;123456&quot;)" computerName="BKALAFAT" duration="00:00:00.0002371" startTime="2025-08-04T01:00:08.0638992+03:00" endTime="2025-08-04T01:00:08.0638993+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="736115be-e9c4-4565-9f56-ee2091840ce2" />
+    <UnitTestResult executionId="5620f971-cdbe-4782-b1bb-2e55337db853" testId="f7a9502b-bde2-9527-559d-8faf588cdd49" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;customer&quot;, expected: &quot;Customer&quot;)" computerName="BKALAFAT" duration="00:00:00.0001663" startTime="2025-08-04T01:00:08.0548784+03:00" endTime="2025-08-04T01:00:08.0548785+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5620f971-cdbe-4782-b1bb-2e55337db853" />
+    <UnitTestResult executionId="90b666fd-89a4-437f-89d9-481460e560e6" testId="1b9b8567-caf1-7119-2027-197723157542" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;user&quot;)" computerName="BKALAFAT" duration="00:00:00.0002369" startTime="2025-08-04T01:00:08.0599547+03:00" endTime="2025-08-04T01:00:08.0599547+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="90b666fd-89a4-437f-89d9-481460e560e6" />
+    <UnitTestResult executionId="5f91ca9f-3078-47b4-ac61-2b993a8d1e0a" testId="027e2ce8-af11-683a-0e30-adbf1444320b" testName="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 100, expectedFahrenheit: 212)" computerName="BKALAFAT" duration="00:00:00.0010950" startTime="2025-08-04T01:00:07.9251947+03:00" endTime="2025-08-04T01:00:07.9251950+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5f91ca9f-3078-47b4-ac61-2b993a8d1e0a">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected fahrenheit to be 212, but found 211 (difference of -1).</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+   at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Int32 celsius, Int32 expectedFahrenheit) in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs:line 139&#xD;
+   at InvokeStub_AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Object, Span`1)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="40e6d1ca-ee20-4d91-ae72-ee18e5892621" testId="106c8849-2a2b-20b2-c55d-d8be409ba00f" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;CUSTOMER&quot;, expectedRole: &quot;Customer&quot;)" computerName="BKALAFAT" duration="00:00:00.0001878" startTime="2025-08-04T01:00:08.0181884+03:00" endTime="2025-08-04T01:00:08.0181886+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="40e6d1ca-ee20-4d91-ae72-ee18e5892621" />
+    <UnitTestResult executionId="b98c355a-8a05-45c1-91c4-e5bda63e8cac" testId="966bb63a-339a-bb20-9fd3-d18612ed6047" testName="Barberly.Application.Tests.Models.AuthModelsTests.RegisterResponse_ShouldContainValidGuid" computerName="BKALAFAT" duration="00:00:00.0008232" startTime="2025-08-04T01:00:07.9213691+03:00" endTime="2025-08-04T01:00:07.9213693+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b98c355a-8a05-45c1-91c4-e5bda63e8cac" />
+    <UnitTestResult executionId="68421fb1-db16-421c-b3ea-af72337d8ab5" testId="69d5a764-d6af-4eea-b3de-25bd3d96b0d0" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_NullInput_ShouldReturnNull" computerName="BKALAFAT" duration="00:00:00.0003299" startTime="2025-08-04T01:00:08.0559120+03:00" endTime="2025-08-04T01:00:08.0559121+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="68421fb1-db16-421c-b3ea-af72337d8ab5" />
+    <UnitTestResult executionId="6e275267-503d-4373-9716-01961b456643" testId="e3fe5ae7-2be0-c848-0e95-d98369844894" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;admin&quot;, expectedRole: &quot;Admin&quot;)" computerName="BKALAFAT" duration="00:00:00.0188811" startTime="2025-08-04T01:00:08.0153380+03:00" endTime="2025-08-04T01:00:08.0153383+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="6e275267-503d-4373-9716-01961b456643" />
+    <UnitTestResult executionId="508f6d45-d921-4b6e-9bd9-0f17035f5b77" testId="b7040dde-1656-386b-245e-f7b64075a308" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidPassword_ShouldBeValid(password: &quot;password123&quot;)" computerName="BKALAFAT" duration="00:00:00.0003551" startTime="2025-08-04T01:00:08.0640403+03:00" endTime="2025-08-04T01:00:08.0640405+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="508f6d45-d921-4b6e-9bd9-0f17035f5b77" />
+    <UnitTestResult executionId="7acec020-6d32-47a4-97b9-b2312a34efc5" testId="2d930fe3-4bad-40c9-81e5-ca7d1b709483" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;&quot;)" computerName="BKALAFAT" duration="00:00:00.0000113" startTime="2025-08-04T01:00:08.0637289+03:00" endTime="2025-08-04T01:00:08.0637290+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="7acec020-6d32-47a4-97b9-b2312a34efc5" />
+    <UnitTestResult executionId="fce79785-5e9b-4247-86d8-cfdb40d0008c" testId="e1d53cc4-0cb4-3ed9-0d23-38b1fa435a77" testName="Barberly.Application.Tests.Models.AuthModelsTests.RegisterRequest_ShouldBeImmutable" computerName="BKALAFAT" duration="00:00:00.0003853" startTime="2025-08-04T01:00:07.9680886+03:00" endTime="2025-08-04T01:00:07.9680886+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fce79785-5e9b-4247-86d8-cfdb40d0008c" />
+    <UnitTestResult executionId="570c7f9e-b742-4372-a979-efd70e805282" testId="7b551211-5ad9-8439-9e10-ba6d50a4ee0a" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidPassword_ShouldBeValid(password: &quot;strongPassword!&quot;)" computerName="BKALAFAT" duration="00:00:00.0000301" startTime="2025-08-04T01:00:08.0641356+03:00" endTime="2025-08-04T01:00:08.0641358+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="570c7f9e-b742-4372-a979-efd70e805282" />
+    <UnitTestResult executionId="b43346a4-81a8-4faf-9710-47dcf87d6026" testId="7b75263b-f509-25ad-fb81-2fbefd10a63c" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;CUSTOMER&quot;, expected: &quot;Customer&quot;)" computerName="BKALAFAT" duration="00:00:00.0000174" startTime="2025-08-04T01:00:08.0552891+03:00" endTime="2025-08-04T01:00:08.0552891+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b43346a4-81a8-4faf-9710-47dcf87d6026" />
+    <UnitTestResult executionId="2c5b51e5-5ebc-4476-8051-dde50352e59d" testId="f27ff66e-7191-a017-acaf-6c87f7bc39bc" testName="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;test&quot;, expected: &quot;Test&quot;)" computerName="BKALAFAT" duration="00:00:00.0001834" startTime="2025-08-04T01:00:08.0536553+03:00" endTime="2025-08-04T01:00:08.0536554+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2c5b51e5-5ebc-4476-8051-dde50352e59d" />
+    <UnitTestResult executionId="4270dc81-8ca4-4792-b83e-3451194e9293" testId="9b684d64-39f0-77c6-1655-00d406ef7551" testName="Barberly.Application.Tests.Models.AuthModelsTests.LoginRequest_EqualityComparison_ShouldWorkCorrectly" computerName="BKALAFAT" duration="00:00:00.0007342" startTime="2025-08-04T01:00:07.9270148+03:00" endTime="2025-08-04T01:00:07.9270148+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="4270dc81-8ca4-4792-b83e-3451194e9293" />
+    <UnitTestResult executionId="8724974a-1bfb-4521-9e27-fb7c84cec7fe" testId="c268a4e4-a42d-17e1-86cd-0523794f720b" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;barber&quot;)" computerName="BKALAFAT" duration="00:00:00.0009955" startTime="2025-08-04T01:00:08.0561606+03:00" endTime="2025-08-04T01:00:08.0561607+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="8724974a-1bfb-4521-9e27-fb7c84cec7fe" />
+    <UnitTestResult executionId="3602e385-c946-4960-88cf-7e3472316101" testId="389f994e-765a-2fcc-c5f4-f84347289c21" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;shop_owner&quot;)" computerName="BKALAFAT" duration="00:00:00.0002026" startTime="2025-08-04T01:00:08.0570760+03:00" endTime="2025-08-04T01:00:08.0570762+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="3602e385-c946-4960-88cf-7e3472316101" />
+    <UnitTestResult executionId="ae503be3-f0b1-4498-8a07-aaad2851d604" testId="389853bd-f1b3-aeac-2992-ced91b267847" testName="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;customer&quot;, expectedRole: &quot;Customer&quot;)" computerName="BKALAFAT" duration="00:00:00.0002423" startTime="2025-08-04T01:00:08.0164588+03:00" endTime="2025-08-04T01:00:08.0164589+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="ae503be3-f0b1-4498-8a07-aaad2851d604" />
+    <UnitTestResult executionId="06211c15-2e68-45e0-bf8d-16cfcfd1e793" testId="d5ffaa26-4a1b-a579-77a8-36a7d850c2e1" testName="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeAccurate" computerName="BKALAFAT" duration="00:00:00.2077680" startTime="2025-08-04T01:00:07.9208939+03:00" endTime="2025-08-04T01:00:07.9208942+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="06211c15-2e68-45e0-bf8d-16cfcfd1e793">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected forecast.TemperatureF to be 68, but found 67 (difference of -1).</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+   at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeAccurate() in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs:line 121&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="fb4cd59a-9d72-4939-a43d-a48c5779b636" testId="ccaef46f-8f98-8663-fd22-1a8d9abc224f" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterResponse_ShouldContainValidData" computerName="BKALAFAT" duration="00:00:00.0003103" startTime="2025-08-04T01:00:08.0644115+03:00" endTime="2025-08-04T01:00:08.0644117+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="fb4cd59a-9d72-4939-a43d-a48c5779b636" />
+    <UnitTestResult executionId="efbae866-eefc-461d-9850-89ba3d745cd6" testId="ce00c675-1729-d6c2-6a61-ea656d09b68f" testName="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 25, expectedFahrenheit: 77)" computerName="BKALAFAT" duration="00:00:00.0013955" startTime="2025-08-04T01:00:07.9234785+03:00" endTime="2025-08-04T01:00:07.9234788+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Failed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="efbae866-eefc-461d-9850-89ba3d745cd6">
+      <Output>
+        <ErrorInfo>
+          <Message>Expected fahrenheit to be 77, but found 76 (difference of -1).</Message>
+          <StackTrace>   at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+   at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+   at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+   at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+   at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+   at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Int32 celsius, Int32 expectedFahrenheit) in C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs:line 139&#xD;
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)</StackTrace>
+        </ErrorInfo>
+      </Output>
+    </UnitTestResult>
+    <UnitTestResult executionId="310de1d1-1e9a-4854-97a6-95f4d0f72123" testId="e4512d2d-5dac-ff86-ad1d-0849b82ec584" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;admin&quot;)" computerName="BKALAFAT" duration="00:00:00.0000085" startTime="2025-08-04T01:00:08.0573879+03:00" endTime="2025-08-04T01:00:08.0573880+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="310de1d1-1e9a-4854-97a6-95f4d0f72123" />
+    <UnitTestResult executionId="2872ee5e-ffd6-46b0-ac6f-26c8860355a4" testId="b65b4266-dbe7-8944-5ce7-e37106d878bc" testName="Barberly.Application.Tests.Auth.AuthValidationTests.LoginRequest_ValidData_ShouldBeValid" computerName="BKALAFAT" duration="00:00:00.0003107" startTime="2025-08-04T01:00:08.0642581+03:00" endTime="2025-08-04T01:00:08.0642582+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="2872ee5e-ffd6-46b0-ac6f-26c8860355a4" />
+    <UnitTestResult executionId="9c0f5e79-a8da-46cd-b246-455013bcafc3" testId="a72838c0-f72d-5bd6-1ede-fc98b6485bee" testName="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidEmail_ShouldBeValid(email: &quot;test@example.com&quot;)" computerName="BKALAFAT" duration="00:00:00.0005100" startTime="2025-08-04T01:00:08.0575218+03:00" endTime="2025-08-04T01:00:08.0575219+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="9c0f5e79-a8da-46cd-b246-455013bcafc3" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;barber&quot;, expectedRole: &quot;Barber&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="d44b1e58-bd88-ffb5-3025-3840f586bb15">
+      <Execution id="7138e3d7-fa16-4133-be29-b605d6a14c8e" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_DifferentRoles_ShouldFormatCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;admin&quot;, expected: &quot;Admin&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="bbbf7616-f9b9-219d-8e70-c94eda01e4ba">
+      <Execution id="a29c8ac8-e61f-45d4-a96a-fec8c507a457" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidPassword_ShouldBeValid(password: &quot;strongPassword!&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="7b551211-5ad9-8439-9e10-ba6d50a4ee0a">
+      <Execution id="570c7f9e-b742-4372-a979-efd70e805282" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidPassword_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidPassword_ShouldBeInvalid(password: &quot;&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="ada0cc98-7130-ed32-a603-37db4f1d3380">
+      <Execution id="a95593ca-3029-4094-a178-46c1acc48e93" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidPassword_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.LoginRequest_EqualityComparison_ShouldWorkCorrectly" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="9b684d64-39f0-77c6-1655-00d406ef7551">
+      <Execution id="4270dc81-8ca4-4792-b83e-3451194e9293" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="LoginRequest_EqualityComparison_ShouldWorkCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeAccurate" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="d5ffaa26-4a1b-a579-77a8-36a7d850c2e1">
+      <Execution id="06211c15-2e68-45e0-bf8d-16cfcfd1e793" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="WeatherForecast_TemperatureConversion_ShouldBeAccurate" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;CUSTOMER&quot;, expectedRole: &quot;Customer&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="106c8849-2a2b-20b2-c55d-d8be409ba00f">
+      <Execution id="40e6d1ca-ee20-4d91-ae72-ee18e5892621" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_DifferentRoles_ShouldFormatCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 0, expectedFahrenheit: 32)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="7a6a82f9-0864-fcc9-012c-e03fae103d58">
+      <Execution id="0cc879e8-148d-4703-a4ed-24727c257774" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="WeatherForecast_TemperatureConversion_ShouldBeCorrect" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidPassword_ShouldBeValid(password: &quot;123456&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="940148cc-c976-99cd-4b8a-1eb027c15eab">
+      <Execution id="736115be-e9c4-4565-9f56-ee2091840ce2" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidPassword_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;user.domain.com&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="3f0a127f-3dd6-a296-dd87-5d9a2b9147fc">
+      <Execution id="c0fb5465-e714-4126-b985-6277facb39bb" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidEmail_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;BARBER&quot;, expected: &quot;Barber&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="1248eb99-e26a-dfdb-9501-820744216dd8">
+      <Execution id="e591feb2-513e-467a-ac66-15083c6a2c10" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: -10, expectedFahrenheit: 14)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="132f6c2e-a5db-8384-3768-18c7c8cf4f24">
+      <Execution id="61469640-d913-4d1b-9fc2-399d356c7c72" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="WeatherForecast_TemperatureConversion_ShouldBeCorrect" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.RegisterUserCommand_ShouldImplementIRequest" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="21a4328a-7df2-d1a6-eddb-bdde726beae4">
+      <Execution id="4fb54e19-3cdd-49ea-bf02-4cf70da05948" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="RegisterUserCommand_ShouldImplementIRequest" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidEmail_ShouldBeValid(email: &quot;test@example.com&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="a72838c0-f72d-5bd6-1ede-fc98b6485bee">
+      <Execution id="9c0f5e79-a8da-46cd-b246-455013bcafc3" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidEmail_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 100, expectedFahrenheit: 212)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="027e2ce8-af11-683a-0e30-adbf1444320b">
+      <Execution id="5f91ca9f-3078-47b4-ac61-2b993a8d1e0a" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="WeatherForecast_TemperatureConversion_ShouldBeCorrect" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidPassword_ShouldBeValid(password: &quot;password123&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="b7040dde-1656-386b-245e-f7b64075a308">
+      <Execution id="508f6d45-d921-4b6e-9bd9-0f17035f5b77" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidPassword_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;CUSTOMER&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="3d3dafa1-91cc-15dd-73d4-a7e29e19cf71">
+      <Execution id="4e32a8ed-c29e-46f0-b3ba-babb592f5807" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidRole_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldHaveCorrectIssuerAndAudience" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e394efd5-5d96-fe4e-2f59-11d799840011">
+      <Execution id="51f6ca9b-f02a-400e-9855-aecfb88813c2" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_ValidInput_ShouldHaveCorrectIssuerAndAudience" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;customer&quot;, expected: &quot;Customer&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="f7a9502b-bde2-9527-559d-8faf588cdd49">
+      <Execution id="5620f971-cdbe-4782-b1bb-2e55337db853" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;shop_owner&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="389f994e-765a-2fcc-c5f4-f84347289c21">
+      <Execution id="3602e385-c946-4960-88cf-7e3472316101" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidRole_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;barber&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="c268a4e4-a42d-17e1-86cd-0523794f720b">
+      <Execution id="8724974a-1bfb-4521-9e27-fb7c84cec7fe" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidRole_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.LoginRequest_ValidData_ShouldBeValid" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="b65b4266-dbe7-8944-5ce7-e37106d878bc">
+      <Execution id="2872ee5e-ffd6-46b0-ac6f-26c8860355a4" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="LoginRequest_ValidData_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldReturnValidJwtToken" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="13959218-de79-3467-06a0-dad4705eebb1">
+      <Execution id="947ffd43-938c-4ea7-a458-d445682807ca" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_ValidInput_ShouldReturnValidJwtToken" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;customer&quot;, expectedRole: &quot;Customer&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="389853bd-f1b3-aeac-2992-ced91b267847">
+      <Execution id="ae503be3-f0b1-4498-8a07-aaad2851d604" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_DifferentRoles_ShouldFormatCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;&quot;, expected: &quot;&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="2beb1790-0a47-f9e2-3c99-fdfee091baf5">
+      <Execution id="7f7ebd96-26ab-40c2-86b4-4b00f34f4edc" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldHaveValidExpiration" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="83ab2c6c-aed9-b74a-89a1-8f0a3759ac4e">
+      <Execution id="4d44dfa0-9e40-4389-bee2-d19c423fc529" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_ValidInput_ShouldHaveValidExpiration" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;user&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="1b9b8567-caf1-7119-2027-197723157542">
+      <Execution id="90b666fd-89a4-437f-89d9-481460e560e6" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidRole_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;admin&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e4512d2d-5dac-ff86-ad1d-0849b82ec584">
+      <Execution id="310de1d1-1e9a-4854-97a6-95f4d0f72123" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidRole_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.LoginUserCommand_ShouldImplementIRequest" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="bd903a3e-f20b-46d3-9285-d60827f022c8">
+      <Execution id="62b3be03-75a1-450a-86de-40f9623e52bc" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="LoginUserCommand_ShouldImplementIRequest" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;admin&quot;, expectedRole: &quot;Admin&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e3fe5ae7-2be0-c848-0e95-d98369844894">
+      <Execution id="6e275267-503d-4373-9716-01961b456643" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_DifferentRoles_ShouldFormatCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.LoginResponse_ShouldContainTokenAndMessage" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="04ebe657-641e-8248-6c6a-9725d2f1f7bd">
+      <Execution id="77c15239-d16c-406f-b19a-959f76ca28c5" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="LoginResponse_ShouldContainTokenAndMessage" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.LoginResponse_ShouldContainValidData" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="669797d5-5d86-db59-0a55-f57baaf22783">
+      <Execution id="f001e6fe-e36d-4d22-955c-fad46bebe9ae" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="LoginResponse_ShouldContainValidData" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidRole_ShouldBeValid(role: &quot;customer&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="eb2878aa-0146-721a-bd9f-191fa31db2ec">
+      <Execution id="30724288-a770-4f7f-af2e-d10c34000773" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidRole_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(email: &quot;&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="f28ec25d-48d0-ee65-6888-5b02dec7ca49">
+      <Execution id="cdf86d30-283a-414f-b12a-32622e09880d" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_InvalidEmail_ShouldStillGenerateToken" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e3fa7edd-6900-ae82-49c0-e620c3066f57">
+      <Execution id="1de71eb1-f964-4b33-be4d-ebb7e8f28ce6" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidEmail_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;invalid&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="d23b8850-75bd-1958-e811-eff53ec7d6b9">
+      <Execution id="71d8c0ee-7d19-4cab-bf40-69b3f877ac03" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidRole_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.RegisterResponse_ShouldContainValidGuid" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="966bb63a-339a-bb20-9fd3-d18612ed6047">
+      <Execution id="b98c355a-8a05-45c1-91c4-e5bda63e8cac" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="RegisterResponse_ShouldContainValidGuid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidEmail_ShouldBeValid(email: &quot;customer+tag@barberly.com&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="29e819bc-b7f2-f6bb-253f-53f242216588">
+      <Execution id="76c80331-f6f7-404d-ade6-1f14035b82be" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidEmail_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_MultipleCallsWithSameInput_ShouldReturnDifferentTokens" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="ec9c45ec-adc5-fb28-f172-1a98c941e42f">
+      <Execution id="aa853115-5f1d-4391-9667-bdeaa3ef3eb7" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_MultipleCallsWithSameInput_ShouldReturnDifferentTokens" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.LoginRequest_ShouldBeImmutable" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="1d1b3361-05de-9e2c-fa33-b1dd59404b09">
+      <Execution id="de2b7b64-112a-4f06-a08d-a3dc83227df7" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="LoginRequest_ShouldBeImmutable" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.RegisterRequest_EqualityComparison_ShouldWorkCorrectly" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="6dabe448-7ff5-dc2a-2213-5d9b783c21e9">
+      <Execution id="c7c38bda-f283-4d72-8288-8873fa7b449e" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="RegisterRequest_EqualityComparison_ShouldWorkCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;CUSTOMER&quot;, expected: &quot;Customer&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="7b75263b-f509-25ad-fb81-2fbefd10a63c">
+      <Execution id="b43346a4-81a8-4faf-9710-47dcf87d6026" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(email: null)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e79471e1-0fce-0346-0bd3-a6ba5db99244">
+      <Execution id="75559590-a5d4-413c-a512-ca3842e2d2d2" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_InvalidEmail_ShouldStillGenerateToken" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;@domain.com&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="b9eb3fb5-eba1-e2ad-43d0-4154dc9b5ed6">
+      <Execution id="bb864687-9fcf-461a-b1dc-aab243348c8d" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidEmail_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldContainCorrectClaims" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e3286fba-a209-7eda-a430-4d57e80e99a7">
+      <Execution id="303f5a0d-dc21-4e7f-8d42-70028f7cfd5a" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_ValidInput_ShouldContainCorrectClaims" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.RegisterRequest_ShouldBeImmutable" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="e1d53cc4-0cb4-3ed9-0d23-38b1fa435a77">
+      <Execution id="fce79785-5e9b-4247-86d8-cfdb40d0008c" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="RegisterRequest_ShouldBeImmutable" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: &quot;&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="2d930fe3-4bad-40c9-81e5-ca7d1b709483">
+      <Execution id="7acec020-6d32-47a4-97b9-b2312a34efc5" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidRole_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;shop_owner&quot;, expectedRole: &quot;Shop_owner&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="f5bd3062-f68c-7e04-c181-3dc7c26899af">
+      <Execution id="ab572387-b0f9-4a21-9203-b1522a2f220f" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_DifferentRoles_ShouldFormatCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 25, expectedFahrenheit: 77)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="ce00c675-1729-d6c2-6a61-ea656d09b68f">
+      <Execution id="efbae866-eefc-461d-9850-89ba3d745cd6" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Models.AuthModelsTests" name="WeatherForecast_TemperatureConversion_ShouldBeCorrect" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_DifferentRoles_ShouldFormatCorrectly(inputRole: &quot;BARBER&quot;, expectedRole: &quot;Barber&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="1e375d2f-4b72-d32c-8b94-64331e559421">
+      <Execution id="190fe7ff-3f1e-48fc-b8c2-3a972464905d" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.MockJwtServiceTests" name="GenerateToken_DifferentRoles_ShouldFormatCorrectly" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;barber&quot;, expected: &quot;Barber&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="4c5cc50d-e6cf-f3ba-edf5-b2b96ae625eb">
+      <Execution id="9c58f8f6-67b0-471e-959a-dc24e7c2e18d" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_NullInput_ShouldReturnNull" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="69d5a764-d6af-4eea-b3de-25bd3d96b0d0">
+      <Execution id="68421fb1-db16-421c-b3ea-af72337d8ab5" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_NullInput_ShouldReturnNull" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;shop_owner&quot;, expected: &quot;Shop_owner&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="2dd8b5e3-8b0f-b8f6-4b1b-a0ecfa646280">
+      <Execution id="790c9ae9-a2ea-4be4-a237-0532a21baabb" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidPassword_ShouldBeInvalid(password: &quot;ab&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="ffd12275-be1e-7c4a-3361-750ed6dc168f">
+      <Execution id="0c080f9d-822b-4f0a-892a-1b51b885a993" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidPassword_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;user@&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="07f46054-d3a9-3fa0-3227-e40ee232e994">
+      <Execution id="0ff9698f-7c39-41b7-8a29-9e2fbd66e6fd" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidEmail_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidEmail_ShouldBeInvalid(email: &quot;invalid-email&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="ea1f5553-2e38-6ba7-7012-2b6b170731e6">
+      <Execution id="ce9cc7a6-8992-4ce3-9802-6df40dbbedb6" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidEmail_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_ValidEmail_ShouldBeValid(email: &quot;user.name@domain.co.uk&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="3fdf31eb-5589-e501-de86-df32c80ac94b">
+      <Execution id="0f945102-1bfc-4000-bf00-d04785928dca" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_ValidEmail_ShouldBeValid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterResponse_ShouldContainValidData" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="ccaef46f-8f98-8663-fd22-1a8d9abc224f">
+      <Execution id="fb4cd59a-9d72-4939-a43d-a48c5779b636" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterResponse_ShouldContainValidData" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidPassword_ShouldBeInvalid(password: &quot;12345&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="651ed0fa-8cdc-388a-d082-8a558fc52697">
+      <Execution id="6f39cf5c-819c-4a8b-83c5-9a96bc08b6d9" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Auth.AuthValidationTests" name="RegisterRequest_InvalidPassword_ShouldBeInvalid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Application.Tests.Services.StringExtensionsTests.ToTitleCase_VariousInputs_ShouldReturnCorrectFormat(input: &quot;test&quot;, expected: &quot;Test&quot;)" storage="c:\dev\barberly\backend\tests\barberly.application.tests\bin\release\net8.0\barberly.application.tests.dll" id="f27ff66e-7191-a017-acaf-6c87f7bc39bc">
+      <Execution id="2c5b51e5-5ebc-4476-8051-dde50352e59d" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Application.Tests\bin\Release\net8.0\Barberly.Application.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Application.Tests.Services.StringExtensionsTests" name="ToTitleCase_VariousInputs_ShouldReturnCorrectFormat" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="eb2878aa-0146-721a-bd9f-191fa31db2ec" executionId="30724288-a770-4f7f-af2e-d10c34000773" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ec9c45ec-adc5-fb28-f172-1a98c941e42f" executionId="aa853115-5f1d-4391-9667-bdeaa3ef3eb7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="13959218-de79-3467-06a0-dad4705eebb1" executionId="947ffd43-938c-4ea7-a458-d445682807ca" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="21a4328a-7df2-d1a6-eddb-bdde726beae4" executionId="4fb54e19-3cdd-49ea-bf02-4cf70da05948" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="29e819bc-b7f2-f6bb-253f-53f242216588" executionId="76c80331-f6f7-404d-ade6-1f14035b82be" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ada0cc98-7130-ed32-a603-37db4f1d3380" executionId="a95593ca-3029-4094-a178-46c1acc48e93" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ffd12275-be1e-7c4a-3361-750ed6dc168f" executionId="0c080f9d-822b-4f0a-892a-1b51b885a993" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bd903a3e-f20b-46d3-9285-d60827f022c8" executionId="62b3be03-75a1-450a-86de-40f9623e52bc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="651ed0fa-8cdc-388a-d082-8a558fc52697" executionId="6f39cf5c-819c-4a8b-83c5-9a96bc08b6d9" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="4c5cc50d-e6cf-f3ba-edf5-b2b96ae625eb" executionId="9c58f8f6-67b0-471e-959a-dc24e7c2e18d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1d1b3361-05de-9e2c-fa33-b1dd59404b09" executionId="de2b7b64-112a-4f06-a08d-a3dc83227df7" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ea1f5553-2e38-6ba7-7012-2b6b170731e6" executionId="ce9cc7a6-8992-4ce3-9802-6df40dbbedb6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="6dabe448-7ff5-dc2a-2213-5d9b783c21e9" executionId="c7c38bda-f283-4d72-8288-8873fa7b449e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1248eb99-e26a-dfdb-9501-820744216dd8" executionId="e591feb2-513e-467a-ac66-15083c6a2c10" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="132f6c2e-a5db-8384-3768-18c7c8cf4f24" executionId="61469640-d913-4d1b-9fc2-399d356c7c72" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e3fa7edd-6900-ae82-49c0-e620c3066f57" executionId="1de71eb1-f964-4b33-be4d-ebb7e8f28ce6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e79471e1-0fce-0346-0bd3-a6ba5db99244" executionId="75559590-a5d4-413c-a512-ca3842e2d2d2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b9eb3fb5-eba1-e2ad-43d0-4154dc9b5ed6" executionId="bb864687-9fcf-461a-b1dc-aab243348c8d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2beb1790-0a47-f9e2-3c99-fdfee091baf5" executionId="7f7ebd96-26ab-40c2-86b4-4b00f34f4edc" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="669797d5-5d86-db59-0a55-f57baaf22783" executionId="f001e6fe-e36d-4d22-955c-fad46bebe9ae" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3fdf31eb-5589-e501-de86-df32c80ac94b" executionId="0f945102-1bfc-4000-bf00-d04785928dca" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d23b8850-75bd-1958-e811-eff53ec7d6b9" executionId="71d8c0ee-7d19-4cab-bf40-69b3f877ac03" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3f0a127f-3dd6-a296-dd87-5d9a2b9147fc" executionId="c0fb5465-e714-4126-b985-6277facb39bb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e3286fba-a209-7eda-a430-4d57e80e99a7" executionId="303f5a0d-dc21-4e7f-8d42-70028f7cfd5a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e394efd5-5d96-fe4e-2f59-11d799840011" executionId="51f6ca9b-f02a-400e-9855-aecfb88813c2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="83ab2c6c-aed9-b74a-89a1-8f0a3759ac4e" executionId="4d44dfa0-9e40-4389-bee2-d19c423fc529" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3d3dafa1-91cc-15dd-73d4-a7e29e19cf71" executionId="4e32a8ed-c29e-46f0-b3ba-babb592f5807" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="04ebe657-641e-8248-6c6a-9725d2f1f7bd" executionId="77c15239-d16c-406f-b19a-959f76ca28c5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7a6a82f9-0864-fcc9-012c-e03fae103d58" executionId="0cc879e8-148d-4703-a4ed-24727c257774" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2dd8b5e3-8b0f-b8f6-4b1b-a0ecfa646280" executionId="790c9ae9-a2ea-4be4-a237-0532a21baabb" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="07f46054-d3a9-3fa0-3227-e40ee232e994" executionId="0ff9698f-7c39-41b7-8a29-9e2fbd66e6fd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f28ec25d-48d0-ee65-6888-5b02dec7ca49" executionId="cdf86d30-283a-414f-b12a-32622e09880d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f5bd3062-f68c-7e04-c181-3dc7c26899af" executionId="ab572387-b0f9-4a21-9203-b1522a2f220f" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1e375d2f-4b72-d32c-8b94-64331e559421" executionId="190fe7ff-3f1e-48fc-b8c2-3a972464905d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bbbf7616-f9b9-219d-8e70-c94eda01e4ba" executionId="a29c8ac8-e61f-45d4-a96a-fec8c507a457" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d44b1e58-bd88-ffb5-3025-3840f586bb15" executionId="7138e3d7-fa16-4133-be29-b605d6a14c8e" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="940148cc-c976-99cd-4b8a-1eb027c15eab" executionId="736115be-e9c4-4565-9f56-ee2091840ce2" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f7a9502b-bde2-9527-559d-8faf588cdd49" executionId="5620f971-cdbe-4782-b1bb-2e55337db853" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="1b9b8567-caf1-7119-2027-197723157542" executionId="90b666fd-89a4-437f-89d9-481460e560e6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="027e2ce8-af11-683a-0e30-adbf1444320b" executionId="5f91ca9f-3078-47b4-ac61-2b993a8d1e0a" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="106c8849-2a2b-20b2-c55d-d8be409ba00f" executionId="40e6d1ca-ee20-4d91-ae72-ee18e5892621" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="966bb63a-339a-bb20-9fd3-d18612ed6047" executionId="b98c355a-8a05-45c1-91c4-e5bda63e8cac" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="69d5a764-d6af-4eea-b3de-25bd3d96b0d0" executionId="68421fb1-db16-421c-b3ea-af72337d8ab5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e3fe5ae7-2be0-c848-0e95-d98369844894" executionId="6e275267-503d-4373-9716-01961b456643" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b7040dde-1656-386b-245e-f7b64075a308" executionId="508f6d45-d921-4b6e-9bd9-0f17035f5b77" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2d930fe3-4bad-40c9-81e5-ca7d1b709483" executionId="7acec020-6d32-47a4-97b9-b2312a34efc5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e1d53cc4-0cb4-3ed9-0d23-38b1fa435a77" executionId="fce79785-5e9b-4247-86d8-cfdb40d0008c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7b551211-5ad9-8439-9e10-ba6d50a4ee0a" executionId="570c7f9e-b742-4372-a979-efd70e805282" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="7b75263b-f509-25ad-fb81-2fbefd10a63c" executionId="b43346a4-81a8-4faf-9710-47dcf87d6026" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="f27ff66e-7191-a017-acaf-6c87f7bc39bc" executionId="2c5b51e5-5ebc-4476-8051-dde50352e59d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="9b684d64-39f0-77c6-1655-00d406ef7551" executionId="4270dc81-8ca4-4792-b83e-3451194e9293" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="c268a4e4-a42d-17e1-86cd-0523794f720b" executionId="8724974a-1bfb-4521-9e27-fb7c84cec7fe" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="389f994e-765a-2fcc-c5f4-f84347289c21" executionId="3602e385-c946-4960-88cf-7e3472316101" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="389853bd-f1b3-aeac-2992-ced91b267847" executionId="ae503be3-f0b1-4498-8a07-aaad2851d604" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="d5ffaa26-4a1b-a579-77a8-36a7d850c2e1" executionId="06211c15-2e68-45e0-bf8d-16cfcfd1e793" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ccaef46f-8f98-8663-fd22-1a8d9abc224f" executionId="fb4cd59a-9d72-4939-a43d-a48c5779b636" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="ce00c675-1729-d6c2-6a61-ea656d09b68f" executionId="efbae866-eefc-461d-9850-89ba3d745cd6" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="e4512d2d-5dac-ff86-ad1d-0849b82ec584" executionId="310de1d1-1e9a-4854-97a6-95f4d0f72123" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="b65b4266-dbe7-8944-5ce7-e37106d878bc" executionId="2872ee5e-ffd6-46b0-ac6f-26c8860355a4" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="a72838c0-f72d-5bd6-1ede-fc98b6485bee" executionId="9c0f5e79-a8da-46cd-b246-455013bcafc3" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Bir Listede Olmayan Sonuçlar" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Yüklenen Tüm Sonuçlar" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Failed">
+    <Counters total="60" executed="60" passed="53" failed="7" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.5.1.1+5fe7eebc65 (64-bit .NET 8.0.16)&#xD;
+[xUnit.net 00:00:00.39]   Discovering: Barberly.Application.Tests&#xD;
+[xUnit.net 00:00:00.44]   Discovered:  Barberly.Application.Tests&#xD;
+[xUnit.net 00:00:00.45]   Starting:    Barberly.Application.Tests&#xD;
+[xUnit.net 00:00:00.95]       Expected forecast.TemperatureF to be 68, but found 67 (difference of -1).&#xD;
+[xUnit.net 00:00:00.95]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:00.95]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs(121,0): at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeAccurate()&#xD;
+[xUnit.net 00:00:00.95]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+[xUnit.net 00:00:00.95]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:00.95]       Expected fahrenheit to be 77, but found 76 (difference of -1).&#xD;
+[xUnit.net 00:00:00.95]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:00.95]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs(139,0): at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Int32 celsius, Int32 expectedFahrenheit)&#xD;
+[xUnit.net 00:00:00.95]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+[xUnit.net 00:00:00.95]            at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:00.95]       Expected fahrenheit to be 212, but found 211 (difference of -1).&#xD;
+[xUnit.net 00:00:00.95]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:00.95]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs(139,0): at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Int32 celsius, Int32 expectedFahrenheit)&#xD;
+[xUnit.net 00:00:00.95]            at InvokeStub_AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Object, Span`1)&#xD;
+[xUnit.net 00:00:00.95]            at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:00:00.95]       Expected fahrenheit to be 14, but found 15 (difference of 1).&#xD;
+[xUnit.net 00:00:00.95]       Stack Trace:&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:00.95]            at FluentAssertions.Numeric.NumericAssertions`2.Be(T expected, String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:00.95]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Models\AuthModelsTests.cs(139,0): at Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Int32 celsius, Int32 expectedFahrenheit)&#xD;
+[xUnit.net 00:00:00.95]            at InvokeStub_AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(Object, Span`1)&#xD;
+[xUnit.net 00:00:00.95]            at System.Reflection.MethodBaseInvoker.InvokeWithFewArgs(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:00:01.06]       Expected jsonToken.Claims {nameid: e1f68574-48d4-4781-8972-3c836b2d983c, unique_name: test@example.com, email: test@example.com, extension_UserType: Customer, emails: test@example.com, sub: e1f68574-48d4-4781-8972-3c836b2d983c, jti: 542a161f-1cf6-4ddc-8ffa-944fb6082384, nbf: 1754258408, exp: 1754344808, iat: 1754258408, iss: https://barberly-dev.b2clogin.com/mock-tenant-id/v2.0/, aud: mock-api-client-id} to have an item matching ((c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier") AndAlso (c.Value == value(Barberly.Application.Tests.Services.MockJwtServiceTests+&lt;&gt;c__DisplayClass4_0).userId)).&#xD;
+[xUnit.net 00:00:01.06]       Stack Trace:&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:01.06]            at FluentAssertions.Collections.GenericCollectionAssertions`3.Contain(Expression`1 predicate, String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:01.06]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Services\MockJwtServiceTests.cs(57,0): at Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldContainCorrectClaims()&#xD;
+[xUnit.net 00:00:01.06]            at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)&#xD;
+[xUnit.net 00:00:01.06]            at System.Reflection.MethodBaseInvoker.InvokeWithNoArgs(Object obj, BindingFlags invokeAttr)&#xD;
+[xUnit.net 00:00:01.08]       System.ArgumentNullException : Value cannot be null. (Parameter 'value')&#xD;
+[xUnit.net 00:00:01.08]       Stack Trace:&#xD;
+[xUnit.net 00:00:01.08]            at System.ArgumentNullException.Throw(String paramName)&#xD;
+[xUnit.net 00:00:01.08]            at System.ArgumentNullException.ThrowIfNull(Object argument, String paramName)&#xD;
+[xUnit.net 00:00:01.08]            at System.Security.Claims.Claim..ctor(String type, String value, String valueType, String issuer, String originalIssuer, ClaimsIdentity subject, String propertyKey, String propertyValue)&#xD;
+[xUnit.net 00:00:01.08]            at System.Security.Claims.Claim..ctor(String type, String value)&#xD;
+[xUnit.net 00:00:01.08]         C:\dev\barberly\backend\src\Barberly.Api\Services\MockJwtService.cs(23,0): at Barberly.Api.Services.MockJwtService.GenerateToken(String email, String role, String userId)&#xD;
+[xUnit.net 00:00:01.08]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Services\MockJwtServiceTests.cs(155,0): at Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(String email)&#xD;
+[xUnit.net 00:00:01.08]            at InvokeStub_MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(Object, Span`1)&#xD;
+[xUnit.net 00:00:01.08]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:00:01.09]       Expected IsValidRole(request.Role) to be false, but found True.&#xD;
+[xUnit.net 00:00:01.09]       Stack Trace:&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Execution.XUnit2TestFramework.Throw(String message)&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Execution.TestFrameworkProvider.Throw(String message)&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Execution.DefaultAssertionStrategy.HandleFailure(String message)&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Execution.AssertionScope.FailWith(Func`1 failReasonFunc)&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Execution.AssertionScope.FailWith(String message, Object[] args)&#xD;
+[xUnit.net 00:00:01.09]            at FluentAssertions.Primitives.BooleanAssertions`1.BeFalse(String because, Object[] becauseArgs)&#xD;
+[xUnit.net 00:00:01.09]         C:\dev\barberly\backend\tests\Barberly.Application.Tests\Auth\AuthValidationTests.cs(49,0): at Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(String role)&#xD;
+[xUnit.net 00:00:01.09]            at InvokeStub_AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(Object, Span`1)&#xD;
+[xUnit.net 00:00:01.09]            at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)&#xD;
+[xUnit.net 00:00:01.09]   Finished:    Barberly.Application.Tests&#xD;
+</StdOut>
+    </Output>
+    <RunInfos>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:07.9181104+03:00">
+        <Text>[xUnit.net 00:00:00.94]     Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeAccurate [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:07.9242469+03:00">
+        <Text>[xUnit.net 00:00:00.95]     Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 25, expectedFahrenheit: 77) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:07.9304516+03:00">
+        <Text>[xUnit.net 00:00:00.95]     Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: 100, expectedFahrenheit: 212) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:07.9368335+03:00">
+        <Text>[xUnit.net 00:00:00.95]     Barberly.Application.Tests.Models.AuthModelsTests.WeatherForecast_TemperatureConversion_ShouldBeCorrect(celsius: -10, expectedFahrenheit: 14) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:08.0351939+03:00">
+        <Text>[xUnit.net 00:00:01.06]     Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_ValidInput_ShouldContainCorrectClaims [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:08.0531444+03:00">
+        <Text>[xUnit.net 00:00:01.08]     Barberly.Application.Tests.Services.MockJwtServiceTests.GenerateToken_InvalidEmail_ShouldStillGenerateToken(email: null) [FAIL]</Text>
+      </RunInfo>
+      <RunInfo computerName="BKALAFAT" outcome="Error" timestamp="2025-08-04T01:00:08.0827496+03:00">
+        <Text>[xUnit.net 00:00:01.09]     Barberly.Application.Tests.Auth.AuthValidationTests.RegisterRequest_InvalidRole_ShouldBeInvalid(role: "CUSTOMER") [FAIL]</Text>
+      </RunInfo>
+    </RunInfos>
+  </ResultSummary>
+</TestRun>

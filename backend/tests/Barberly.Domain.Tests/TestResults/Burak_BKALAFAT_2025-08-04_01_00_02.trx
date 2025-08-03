@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TestRun id="2e84df6c-5748-4880-9aaa-b07f468147ea" name="Burak@BKALAFAT 2025-08-04 01:00:02" runUser="BKALAFAT\Burak" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2025-08-04T01:00:02.1116531+03:00" queuing="2025-08-04T01:00:02.1116534+03:00" start="2025-08-04T00:59:59.8281052+03:00" finish="2025-08-04T01:00:02.1251487+03:00" />
+  <TestSettings name="default" id="48af3ad1-6c5f-45b8-a717-60885a2047ab">
+    <Deployment runDeploymentRoot="Burak_BKALAFAT_2025-08-04_01_00_02" />
+  </TestSettings>
+  <Results>
+    <UnitTestResult executionId="0030f96e-d407-467c-8c13-68f65515efbd" testId="cb608d8a-8a74-7c90-5494-92467a0aaac5" testName="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;admin&quot;)" computerName="BKALAFAT" duration="00:00:00.0000096" startTime="2025-08-04T01:00:02.0248530+03:00" endTime="2025-08-04T01:00:02.0248530+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="0030f96e-d407-467c-8c13-68f65515efbd" />
+    <UnitTestResult executionId="265d8003-dddf-4209-9b5a-525631b076a5" testId="37bc7402-1763-12a2-f3fc-8a096e2d1905" testName="Barberly.Domain.Tests.DomainPlaceholderTests.Email_Should_Have_Valid_Format" computerName="BKALAFAT" duration="00:00:00.0008680" startTime="2025-08-04T01:00:02.0250050+03:00" endTime="2025-08-04T01:00:02.0250050+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="265d8003-dddf-4209-9b5a-525631b076a5" />
+    <UnitTestResult executionId="d75ee6ed-11c5-470f-b68c-6719fde495b5" testId="caaed551-ea3d-c6b5-7ece-6941949d01a3" testName="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;shop_owner&quot;)" computerName="BKALAFAT" duration="00:00:00.0000056" startTime="2025-08-04T01:00:02.0248992+03:00" endTime="2025-08-04T01:00:02.0248992+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d75ee6ed-11c5-470f-b68c-6719fde495b5" />
+    <UnitTestResult executionId="36ff54f9-c74c-4841-9528-05b503213e72" testId="2d7924a6-6b2e-529d-a5b4-529f3f6681e2" testName="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;barber&quot;)" computerName="BKALAFAT" duration="00:00:00.0055636" startTime="2025-08-04T01:00:02.0212330+03:00" endTime="2025-08-04T01:00:02.0212565+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="36ff54f9-c74c-4841-9528-05b503213e72" />
+    <UnitTestResult executionId="e15e0c63-e703-4693-97ce-14d972d79f85" testId="3fe28650-e746-0a22-8310-e3f9c64ccc25" testName="Barberly.Domain.Tests.DomainPlaceholderTests.Domain_Assembly_Should_Load_Successfully" computerName="BKALAFAT" duration="00:00:00.0020650" startTime="2025-08-04T01:00:02.0249616+03:00" endTime="2025-08-04T01:00:02.0249616+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e15e0c63-e703-4693-97ce-14d972d79f85" />
+    <UnitTestResult executionId="a6b836fe-b937-4c3a-af45-da15d2566c07" testId="bcdde46b-862c-e161-c702-4542c54772bc" testName="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;customer&quot;)" computerName="BKALAFAT" duration="00:00:00.0001555" startTime="2025-08-04T01:00:02.0244845+03:00" endTime="2025-08-04T01:00:02.0244846+03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a6b836fe-b937-4c3a-af45-da15d2566c07" />
+  </Results>
+  <TestDefinitions>
+    <UnitTest name="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;shop_owner&quot;)" storage="c:\dev\barberly\backend\tests\barberly.domain.tests\bin\release\net8.0\barberly.domain.tests.dll" id="caaed551-ea3d-c6b5-7ece-6941949d01a3">
+      <Execution id="d75ee6ed-11c5-470f-b68c-6719fde495b5" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Domain.Tests\bin\Release\net8.0\Barberly.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Domain.Tests.DomainPlaceholderTests" name="UserRole_Values_Should_Be_Valid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Domain.Tests.DomainPlaceholderTests.Domain_Assembly_Should_Load_Successfully" storage="c:\dev\barberly\backend\tests\barberly.domain.tests\bin\release\net8.0\barberly.domain.tests.dll" id="3fe28650-e746-0a22-8310-e3f9c64ccc25">
+      <Execution id="e15e0c63-e703-4693-97ce-14d972d79f85" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Domain.Tests\bin\Release\net8.0\Barberly.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Domain.Tests.DomainPlaceholderTests" name="Domain_Assembly_Should_Load_Successfully" />
+    </UnitTest>
+    <UnitTest name="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;customer&quot;)" storage="c:\dev\barberly\backend\tests\barberly.domain.tests\bin\release\net8.0\barberly.domain.tests.dll" id="bcdde46b-862c-e161-c702-4542c54772bc">
+      <Execution id="a6b836fe-b937-4c3a-af45-da15d2566c07" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Domain.Tests\bin\Release\net8.0\Barberly.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Domain.Tests.DomainPlaceholderTests" name="UserRole_Values_Should_Be_Valid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;barber&quot;)" storage="c:\dev\barberly\backend\tests\barberly.domain.tests\bin\release\net8.0\barberly.domain.tests.dll" id="2d7924a6-6b2e-529d-a5b4-529f3f6681e2">
+      <Execution id="36ff54f9-c74c-4841-9528-05b503213e72" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Domain.Tests\bin\Release\net8.0\Barberly.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Domain.Tests.DomainPlaceholderTests" name="UserRole_Values_Should_Be_Valid" />
+    </UnitTest>
+    <UnitTest name="Barberly.Domain.Tests.DomainPlaceholderTests.Email_Should_Have_Valid_Format" storage="c:\dev\barberly\backend\tests\barberly.domain.tests\bin\release\net8.0\barberly.domain.tests.dll" id="37bc7402-1763-12a2-f3fc-8a096e2d1905">
+      <Execution id="265d8003-dddf-4209-9b5a-525631b076a5" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Domain.Tests\bin\Release\net8.0\Barberly.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Domain.Tests.DomainPlaceholderTests" name="Email_Should_Have_Valid_Format" />
+    </UnitTest>
+    <UnitTest name="Barberly.Domain.Tests.DomainPlaceholderTests.UserRole_Values_Should_Be_Valid(role: &quot;admin&quot;)" storage="c:\dev\barberly\backend\tests\barberly.domain.tests\bin\release\net8.0\barberly.domain.tests.dll" id="cb608d8a-8a74-7c90-5494-92467a0aaac5">
+      <Execution id="0030f96e-d407-467c-8c13-68f65515efbd" />
+      <TestMethod codeBase="C:\dev\barberly\backend\tests\Barberly.Domain.Tests\bin\Release\net8.0\Barberly.Domain.Tests.dll" adapterTypeName="executor://xunit/VsTestRunner2/netcoreapp" className="Barberly.Domain.Tests.DomainPlaceholderTests" name="UserRole_Values_Should_Be_Valid" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestEntries>
+    <TestEntry testId="cb608d8a-8a74-7c90-5494-92467a0aaac5" executionId="0030f96e-d407-467c-8c13-68f65515efbd" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="37bc7402-1763-12a2-f3fc-8a096e2d1905" executionId="265d8003-dddf-4209-9b5a-525631b076a5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="caaed551-ea3d-c6b5-7ece-6941949d01a3" executionId="d75ee6ed-11c5-470f-b68c-6719fde495b5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="2d7924a6-6b2e-529d-a5b4-529f3f6681e2" executionId="36ff54f9-c74c-4841-9528-05b503213e72" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="3fe28650-e746-0a22-8310-e3f9c64ccc25" executionId="e15e0c63-e703-4693-97ce-14d972d79f85" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestEntry testId="bcdde46b-862c-e161-c702-4542c54772bc" executionId="a6b836fe-b937-4c3a-af45-da15d2566c07" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <TestLists>
+    <TestList name="Bir Listede Olmayan Sonuçlar" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="Yüklenen Tüm Sonuçlar" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <ResultSummary outcome="Completed">
+    <Counters total="6" executed="6" passed="6" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Output>
+      <StdOut>[xUnit.net 00:00:00.00] xUnit.net VSTest Adapter v2.4.5+1caef2f33e (64-bit .NET 8.0.16)&#xD;
+[xUnit.net 00:00:01.46]   Discovering: Barberly.Domain.Tests&#xD;
+[xUnit.net 00:00:01.50]   Discovered:  Barberly.Domain.Tests&#xD;
+[xUnit.net 00:00:01.50]   Starting:    Barberly.Domain.Tests&#xD;
+[xUnit.net 00:00:01.55]   Finished:    Barberly.Domain.Tests&#xD;
+</StdOut>
+    </Output>
+  </ResultSummary>
+</TestRun>

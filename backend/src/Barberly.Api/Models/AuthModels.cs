@@ -17,5 +17,5 @@ public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 }
 
 // Internal command wrappers for MediatR
-internal record RegisterUserCommand(string Email, string Password, string FullName, string Role) : IRequest<Guid>;
-internal record LoginUserCommand(string Email, string Password) : IRequest<string>;
+public record RegisterUserCommand(string Email, string Password, string FullName, string Role) : IRequest<Guid>;
+public record LoginUserCommand(string Email, string Password) : IRequest<string>;
