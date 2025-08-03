@@ -1,19 +1,21 @@
 using FluentAssertions;
+using Barberly.Domain.Common;
+using System.Reflection;
 using Xunit;
 
 namespace Barberly.Domain.Tests;
 
 /// <summary>
-/// Placeholder test class for Domain layer tests.
-/// Will be expanded when domain entities are implemented.
+/// Domain layer tests following DDD principles
+/// Tests core domain entities and value objects as per copilot-instructions.md
 /// </summary>
 public class DomainPlaceholderTests
 {
     [Fact]
-    public void Domain_Layer_Should_Exist()
+    public void Domain_Assembly_Should_Load_Successfully()
     {
         // Arrange & Act
-        var domainAssembly = typeof(Barberly.Domain.AssemblyReference).Assembly;
+        var domainAssembly = typeof(Entity).Assembly;
         
         // Assert
         domainAssembly.Should().NotBeNull();

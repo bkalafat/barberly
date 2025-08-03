@@ -326,3 +326,6 @@ app.MapPost("/auth/test-token", (string email, string role, MockJwtService jwtSe
 .AllowAnonymous();
 
 app.Run();
+
+// Make Program class accessible for integration tests
+public partial class Program { }

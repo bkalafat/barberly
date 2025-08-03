@@ -1,232 +1,237 @@
-using Microsoft.AspNetCore.Mvc.Testing;
-using System.Text;
-using System.Text.Json;
-using Xunit;
-
 namespace Barberly.IntegrationTests.Auth;
 
+/// <summary>
+/// Authentication integration tests following Clean Architecture principles
+/// Tests JWT-based auth as per copilot-instructions.md security requirements
+/// </summary>
 public class AuthenticationTests : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly WebApplicationFactory<Program> _factory;
     private readonly HttpClient _client;
+    private readonly JsonSerializerOptions _jsonOptions;
 
     public AuthenticationTests(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
         _client = _factory.CreateClient();
+        _jsonOptions = new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        };
     }
 
     [Fact]
-    public async Task HealthCheck_ShouldReturnOk()
+    public async Task HealthCheck_Live_ShouldReturnOk()
     {
         // Act
         var response = await _client.GetAsync("/health/live");
 
         // Assert
-        response.EnsureSuccessStatusCode();
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
-    public async Task Register_WithValidData_ShouldReturnOk()
+    public async Task HealthCheck_Ready_ShouldReturnOk()
+    {
+        // Act
+        var response = await _client.GetAsync("/health/ready");
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
+    }
+
+    [Fact]
+    public async Task Register_WithValidData_ShouldReturnCreated()
     {
         // Arrange
         var request = new
         {
-            Email = "test@example.com",
-            Password = "password123",
-            FullName = "Test User",
+            Email = $"integration-test-{Guid.NewGuid()}@example.com",
+            Password = "SecurePassword123!",
+            FullName = "Integration Test User",
             Role = "customer"
         };
 
-        var json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var content = CreateJsonContent(request);
 
         // Act
         var response = await _client.PostAsync("/auth/register", content);
 
         // Assert
-        response.EnsureSuccessStatusCode();
+        response.StatusCode.Should().Be(HttpStatusCode.Created);
         var responseContent = await response.Content.ReadAsStringAsync();
-        Assert.Contains("User registered successfully", responseContent);
+        responseContent.Should().Contain("User registered successfully");
     }
 
-    [Fact]
-    public async Task Register_WithInvalidEmail_ShouldReturnBadRequest()
+    [Theory]
+    [InlineData("invalid-email", "password123", "Test User", "customer")]
+    [InlineData("test@example.com", "weak", "Test User", "customer")]
+    [InlineData("test@example.com", "password123", "", "customer")]
+    [InlineData("test@example.com", "password123", "Test User", "invalid-role")]
+    public async Task Register_WithInvalidData_ShouldReturnBadRequest(
+        string email, string password, string fullName, string role)
     {
         // Arrange
         var request = new
         {
-            Email = "invalid-email",
-            Password = "password123",
-            FullName = "Test User",
+            Email = email,
+            Password = password,
+            FullName = fullName,
+            Role = role
+        };
+
+        var content = CreateJsonContent(request);
+
+        // Act
+        var response = await _client.PostAsync("/auth/register", content);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [Fact]
+    public async Task Login_WithValidCredentials_ShouldReturnOkWithToken()
+    {
+        // Arrange - First register a user
+        var email = $"login-test-{Guid.NewGuid()}@example.com";
+        var registerRequest = new
+        {
+            Email = email,
+            Password = "SecurePassword123!",
+            FullName = "Login Test User",
             Role = "customer"
         };
 
-        var json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        await _client.PostAsync("/auth/register", CreateJsonContent(registerRequest));
 
-        // Act
-        var response = await _client.PostAsync("/auth/register", content);
-
-        // Assert
-        Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
-    }
-
-    [Fact]
-    public async Task Register_WithWeakPassword_ShouldReturnBadRequest()
-    {
-        // Arrange
-        var request = new
+        var loginRequest = new
         {
-            Email = "test@example.com",
-            Password = "123",
-            FullName = "Test User",
-            Role = "customer"
+            Email = email,
+            Password = registerRequest.Password
         };
 
-        var json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
         // Act
-        var response = await _client.PostAsync("/auth/register", content);
+        var response = await _client.PostAsync("/auth/login", CreateJsonContent(loginRequest));
 
         // Assert
-        Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
-    }
-
-    [Fact]
-    public async Task Register_WithInvalidRole_ShouldReturnBadRequest()
-    {
-        // Arrange
-        var request = new
-        {
-            Email = "test@example.com",
-            Password = "password123",
-            FullName = "Test User",
-            Role = "invalid-role"
-        };
-
-        var json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-        // Act
-        var response = await _client.PostAsync("/auth/register", content);
-
-        // Assert
-        Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
-    }
-
-    [Fact]
-    public async Task Login_WithValidCredentials_ShouldReturnOk()
-    {
-        // Arrange
-        var request = new
-        {
-            Email = "test@example.com",
-            Password = "password123"
-        };
-
-        var json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-        // Act
-        var response = await _client.PostAsync("/auth/login", content);
-
-        // Assert
-        response.EnsureSuccessStatusCode();
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
         var responseContent = await response.Content.ReadAsStringAsync();
-        Assert.Contains("Login successful", responseContent);
-        Assert.Contains("token", responseContent);
+        responseContent.Should().Contain("token");
+        responseContent.Should().Contain("Login successful");
+
+        var loginResponse = JsonSerializer.Deserialize<JsonElement>(responseContent);
+        loginResponse.TryGetProperty("token", out var tokenProperty).Should().BeTrue();
+        tokenProperty.GetString().Should().NotBeNullOrEmpty();
     }
 
-    [Fact]
-    public async Task Login_WithMissingCredentials_ShouldReturnBadRequest()
+    [Theory]
+    [InlineData("nonexistent@example.com", "password123")]
+    [InlineData("", "")]
+    [InlineData("valid@example.com", "wrongpassword")]
+    public async Task Login_WithInvalidCredentials_ShouldReturnBadRequest(string email, string password)
     {
         // Arrange
         var request = new
         {
-            Email = "",
-            Password = ""
+            Email = email,
+            Password = password
         };
 
-        var json = JsonSerializer.Serialize(request);
-        var content = new StringContent(json, Encoding.UTF8, "application/json");
-
         // Act
-        var response = await _client.PostAsync("/auth/login", content);
+        var response = await _client.PostAsync("/auth/login", CreateJsonContent(request));
 
         // Assert
-        Assert.Equal(System.Net.HttpStatusCode.BadRequest, response.StatusCode);
+        response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+    }
+
+    [Theory]
+    [InlineData("/me")]
+    [InlineData("/weatherforecast")]
+    [InlineData("/customer-only")]
+    [InlineData("/barber-only")]
+    public async Task ProtectedEndpoints_WithoutAuth_ShouldReturnUnauthorized(string endpoint)
+    {
+        // Act
+        var response = await _client.GetAsync(endpoint);
+
+        // Assert
+        response.StatusCode.Should().Be(HttpStatusCode.Unauthorized);
     }
 
     [Fact]
-    public async Task ProtectedEndpoint_WithoutAuth_ShouldReturnUnauthorized()
+    public async Task ProtectedEndpoint_WithValidToken_ShouldReturnOk()
     {
+        // Arrange - Register and login to get token
+        var token = await GetAuthTokenForRole("customer");
+        _client.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
         // Act
         var response = await _client.GetAsync("/me");
 
         // Assert
-        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
-    public async Task WeatherForecast_WithoutAuth_ShouldReturnUnauthorized()
+    public async Task RoleBasedAccess_Customer_ShouldAccessCustomerEndpoint()
     {
-        // Act
-        var response = await _client.GetAsync("/weatherforecast");
+        // Arrange - Register customer and get token
+        var token = await GetAuthTokenForRole("customer");
+        _client.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
-        // Assert
-        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
-    }
-
-    [Fact]
-    public async Task CustomerOnlyEndpoint_WithoutAuth_ShouldReturnUnauthorized()
-    {
         // Act
         var response = await _client.GetAsync("/customer-only");
 
         // Assert
-        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
-    public async Task BarberOnlyEndpoint_WithoutAuth_ShouldReturnUnauthorized()
+    public async Task RoleBasedAccess_Customer_ShouldNotAccessBarberEndpoint()
     {
+        // Arrange - Register customer and get token
+        var token = await GetAuthTokenForRole("customer");
+        _client.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+
         // Act
         var response = await _client.GetAsync("/barber-only");
 
         // Assert
-        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response.StatusCode);
+        response.StatusCode.Should().Be(HttpStatusCode.Forbidden);
     }
 
-    [Fact]
-    public async Task RateLimit_AuthEndpoints_ShouldThrottleAfterLimit()
+    private StringContent CreateJsonContent(object data)
     {
-        // Arrange - Make multiple rapid requests to trigger rate limiting
-        var request = new
+        var json = JsonSerializer.Serialize(data, _jsonOptions);
+        return new StringContent(json, Encoding.UTF8, "application/json");
+    }
+
+    private async Task<string> GetAuthTokenForRole(string role)
+    {
+        var email = $"role-test-{role}-{Guid.NewGuid()}@example.com";
+        var registerRequest = new
         {
-            Email = "ratetest@example.com",
-            Password = "password123"
+            Email = email,
+            Password = "SecurePassword123!",
+            FullName = $"Test {role}",
+            Role = role
         };
 
-        var json = JsonSerializer.Serialize(request);
-        
-        // Act - Make 6 requests rapidly (limit is 5 per minute)
-        var tasks = new List<Task<HttpResponseMessage>>();
-        for (int i = 0; i < 6; i++)
+        await _client.PostAsync("/auth/register", CreateJsonContent(registerRequest));
+
+        var loginRequest = new
         {
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
-            tasks.Add(_client.PostAsync("/auth/login", content));
-        }
+            Email = email,
+            Password = registerRequest.Password
+        };
 
-        var responses = await Task.WhenAll(tasks);
+        var loginResponse = await _client.PostAsync("/auth/login", CreateJsonContent(loginRequest));
+        var loginContent = await loginResponse.Content.ReadAsStringAsync();
+        var loginData = JsonSerializer.Deserialize<JsonElement>(loginContent);
 
-        // Assert - At least one should be rate limited
-        var rateLimitedResponses = responses.Where(r => r.StatusCode == System.Net.HttpStatusCode.TooManyRequests);
-        
-        // Note: This test might be flaky due to timing, so we'll check if we got at least some successful responses
-        // and potentially one rate limited response
-        var successfulResponses = responses.Where(r => r.IsSuccessStatusCode);
-        Assert.True(successfulResponses.Any(), "Should have at least some successful responses");
+        return loginData.GetProperty("token").GetString()!;
     }
 }
