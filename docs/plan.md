@@ -1,13 +1,23 @@
-# Barberly Pro## 2. Kimlik ve Yetkilendirme (Identity & Access)
-
-- [x] Azure AD B2C veya Auth0 ile OIDC/OAuth2 entegrasyonu
-- [x] Kullanıcı ve berber kayıt/login API'ları (`POST /auth/register`, `POST /auth/login`)
-- [ ] Policy/role tabanlı yetkilendirme
-- [ ] Rate limiting ve güvenlik yapılandırması Haritası ve Takip Planı
+# Barberly Proje Haritası ve Takip Planı
 
 Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, işaretlenebilir bir proje planıdır. Her adım tamamlandıkça işaretleyebilirsiniz. Plan, Copilot ile modüler ve sürdürülebilir geliştirme için optimize edilmiştir.
 
 ---
+
+## 1. Proje Kurulum ve Altyapı
+
+- [x] Proje repo ve temel klasör yapısını oluştur
+- [x] .NET 8 backend (API/BFF) projesini başlat
+- [x] React + TypeScript frontend projesini başlat (Vite ile)
+- [x] Temel CI/CD pipeline (GitHub Actions) kur
+- [x] Temel dokümantasyon ve Copilot rehber dosyalarını ekle (`.github/copilot-instructions.md`, `/docs/prompts/`)
+
+## 2. Kimlik ve Yetkilendirme (Identity & Access)
+
+- [x] Azure AD B2C veya Auth0 ile OIDC/OAuth2 entegrasyonu
+- [x] Kullanıcı ve berber kayıt/login API'ları (`POST /auth/register`, `POST /auth/login`)
+- [x] Policy/role tabanlı yetkilendirme
+- [x] Rate limiting ve güvenlik yapılandırması
 
 ## 1. Proje Kurulum ve Altyapı
 

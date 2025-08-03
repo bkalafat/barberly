@@ -4,17 +4,53 @@ using Microsoft.Identity.Web;
 using System.Security.Claims;
 using MediatR;
 using FluentValidation;
+using System.Reflection;
+using Barberly.Api.Models;
+using Barberly.Api.Services;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add Azure AD B2C Authentication
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(options =>
-    {
-        builder.Configuration.Bind("AzureAdB2C", options);
-        options.TokenValidationParameters.NameClaimType = "name";
-    }, 
-    options => builder.Configuration.Bind("AzureAdB2C", options));
+// Add services
+builder.Services.AddScoped<MockJwtService>();
+
+// Add Authentication
+if (builder.Environment.IsDevelopment())
+{
+    // Development: Use mock JWT tokens for testing
+    var mockSecretKey = "this-is-a-very-long-secret-key-for-testing-purposes-only-do-not-use-in-production";
+    var key = Encoding.ASCII.GetBytes(mockSecretKey);
+
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer(options =>
+        {
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = true,
+                ValidIssuer = "https://barberly-dev.b2clogin.com/mock-tenant-id/v2.0/",
+                ValidateAudience = true,
+                ValidAudience = "mock-api-client-id",
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero,
+                NameClaimType = ClaimTypes.Name,
+                RoleClaimType = "extension_UserType"
+            };
+        });
+}
+else
+{
+    // Production: Use Azure AD B2C
+    builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddMicrosoftIdentityWebApi(options =>
+        {
+            builder.Configuration.Bind("AzureAdB2C", options);
+            options.TokenValidationParameters.NameClaimType = "name";
+        },
+        options => builder.Configuration.Bind("AzureAdB2C", options));
+}
 
 // Add Authorization policies
 builder.Services.AddAuthorization(options =>
@@ -23,22 +59,22 @@ builder.Services.AddAuthorization(options =>
     options.DefaultPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
         .Build();
-    
+
     // Policy for customers
     options.AddPolicy("CustomerPolicy", policy =>
         policy.RequireAuthenticatedUser()
               .RequireClaim("extension_UserType", "Customer"));
-    
+
     // Policy for barbers
     options.AddPolicy("BarberPolicy", policy =>
         policy.RequireAuthenticatedUser()
               .RequireClaim("extension_UserType", "Barber"));
-    
+
     // Policy for shop owners
     options.AddPolicy("ShopOwnerPolicy", policy =>
         policy.RequireAuthenticatedUser()
               .RequireClaim("extension_UserType", "ShopOwner"));
-    
+
     // Policy for admins
     options.AddPolicy("AdminPolicy", policy =>
         policy.RequireAuthenticatedUser()
@@ -46,11 +82,25 @@ builder.Services.AddAuthorization(options =>
 });
 
 // Add MediatR
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+builder.Services.AddMediatR(cfg =>
+{
+    cfg.RegisterServicesFromAssemblyContaining<Program>();
+    // Register from all loaded assemblies that contain "Barberly.Application"
+    var applicationAssembly = AppDomain.CurrentDomain.GetAssemblies()
+        .FirstOrDefault(a => a.GetName().Name == "Barberly.Application");
+    if (applicationAssembly != null)
+    {
+        cfg.RegisterServicesFromAssembly(applicationAssembly);
+    }
+});
 
-// Add FluentValidation (şimdilik boş, daha sonra Application assembly'si eklenecek)
-
-// Add CORS
+// Add FluentValidation
+var appAssembly = AppDomain.CurrentDomain.GetAssemblies()
+    .FirstOrDefault(a => a.GetName().Name == "Barberly.Application");
+if (appAssembly != null)
+{
+    builder.Services.AddValidatorsFromAssembly(appAssembly);
+}// Add CORS
 var corsOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
 builder.Services.AddCors(options =>
 {
@@ -68,7 +118,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new() { Title = "Barberly API", Version = "v1" });
-    
+
     // Add JWT authentication to Swagger
     options.AddSecurityDefinition("Bearer", new()
     {
@@ -79,7 +129,7 @@ builder.Services.AddSwaggerGen(options =>
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
         Description = "JWT Authorization header using the Bearer scheme."
     });
-    
+
     options.AddSecurityRequirement(new()
     {
         {
@@ -109,6 +159,20 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Add security headers
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.Append("X-Content-Type-Options", "nosniff");
+    context.Response.Headers.Append("X-Frame-Options", "DENY");
+    context.Response.Headers.Append("X-XSS-Protection", "1; mode=block");
+    context.Response.Headers.Append("Referrer-Policy", "strict-origin-when-cross-origin");
+    context.Response.Headers.Append("Content-Security-Policy", 
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;");
+    
+    await next.Invoke();
+});
+
 app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
@@ -140,9 +204,7 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi()
-.RequireAuthorization();
-
-// Test authentication endpoint
+.RequireAuthorization();// Test authentication endpoint
 app.MapGet("/me", (ClaimsPrincipal user) =>
 {
     var claims = user.Claims.Select(c => new { c.Type, c.Value }).ToArray();
@@ -180,34 +242,87 @@ app.MapGet("/admin-only", () => "This endpoint is for admins only")
    .WithOpenApi()
    .RequireAuthorization("AdminPolicy");
 
-// Auth endpoints (mock olarak başlıyoruz)
+// Auth endpoints with simplified approach (to be enhanced later)
 app.MapPost("/auth/register", async (RegisterRequest request) =>
 {
-    // TODO: MediatR ile RegisterUserCommand çalıştır
-    await Task.Delay(10);
-    return Results.Ok(new { userId = Guid.NewGuid(), message = "User registered successfully" });
+    try
+    {
+        // For now, mock implementation - will integrate with Application layer properly
+        await Task.Delay(10);
+        var userId = Guid.NewGuid();
+        
+        // TODO: Implement proper validation and business logic
+        if (string.IsNullOrEmpty(request.Email) || !request.Email.Contains("@"))
+            return Results.BadRequest(new { message = "Invalid email address" });
+        
+        if (string.IsNullOrEmpty(request.Password) || request.Password.Length < 6)
+            return Results.BadRequest(new { message = "Password must be at least 6 characters" });
+        
+        if (request.Role != "customer" && request.Role != "barber")
+            return Results.BadRequest(new { message = "Role must be either 'customer' or 'barber'" });
+            
+        return Results.Ok(new { userId, message = "User registered successfully" });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(detail: ex.Message, statusCode: 500);
+    }
 })
 .WithName("RegisterUser")
 .WithOpenApi()
 .AllowAnonymous();
 
-app.MapPost("/auth/login", async (LoginRequest request) =>
+app.MapPost("/auth/login", async (LoginRequest request, MockJwtService jwtService) =>
 {
-    // TODO: MediatR ile LoginUserCommand çalıştır  
-    await Task.Delay(10);
-    return Results.Ok(new { token = "mock-jwt-token", message = "Login successful" });
+    try
+    {
+        // Basic validation
+        if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
+            return Results.BadRequest(new { message = "Email and password are required" });
+            
+        // For demo purposes, accept any password for existing "users"
+        // TODO: Implement real user authentication
+        await Task.Delay(10);
+        
+        // Determine role based on email domain for demo
+        var role = request.Email.Contains("barber") ? "barber" : "customer";
+        var userId = Guid.NewGuid().ToString();
+        
+        // Generate real JWT token
+        var token = jwtService.GenerateToken(request.Email, role, userId);
+        
+        return Results.Ok(new { 
+            token, 
+            message = "Login successful",
+            user = new {
+                id = userId,
+                email = request.Email,
+                role = role
+            }
+        });
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(detail: ex.Message, statusCode: 500);
+    }
 })
 .WithName("LoginUser")
 .WithOpenApi()
 .AllowAnonymous();
 
-app.Run();
-
-// Request models
-public record RegisterRequest(string Email, string Password, string FullName, string Role);
-public record LoginRequest(string Email, string Password);
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
+// Helper endpoint for generating test tokens
+app.MapPost("/auth/test-token", (string email, string role, MockJwtService jwtService) =>
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+    var userId = Guid.NewGuid().ToString();
+    var token = jwtService.GenerateToken(email, role, userId);
+    
+    return Results.Ok(new { 
+        token,
+        instructions = "Copy this token and use it in Swagger UI Authorization header as: Bearer {token}"
+    });
+})
+.WithName("GenerateTestToken")
+.WithOpenApi()
+.AllowAnonymous();
+
+app.Run();
