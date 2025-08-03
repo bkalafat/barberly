@@ -71,3 +71,7 @@ export const msalConfig = {
     },
   },
 };
+
+export const apiConfig = {
+  baseURL: env.VITE_API_URL,
+};
