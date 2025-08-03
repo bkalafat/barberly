@@ -6,7 +6,11 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 
 ## 1. Proje Kurulum ve Altyapı
 
- [x] React + TypeScript frontend projesini başlat (Vite ile)
+- [x] Proje repo ve temel klasör yapısını oluştur
+- [x] .NET 8 backend (API/BFF) projesini başlat
+- [x] React + TypeScript frontend projesini başlat (Vite ile)
+- [x] Temel CI/CD pipeline (GitHub Actions) kur
+- [x] Temel dokümantasyon ve Copilot rehber dosyalarını ekle (`.github/copilot-instructions.md`, `/docs/prompts/`)
 
 ## 2. Kimlik ve Yetkilendirme (Identity & Access)
 
