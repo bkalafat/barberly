@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using System.Security.Claims;
+using MediatR;
+using FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +44,11 @@ builder.Services.AddAuthorization(options =>
         policy.RequireAuthenticatedUser()
               .RequireClaim("extension_UserType", "Admin"));
 });
+
+// Add MediatR
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+
+// Add FluentValidation (şimdilik boş, daha sonra Application assembly'si eklenecek)
 
 // Add CORS
 var corsOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
@@ -173,7 +180,32 @@ app.MapGet("/admin-only", () => "This endpoint is for admins only")
    .WithOpenApi()
    .RequireAuthorization("AdminPolicy");
 
+// Auth endpoints (mock olarak başlıyoruz)
+app.MapPost("/auth/register", async (RegisterRequest request) =>
+{
+    // TODO: MediatR ile RegisterUserCommand çalıştır
+    await Task.Delay(10);
+    return Results.Ok(new { userId = Guid.NewGuid(), message = "User registered successfully" });
+})
+.WithName("RegisterUser")
+.WithOpenApi()
+.AllowAnonymous();
+
+app.MapPost("/auth/login", async (LoginRequest request) =>
+{
+    // TODO: MediatR ile LoginUserCommand çalıştır  
+    await Task.Delay(10);
+    return Results.Ok(new { token = "mock-jwt-token", message = "Login successful" });
+})
+.WithName("LoginUser")
+.WithOpenApi()
+.AllowAnonymous();
+
 app.Run();
+
+// Request models
+public record RegisterRequest(string Email, string Password, string FullName, string Role);
+public record LoginRequest(string Email, string Password);
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {

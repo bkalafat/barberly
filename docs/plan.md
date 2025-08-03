@@ -1,4 +1,9 @@
-# Barberly Proje Yol Haritası ve Takip Planı
+# Barberly Pro## 2. Kimlik ve Yetkilendirme (Identity & Access)
+
+- [x] Azure AD B2C veya Auth0 ile OIDC/OAuth2 entegrasyonu
+- [x] Kullanıcı ve berber kayıt/login API'ları (`POST /auth/register`, `POST /auth/login`)
+- [ ] Policy/role tabanlı yetkilendirme
+- [ ] Rate limiting ve güvenlik yapılandırması Haritası ve Takip Planı
 
 Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, işaretlenebilir bir proje planıdır. Her adım tamamlandıkça işaretleyebilirsiniz. Plan, Copilot ile modüler ve sürdürülebilir geliştirme için optimize edilmiştir.
 
@@ -14,7 +19,7 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 
 ## 2. Kimlik ve Yetkilendirme (Identity & Access)
 
-- [ ] Azure AD B2C veya Auth0 ile OIDC/OAuth2 entegrasyonu
+- [x] Azure AD B2C veya Auth0 ile OIDC/OAuth2 entegrasyonu
 - [ ] Kullanıcı ve berber kayıt/login API’ları (`POST /auth/register`, `POST /auth/login`)
 - [ ] Policy/role tabanlı yetkilendirme
 - [ ] Rate limiting ve güvenlik yapılandırması
