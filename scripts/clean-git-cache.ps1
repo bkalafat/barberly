@@ -15,6 +15,6 @@ git commit -m "fix: remove build artifacts from git tracking"
 git status
 
 # Alternatif: Tek komutla tüm obj/ klasörlerini temizle
-git rm -r --cached . 
+git rm -r --cached .
 git add .
 git commit -m "fix: apply .gitignore to all files"
