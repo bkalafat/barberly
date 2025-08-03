@@ -119,7 +119,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\dev\\barberly\\backend\\src\\Barberly.Domain\\Barberly.Domain.csproj": {
+                "projectPath": "C:\\dev\\barberly\\backend\\src\\Barberly.Domain\\Barberly.Domain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

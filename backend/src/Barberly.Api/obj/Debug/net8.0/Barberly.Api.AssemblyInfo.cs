@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Barberly.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b682eaace2062490080a6aa27c18168e4c85a4a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e37b250dbb5c154f03186681eb74d96d997e969c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Barberly.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Barberly.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
