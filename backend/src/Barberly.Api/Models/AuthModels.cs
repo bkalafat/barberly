@@ -10,12 +10,6 @@ public record LoginRequest(string Email, string Password);
 public record RegisterResponse(Guid UserId, string Message);
 public record LoginResponse(string Token, string Message);
 
-// Demo models
-public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
-
 // Internal command wrappers for MediatR
 public record RegisterUserCommand(string Email, string Password, string FullName, string Role) : IRequest<Guid>;
 public record LoginUserCommand(string Email, string Password) : IRequest<string>;

@@ -104,42 +104,6 @@ public class AuthModelsTests
     }
 
     [Fact]
-    public void WeatherForecast_TemperatureConversion_ShouldBeAccurate()
-    {
-        // Arrange
-        var date = DateOnly.FromDateTime(DateTime.Today);
-        var tempC = 20;
-        var summary = "Mild";
-
-        // Act
-        var forecast = new WeatherForecast(date, tempC, summary);
-
-        // Assert
-        forecast.Date.Should().Be(date);
-        forecast.TemperatureC.Should().Be(tempC);
-        forecast.Summary.Should().Be(summary);
-        forecast.TemperatureF.Should().Be(68); // 20°C = 68°F
-    }
-
-    [Theory]
-    [InlineData(0, 32)]    // Freezing point
-    [InlineData(100, 212)] // Boiling point
-    [InlineData(-10, 14)]  // Below freezing
-    [InlineData(25, 77)]   // Room temperature
-    public void WeatherForecast_TemperatureConversion_ShouldBeCorrect(int celsius, int expectedFahrenheit)
-    {
-        // Arrange
-        var date = DateOnly.FromDateTime(DateTime.Today);
-        var forecast = new WeatherForecast(date, celsius, "Test");
-
-        // Act
-        var fahrenheit = forecast.TemperatureF;
-
-        // Assert
-        fahrenheit.Should().Be(expectedFahrenheit);
-    }
-
-    [Fact]
     public void RegisterUserCommand_ShouldImplementIRequest()
     {
         // Arrange

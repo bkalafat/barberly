@@ -103,7 +103,6 @@ Write-Host ""
 Write-Host "3. Testing Protected Endpoints (no auth - should fail)..." -ForegroundColor Yellow
 
 $protectedEndpoints = @(
-    "/weatherforecast",
     "/me",
     "/customer-only",
     "/barber-only"

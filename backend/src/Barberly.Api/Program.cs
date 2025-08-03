@@ -184,27 +184,7 @@ app.MapHealthChecks("/health/live")
 app.MapHealthChecks("/health/ready")
    .AllowAnonymous();
 
-// Demo endpoints
-app.MapGet("/weatherforecast", () =>
-{
-    var summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-    
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi()
-.RequireAuthorization();// Test authentication endpoint
+// Test authentication endpoint
 app.MapGet("/me", (ClaimsPrincipal user) =>
 {
     var claims = user.Claims.Select(c => new { c.Type, c.Value }).ToArray();

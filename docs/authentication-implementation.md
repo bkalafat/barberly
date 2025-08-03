@@ -107,7 +107,6 @@ builder.Services.AddRateLimiter(options =>
 ### Applied Endpoints
 
 - `/auth/register` and `/auth/login` use **AuthPolicy** (5 req/min)
-- `/weatherforecast` uses **PublicPolicy** (50 req/min)
 - All other endpoints use the global limiter (100 req/min)
 
 ## Security Headers

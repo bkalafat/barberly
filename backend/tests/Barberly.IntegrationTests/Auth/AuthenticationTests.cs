@@ -146,7 +146,6 @@ public class AuthenticationTests : IClassFixture<WebApplicationFactory<Program>>
 
     [Theory]
     [InlineData("/me")]
-    [InlineData("/weatherforecast")]
     [InlineData("/customer-only")]
     [InlineData("/barber-only")]
     public async Task ProtectedEndpoints_WithoutAuth_ShouldReturnUnauthorized(string endpoint)
