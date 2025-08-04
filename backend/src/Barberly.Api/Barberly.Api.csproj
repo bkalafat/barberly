@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Barberly.Application\Barberly.Application.csproj" />
     <ProjectReference Include="..\Barberly.Domain\Barberly.Domain.csproj" />
+    <ProjectReference Include="..\Barberly.Infrastructure\Barberly.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

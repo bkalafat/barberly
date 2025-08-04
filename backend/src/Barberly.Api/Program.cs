@@ -9,8 +9,18 @@ using Barberly.Api.Models;
 using Barberly.Api.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Barberly.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore; // <--- Added using directive
 
 var builder = WebApplication.CreateBuilder(args);
+// EF Core DbContext (PostgreSQL)
+builder.Services.AddDbContext<Barberly.Infrastructure.Persistence.BarberlyDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Not: appsettings.json'da DefaultConnection eklenmeli
+// Dependency Injection: Repository interface-implementation bindings
+builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberShopRepository, Barberly.Infrastructure.Persistence.BarberShopRepository>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberRepository, Barberly.Infrastructure.Persistence.BarberRepository>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.IServiceRepository, Barberly.Infrastructure.Persistence.ServiceRepository>();
 
 // Add services
 builder.Services.AddScoped<MockJwtService>();

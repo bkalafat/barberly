@@ -329,3 +329,52 @@ app.MapPost("/v1/appointments", async (
 ---
 
 > This document serves as the single source of truth for Barberly backend architecture. Keep it updated as the system evolves.
+
+## Interface ve Bağımlılık Yönetimi (Clean Architecture)
+
+Barberly’de Domain ve Application katmanları, Infrastructure’dan interface’ler aracılığıyla izole edilir. Repository ve servis interface’leri Application katmanında tanımlanır, Infrastructure’da implementasyonları yapılır. API katmanında DI ile bağlanır.
+
+### Katmanlar ve Bağımlılıklar
+
+```
+Barberly.Api
+└── Barberly.Application (interface)
+    └── Barberly.Domain
+Barberly.Infrastructure (implementasyon)
+└── Barberly.Application (interface)
+```
+
+- **Domain**: Sadece iş kuralları, entity, value object, event.
+- **Application**: CQRS, use-case, validation, repository/service interface’leri.
+- **Infrastructure**: Sadece Application’daki interface’lerin implementasyonları.
+- **API**: DI ile interface-implementasyon eşleşmesi.
+
+#### Örnek
+
+**Application/Interfaces/IBarberRepository.cs**
+```csharp
+public interface IBarberRepository
+{
+    Task<Barber?> GetByIdAsync(Guid id, CancellationToken ct = default);
+    Task AddAsync(Barber barber, CancellationToken ct = default);
+}
+```
+
+**Infrastructure/Persistence/BarberRepository.cs**
+```csharp
+public class BarberRepository : IBarberRepository
+{
+    // EF Core implementasyonu
+}
+```
+
+**Program.cs**
+```csharp
+builder.Services.AddScoped<IBarberRepository, BarberRepository>();
+```
+
+### Neden PostgreSQL?
+- Modern .NET ve EF Core ile tam uyumlu
+- JSONB, spatial, concurrency, transaction desteği güçlü
+- Açık kaynak, bulutlarda yönetilen servisi var
+- Barberly gibi randevu, katalog, log, outbox gibi karmaşık veri modelleri için ideal
