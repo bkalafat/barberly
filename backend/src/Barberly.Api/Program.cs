@@ -85,13 +85,8 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddMediatR(cfg =>
 {
     cfg.RegisterServicesFromAssemblyContaining<Program>();
-    // Register from all loaded assemblies that contain "Barberly.Application"
-    var applicationAssembly = AppDomain.CurrentDomain.GetAssemblies()
-        .FirstOrDefault(a => a.GetName().Name == "Barberly.Application");
-    if (applicationAssembly != null)
-    {
-        cfg.RegisterServicesFromAssembly(applicationAssembly);
-    }
+    // Always register handlers from Barberly.Application by type
+    cfg.RegisterServicesFromAssemblyContaining<Barberly.Application.Directory.Handlers.GetBarberShopsQueryHandler>();
 });
 
 // Add FluentValidation

@@ -141,16 +141,31 @@ public static class DirectoryEndpoints
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 20)
     {
-        var query = new Barberly.Application.Directory.Queries.GetBarberShopsQuery(latitude, longitude, radiusKm, serviceName, minPrice, maxPrice, page, pageSize);
-        var result = await sender.Send(query);
-        return Results.Ok(result);
+        try
+        {
+            var query = new Barberly.Application.Directory.Queries.GetBarberShopsQuery(latitude, longitude, radiusKm, serviceName, minPrice, maxPrice, page, pageSize);
+            var result = await sender.Send(query);
+            return Results.Ok(result);
+        }
+        catch (Exception ex)
+        {
+            // Return error details for debugging
+            return Results.Problem(detail: ex.ToString(), statusCode: 500);
+        }
     }
 
     private static async Task<IResult> GetBarberShopById(Guid id, ISender sender)
     {
-        var query = new GetBarberShopByIdQuery(id);
-        var result = await sender.Send(query);
-        return result != null ? Results.Ok(result) : Results.NotFound();
+        try
+        {
+            var query = new GetBarberShopByIdQuery(id);
+            var result = await sender.Send(query);
+            return result != null ? Results.Ok(result) : Results.NotFound();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(detail: ex.ToString(), statusCode: 500);
+        }
     }
 
     private static async Task<IResult> UpdateBarberShop(
@@ -214,16 +229,30 @@ public static class DirectoryEndpoints
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 20)
     {
-        var query = new Application.Directory.Queries.GetBarbersQuery(barberShopId, serviceName, page, pageSize);
-        var result = await sender.Send(query);
-        return Results.Ok(result);
+        try
+        {
+            var query = new Application.Directory.Queries.GetBarbersQuery(barberShopId, serviceName, page, pageSize);
+            var result = await sender.Send(query);
+            return Results.Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(detail: ex.ToString(), statusCode: 500);
+        }
     }
 
     private static async Task<IResult> GetBarberById(Guid id, ISender sender)
     {
-        var query = new GetBarberByIdQuery(id);
-        var result = await sender.Send(query);
-        return result != null ? Results.Ok(result) : Results.NotFound();
+        try
+        {
+            var query = new GetBarberByIdQuery(id);
+            var result = await sender.Send(query);
+            return result != null ? Results.Ok(result) : Results.NotFound();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(detail: ex.ToString(), statusCode: 500);
+        }
     }
 
     private static async Task<IResult> UpdateBarber(
@@ -276,16 +305,30 @@ public static class DirectoryEndpoints
         [FromQuery] int page = 1,
         [FromQuery] int pageSize = 20)
     {
-        var query = new Application.Directory.Queries.GetServicesQuery(barberShopId, minPrice, maxPrice, minDurationMinutes, maxDurationMinutes, page, pageSize);
-        var result = await sender.Send(query);
-        return Results.Ok(result);
+        try
+        {
+            var query = new Application.Directory.Queries.GetServicesQuery(barberShopId, minPrice, maxPrice, minDurationMinutes, maxDurationMinutes, page, pageSize);
+            var result = await sender.Send(query);
+            return Results.Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(detail: ex.ToString(), statusCode: 500);
+        }
     }
 
     private static async Task<IResult> GetServiceById(Guid id, ISender sender)
     {
-        var query = new GetServiceByIdQuery(id);
-        var result = await sender.Send(query);
-        return result != null ? Results.Ok(result) : Results.NotFound();
+        try
+        {
+            var query = new GetServiceByIdQuery(id);
+            var result = await sender.Send(query);
+            return result != null ? Results.Ok(result) : Results.NotFound();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(detail: ex.ToString(), statusCode: 500);
+        }
     }
 
     private static async Task<IResult> UpdateService(
