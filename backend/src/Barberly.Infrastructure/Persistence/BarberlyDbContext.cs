@@ -10,9 +10,22 @@ public class BarberlyDbContext : DbContext
     public DbSet<BarberShop> BarberShops => Set<BarberShop>();
     public DbSet<Barber> Barbers => Set<Barber>();
     public DbSet<Service> Services => Set<Service>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // User
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Email).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.PasswordHash).IsRequired();
+            entity.Property(e => e.FullName).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Role).IsRequired().HasMaxLength(20);
+            entity.Property(e => e.CreatedAt).IsRequired();
+            entity.HasIndex(e => e.Email).IsUnique();
+        });
+
         // BarberShop
         modelBuilder.Entity<BarberShop>(entity =>
         {

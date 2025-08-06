@@ -21,9 +21,11 @@ builder.Services.AddDbContext<Barberly.Infrastructure.Persistence.BarberlyDbCont
 builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberShopRepository, Barberly.Infrastructure.Persistence.BarberShopRepository>();
 builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberRepository, Barberly.Infrastructure.Persistence.BarberRepository>();
 builder.Services.AddScoped<Barberly.Application.Interfaces.IServiceRepository, Barberly.Infrastructure.Persistence.ServiceRepository>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.IUserRepository, Barberly.Infrastructure.Persistence.UserRepository>();
 
 // Add services
 builder.Services.AddScoped<MockJwtService>();
+builder.Services.AddScoped<PasswordHasher>();
 
 // Add Authentication
 if (builder.Environment.IsDevelopment())
@@ -231,12 +233,10 @@ app.MapGet("/admin-only", () => "This endpoint is for admins only")
 app.MapDirectoryEndpoints();
 
 // Auth endpoints with simplified approach (to be enhanced later)
-app.MapPost("/auth/register", async (RegisterRequest request) =>
+app.MapPost("/auth/register", async (RegisterRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, PasswordHasher hasher) =>
 {
     try
     {
-        await Task.Delay(10);
-
         if (string.IsNullOrEmpty(request.Email) || !request.Email.Contains("@"))
             return Results.BadRequest(new { message = "Invalid email address" });
 
@@ -249,12 +249,21 @@ app.MapPost("/auth/register", async (RegisterRequest request) =>
         if (request.Role != "customer" && request.Role != "barber")
             return Results.BadRequest(new { message = "Role must be either 'customer' or 'barber'" });
 
-        // Simulate user already exists for demo (replace with real check)
-        if (request.Email == "existing@example.com")
+        var existing = await userRepo.GetByEmailAsync(request.Email);
+        if (existing != null)
             return Results.BadRequest(new { message = "User already exists" });
 
-        var userId = Guid.NewGuid();
-        return Results.Created($"/auth/register/{userId}", new { userId, message = "User registered successfully" });
+        var user = new Barberly.Domain.Entities.User
+        {
+            Id = Guid.NewGuid(),
+            Email = request.Email,
+            PasswordHash = hasher.HashPassword(request.Password),
+            FullName = request.FullName,
+            Role = request.Role.ToLower(),
+            CreatedAt = DateTime.UtcNow
+        };
+        await userRepo.AddAsync(user);
+        return Results.Created($"/auth/register/{user.Id}", new { userId = user.Id, message = "User registered successfully" });
     }
     catch (Exception ex)
     {
@@ -265,30 +274,29 @@ app.MapPost("/auth/register", async (RegisterRequest request) =>
 .WithOpenApi()
 .AllowAnonymous();
 
-app.MapPost("/auth/login", async (LoginRequest request, MockJwtService jwtService) =>
+app.MapPost("/auth/login", async (LoginRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, PasswordHasher hasher, MockJwtService jwtService) =>
 {
     try
     {
         if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password))
             return Results.BadRequest(new { message = "Email and password are required" });
 
-        await Task.Delay(10);
-
-        // Simulate user/password check (replace with real check)
-        if (request.Email == "nonexistent@example.com" || request.Password == "wrongpassword")
+        var user = await userRepo.GetByEmailAsync(request.Email);
+        if (user == null)
             return Results.BadRequest(new { message = "Invalid credentials" });
 
-        var role = request.Email.Contains("barber") ? "barber" : "customer";
-        var userId = Guid.NewGuid().ToString();
-        var token = jwtService.GenerateToken(request.Email, role, userId);
+        if (!hasher.VerifyPassword(request.Password, user.PasswordHash))
+            return Results.BadRequest(new { message = "Invalid credentials" });
+
+        var token = jwtService.GenerateToken(user.Email, user.Role, user.Id.ToString());
 
         return Results.Ok(new {
             token,
             message = "Login successful",
             user = new {
-                id = userId,
-                email = request.Email,
-                role = role
+                id = user.Id,
+                email = user.Email,
+                role = user.Role
             }
         });
     }
