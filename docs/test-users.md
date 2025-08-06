@@ -20,4 +20,6 @@ Bu dosyada local/test ortamında oluşturulan örnek kullanıcılar tutulur. Tes
 
 ---
 
-> Gerekirse yeni test kullanıcıları ekleyin. Bu dosya frontend ve backend testlerinde referans olarak kullanılabilir.
+> Gerekirse yeni test kullanıcıları ekleyin. Bu dosya frontend ve backend testlerinde referans olarak kullanabilir.
+
+> Not: Kimlik ve yetkilendirme modülü tamamlandığı için bu kullanıcılar ile /auth/register ve /auth/login uçları test edilebilir.

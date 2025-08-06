@@ -57,7 +57,15 @@ dotnet list package | Select-String "FluentValidation"
 # All projects should show version 11.9.0
 ```
 
-### 3. Role Validation Test Failure
+
+### Kimlik/Yetkilendirme ile İlgili Bilinen Sorunlar
+
+- Register/login endpoint'leri için parola hashleme ve doğrulama eklendi. Parola doğrulama hatalarında 400 ve ProblemDetails döner.
+- Test kullanıcıları ile /auth/register ve /auth/login uçları test edilebilir.
+- Migration sonrası Users tablosu oluşmazsa, migration geçmişi ve DB bağlantısı kontrol edilmeli.
+- EF Core migration dosyası elle eklendiğinde derleme hatası oluşur. CLI ile migration oluşturulmalı.
+- Duplicate migration class hatası: Aynı migration iki dosyada varsa silinmeli.
+- Migration uygulandıktan sonra veritabanında tablo oluşmuyorsa, connection string ve migration geçmişi kontrol edilmeli.
 
 **Error Message:**
 ```

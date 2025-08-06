@@ -278,12 +278,12 @@ Both endpoints are anonymous and return HTTP 200 when healthy.
 
 ## Next Steps
 
-1. **Real JWT Implementation**: Replace mock tokens with actual JWT generation
-2. **Database Integration**: Connect to PostgreSQL for user storage
-3. **Azure B2C Integration**: Configure real Azure B2C tenant
-4. **Enhanced Validation**: Add more sophisticated input validation
-5. **Audit Logging**: Add comprehensive audit trails
-6. **Refresh Tokens**: Implement token refresh mechanism
+> ✅ Section 2 (Kimlik ve Yetkilendirme) tamamlandı. Artık Directory modülüne geçilebilir.
+
+1. **Directory Module**: Implement BarberShop, Barber, and Service entities
+2. **CRUD APIs**: Create endpoints for managing salons, barbers, and services
+3. **Search & Filtering**: Add location-based and criteria-based search
+4. **Image Upload**: Implement blob storage for salon/barber photos
 
 ## Security Considerations
 

@@ -30,8 +30,8 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 ## 2. Kimlik ve Yetkilendirme (Identity & Access)
 
 - [x] Azure AD B2C veya Auth0 ile OIDC/OAuth2 entegrasyonu
-- [ ] Kullanıcı ve berber kayıt/login API’ları (`POST /auth/register`, `POST /auth/login`)
-- [ ] Policy/role tabanlı yetkilendirme
+- [x] Kullanıcı ve berber kayıt/login API’ları (`POST /auth/register`, `POST /auth/login`)
+- [x] Policy/role tabanlı yetkilendirme
 - [ ] Rate limiting ve güvenlik yapılandırması
 
 ## 3. Directory (Salon/Barber/Service Profilleri)
