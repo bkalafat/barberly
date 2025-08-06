@@ -25,7 +25,18 @@ public class BarberlyDbContext : DbContext
             entity.Property(e => e.Website).HasMaxLength(100);
             entity.Property(e => e.OpenTime);
             entity.Property(e => e.CloseTime);
-            entity.Property(e => e.WorkingDays);
+            entity.Property(e => e.WorkingDays)
+                .HasConversion(
+                    v => System.Text.Json.JsonSerializer.Serialize(v, (System.Text.Json.JsonSerializerOptions?)null),
+                    v => System.Text.Json.JsonSerializer.Deserialize<DayOfWeek[]>(v, (System.Text.Json.JsonSerializerOptions?)null) ?? Array.Empty<DayOfWeek>()
+                )
+                .Metadata.SetValueComparer(
+                    new Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer<DayOfWeek[]>(
+                        (c1, c2) => (c1 ?? Array.Empty<DayOfWeek>()).SequenceEqual(c2 ?? Array.Empty<DayOfWeek>()),
+                        c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+                        c => c.ToArray()
+                    )
+                );
             entity.Property(e => e.Latitude).HasColumnType("decimal(9,6)");
             entity.Property(e => e.Longitude).HasColumnType("decimal(9,6)");
             entity.HasMany(e => e.Barbers).WithOne(b => b.BarberShop).HasForeignKey(b => b.BarberShopId);
