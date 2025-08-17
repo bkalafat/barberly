@@ -67,17 +67,17 @@ public static class SchedulingEndpoints
             slotStart = slotStart.AddMinutes(serviceDuration);
         }
 
-    var json = System.Text.Json.JsonSerializer.Serialize(slots);
-    var opts = new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5) };
-    try
-    {
-        await cache.SetStringAsync(cacheKey, json, opts);
-    }
-    catch (Exception)
-    {
-        // ignore cache write errors
-    }
-    return Results.Ok(slots);
+        var json = System.Text.Json.JsonSerializer.Serialize(slots);
+        var opts = new DistributedCacheEntryOptions { AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5) };
+        try
+        {
+            await cache.SetStringAsync(cacheKey, json, opts);
+        }
+        catch (Exception)
+        {
+            // ignore cache write errors
+        }
+        return Results.Ok(slots);
     }
     private static async Task<IResult> CreateAppointment([FromHeader(Name = "Idempotency-Key")] string? idemKey, [FromBody] CreateAppointmentRequest req, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
     {
@@ -96,18 +96,18 @@ public static class SchedulingEndpoints
         var appt = Appointment.Create(req.UserId, req.BarberId, req.ServiceId, req.Start, req.End, idemKey);
         await apptRepo.AddAsync(appt);
         await db.SaveChangesAsync();
-    // invalidate cache for this barber/date/service
-    var key = $"barbers:{req.BarberId}:slots:{req.Start.UtcDateTime:yyyy-MM-dd}:{req.ServiceId}";
-    try
-    {
-        await cache.RemoveAsync(key);
-    }
-    catch (Exception)
-    {
-        // ignore cache remove errors
-    }
+        // invalidate cache for this barber/date/service
+        var key = $"barbers:{req.BarberId}:slots:{req.Start.UtcDateTime:yyyy-MM-dd}:{req.ServiceId}";
+        try
+        {
+            await cache.RemoveAsync(key);
+        }
+        catch (Exception)
+        {
+            // ignore cache remove errors
+        }
 
-    return Results.Created($"/api/v1/appointments/{appt.Id}", new { id = appt.Id });
+        return Results.Created($"/api/v1/appointments/{appt.Id}", new { id = appt.Id });
     }
 
     public sealed class CreateAppointmentRequest
