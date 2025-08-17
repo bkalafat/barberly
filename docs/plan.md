@@ -50,6 +50,8 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 - [ ] Idempotency-key ve concurrency kontrolü
 - [ ] SignalR ile canlı slot güncellemeleri (v2)
 
+> Not: Scheduling endpoints (`GET /barbers/{id}/availability` and `POST /appointments`) are already implemented in the API (`SchedulingEndpoints.cs`). Redis-based caching for slot generation is still TODO and should be tracked here as part of the MVP scheduling work.
+
 ## 5. Hair Profile (AI-ready)
 
 - [ ] HairProfile entity ve API’ları (`POST /hair-profiles`, `GET /hair-profiles/me`)
