@@ -11,6 +11,7 @@ public class BarberlyDbContext : DbContext
     public DbSet<Barber> Barbers => Set<Barber>();
     public DbSet<Service> Services => Set<Service>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<Appointment> Appointments => Set<Appointment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -78,6 +79,20 @@ public class BarberlyDbContext : DbContext
             entity.Property(e => e.Price).HasColumnType("decimal(10,2)");
             entity.Property(e => e.DurationInMinutes);
             entity.HasMany(e => e.Barbers).WithMany(b => b.Services);
+        });
+
+        // Appointment
+        modelBuilder.Entity<Appointment>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.UserId).IsRequired();
+            entity.Property(e => e.BarberId).IsRequired();
+            entity.Property(e => e.ServiceId).IsRequired();
+            entity.Property(e => e.Start).IsRequired();
+            entity.Property(e => e.End).IsRequired();
+            entity.Property(e => e.IdempotencyKey).HasMaxLength(100);
+            entity.HasIndex(e => e.IdempotencyKey).IsUnique().HasFilter("\"IdempotencyKey\" IS NOT NULL");
+            entity.HasIndex(e => new { e.BarberId, e.Start });
         });
     }
 }

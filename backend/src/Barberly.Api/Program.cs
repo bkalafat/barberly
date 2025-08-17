@@ -22,6 +22,7 @@ builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberShopRepository
 builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberRepository, Barberly.Infrastructure.Persistence.BarberRepository>();
 builder.Services.AddScoped<Barberly.Application.Interfaces.IServiceRepository, Barberly.Infrastructure.Persistence.ServiceRepository>();
 builder.Services.AddScoped<Barberly.Application.Interfaces.IUserRepository, Barberly.Infrastructure.Persistence.UserRepository>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.IAppointmentRepository, Barberly.Infrastructure.Persistence.AppointmentRepository>();
 
 // Add services
 builder.Services.AddScoped<MockJwtService>();
@@ -100,6 +101,23 @@ builder.Services.AddMediatR(cfg =>
     // Always register handlers from Barberly.Application by type
     cfg.RegisterServicesFromAssemblyContaining<Barberly.Application.Directory.Handlers.GetBarberShopsQueryHandler>();
 });
+
+// Add Redis distributed cache (optional - development config in appsettings.Development.json)
+var redisConn = builder.Configuration.GetConnectionString("Redis") ?? builder.Configuration.GetSection("ConnectionStrings")["Redis"];
+// If Redis points to localhost or 127.0.0.1 and it's not explicitly configured in the environment,
+// prefer the in-memory distributed cache for tests/local dev to avoid hard dependency on a running Redis instance.
+if (!string.IsNullOrEmpty(redisConn) && !(redisConn.Contains("localhost", StringComparison.OrdinalIgnoreCase) || redisConn.Contains("127.0.0.1")))
+{
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = redisConn;
+    });
+}
+else
+{
+    // Use in-memory distributed cache for local development / tests (safer when Redis not running locally)
+    builder.Services.AddDistributedMemoryCache();
+}
 
 // Add FluentValidation
 var appAssembly = AppDomain.CurrentDomain.GetAssemblies()
@@ -231,6 +249,8 @@ app.MapGet("/admin-only", () => "This endpoint is for admins only")
 
 // Directory endpoints
 app.MapDirectoryEndpoints();
+// Scheduling endpoints
+app.MapSchedulingEndpoints();
 
 // Auth endpoints with simplified approach (to be enhanced later)
 app.MapPost("/auth/register", async (RegisterRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, PasswordHasher hasher) =>
@@ -290,10 +310,12 @@ app.MapPost("/auth/login", async (LoginRequest request, Barberly.Application.Int
 
         var token = jwtService.GenerateToken(user.Email, user.Role, user.Id.ToString());
 
-        return Results.Ok(new {
+        return Results.Ok(new
+        {
             token,
             message = "Login successful",
-            user = new {
+            user = new
+            {
                 id = user.Id,
                 email = user.Email,
                 role = user.Role
@@ -315,7 +337,8 @@ app.MapPost("/auth/test-token", (string email, string role, MockJwtService jwtSe
     var userId = Guid.NewGuid().ToString();
     var token = jwtService.GenerateToken(email, role, userId);
 
-    return Results.Ok(new {
+    return Results.Ok(new
+    {
         token,
         instructions = "Copy this token and use it in Swagger UI Authorization header as: Bearer {token}"
     });

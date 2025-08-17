@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Barberly.Infrastructure.Persistence
 {
-    public class UserRepository : Barberly.Application.Interfaces.IUserRepository
+    public class UserRepository : Application.Interfaces.IUserRepository
     {
         private readonly BarberlyDbContext _db;
         public UserRepository(BarberlyDbContext db)
