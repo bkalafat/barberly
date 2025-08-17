@@ -38,12 +38,20 @@ export interface BarberShop {
   phone: string;
   email: string;
   website?: string;
+  isActive: boolean;
+  openTime: string;
+  closeTime: string;
+  workingDays: string[];
   latitude: number;
   longitude: number;
+  averageRating: number;
+  totalReviews: number;
+  createdAt: string;
+  updatedAt?: string;
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api/v1',
+  baseURL: (import.meta.env.VITE_API_URL || 'http://localhost:5000') + '/api/v1',
   timeout: 10000,
 });
 

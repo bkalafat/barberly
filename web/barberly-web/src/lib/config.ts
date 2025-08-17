@@ -1,6 +1,6 @@
 // Environment configuration for the application
 export const env = {
-  VITE_API_URL: import.meta.env.VITE_API_URL || 'http://localhost:5000',
+  VITE_API_URL: import.meta.env.VITE_API_URL || 'http://localhost:5156',
 
   VITE_AUTH_CLIENT_ID:
     import.meta.env.VITE_AUTH_CLIENT_ID || '00000000-0000-0000-0000-000000000000',
@@ -13,10 +13,10 @@ export const env = {
     import.meta.env.VITE_AUTH_KNOWN_AUTHORITIES || 'barberly-dev.b2clogin.com',
 
   VITE_AUTH_REDIRECT_URI:
-    import.meta.env.VITE_AUTH_REDIRECT_URI || 'http://localhost:5173/auth/callback',
+    import.meta.env.VITE_AUTH_REDIRECT_URI || 'http://localhost:5174/auth/callback',
 
   VITE_AUTH_POST_LOGOUT_REDIRECT_URI:
-    import.meta.env.VITE_AUTH_POST_LOGOUT_REDIRECT_URI || 'http://localhost:5173',
+    import.meta.env.VITE_AUTH_POST_LOGOUT_REDIRECT_URI || 'http://localhost:5174',
 
   VITE_AUTH_SCOPES: import.meta.env.VITE_AUTH_SCOPES || 'openid profile email',
 
