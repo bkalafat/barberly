@@ -1,5 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { appointmentsApi, barbersApi, shopsApi, type Barber, type CreateAppointmentRequest } from './client';
+import {
+  appointmentsApi,
+  barbersApi,
+  shopsApi,
+  type Barber,
+  type CreateAppointmentRequest,
+} from './client';
 
 // Query keys factory
 export const queryKeys = {

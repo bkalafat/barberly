@@ -11,10 +11,12 @@ export function BarbersPage() {
 
   const { data: barbers, isLoading, error } = useBarbers();
 
-  const filteredBarbers = barbers?.filter((barber) =>
-    barber.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    barber.bio?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBarbers = barbers?.filter((barber) => {
+    return (
+      barber.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      barber.bio?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  });
 
   if (isLoading) {
     return (
@@ -62,30 +64,22 @@ export function BarbersPage() {
           <Card key={barber.id} className="hover:shadow-lg transition-shadow">
             <CardHeader className="text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary">
-                  {barber.fullName.charAt(0)}
-                </span>
+                <span className="text-2xl font-bold text-primary">{barber.fullName.charAt(0)}</span>
               </div>
               <CardTitle className="text-xl">{barber.fullName}</CardTitle>
-              <CardDescription>
-                {barber.yearsOfExperience} years of experience
-              </CardDescription>
+              <CardDescription>{barber.yearsOfExperience} years of experience</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {barber.bio && (
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {barber.bio}
-                  </p>
+                  <p className="text-sm text-muted-foreground line-clamp-2">{barber.bio}</p>
                 )}
 
                 <div className="flex items-center justify-between text-sm">
                   <div className="flex items-center gap-1">
                     <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
                     <span>{barber.averageRating.toFixed(1)}</span>
-                    <span className="text-muted-foreground">
-                      ({barber.totalReviews} reviews)
-                    </span>
+                    <span className="text-muted-foreground">({barber.totalReviews} reviews)</span>
                   </div>
                 </div>
 
@@ -107,9 +101,7 @@ export function BarbersPage() {
 
       {filteredBarbers?.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-muted-foreground text-lg">
-            No barbers found matching your criteria.
-          </p>
+          <p className="text-muted-foreground text-lg">No barbers found matching your criteria.</p>
           <p className="text-sm text-muted-foreground mt-2">
             Try adjusting your search or filters.
           </p>

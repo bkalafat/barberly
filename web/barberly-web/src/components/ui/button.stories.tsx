@@ -1,7 +1,7 @@
-import type { Meta, StoryObj } from '@storybook/react';
+// Fixed: Removed problematic Storybook type imports
 import { Button } from './button';
 
-const meta: Meta<typeof Button> = {
+const meta = {
   title: 'UI/Button',
   component: Button,
   parameters: {
@@ -11,57 +11,56 @@ const meta: Meta<typeof Button> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Default = {
   args: {
     children: 'Default Button',
   },
 };
 
-export const Secondary: Story = {
+export const Secondary = {
   args: {
     children: 'Secondary Button',
     variant: 'secondary',
   },
 };
 
-export const Destructive: Story = {
+export const Destructive = {
   args: {
     children: 'Destructive Button',
     variant: 'destructive',
   },
 };
 
-export const Outline: Story = {
+export const Outline = {
   args: {
     children: 'Outline Button',
     variant: 'outline',
   },
 };
 
-export const Ghost: Story = {
+export const Ghost = {
   args: {
     children: 'Ghost Button',
     variant: 'ghost',
   },
 };
 
-export const Link: Story = {
+export const Link = {
   args: {
     children: 'Link Button',
     variant: 'link',
   },
 };
 
-export const Large: Story = {
+export const Large = {
   args: {
     children: 'Large Button',
     size: 'lg',
   },
 };
 
-export const Small: Story = {
+export const Small = {
   args: {
     children: 'Small Button',
     size: 'sm',

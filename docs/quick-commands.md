@@ -1,8 +1,28 @@
-# Quick Commands Reference - Barberly Backend
+# Quick Commands Reference - Barberly
 
-This is a quick reference for common backend development tasks. Keep this handy for frequent operations.
+This is a quick reference for common development tasks. Keep this handy for frequent operations.
 
-## 🚀 Quick Build Commands
+## � NPM Scripts (from root directory)
+
+### Frontend Commands
+```bash
+npm run lint         # Run ESLint on frontend code
+npm run lint:fix     # Run ESLint with auto-fix
+npm run format       # Format frontend code with Prettier
+npm run type-check   # TypeScript type checking
+npm run dev          # Start frontend development server
+npm run build        # Build frontend for production
+npm run test         # Run frontend tests
+```
+
+### Backend Commands
+```bash
+npm run backend:build  # Build the .NET solution
+npm run backend:run    # Run the API server
+npm run backend:test   # Run all backend tests
+```
+
+## 🚀 Backend Build Commands
 
 ### Essential Build Commands
 ```powershell
@@ -81,7 +101,7 @@ Program.cs                      # API configuration
 **Solution**: Use `Azure.Messaging.ServiceBus` version `7.20.1` instead
 **File**: `Barberly.Infrastructure.csproj`
 
-### Role Validation Test ✅  
+### Role Validation Test ✅
 **Problem**: "CUSTOMER" (uppercase) passed validation when it should fail
 **Solution**: Made validation case-sensitive, only "customer"/"barber" allowed
 **File**: `AuthValidationTests.cs`
