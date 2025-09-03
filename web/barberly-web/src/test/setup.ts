@@ -1,4 +1,4 @@
 import '@testing-library/jest-dom';
 
 // Mock environment variables for tests
-process.env.VITE_API_URL = 'http://localhost:5000';
+process.env.VITE_API_URL = 'http://localhost:5156';

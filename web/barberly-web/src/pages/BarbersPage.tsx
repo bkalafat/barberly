@@ -8,12 +8,8 @@ import { Link } from 'react-router-dom';
 
 export function BarbersPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedShopId, setSelectedShopId] = useState<string>('');
 
-  const { data: barbers, isLoading, error } = useBarbers({
-    barberShopId: selectedShopId || undefined,
-    serviceName: searchTerm || undefined,
-  });
+  const { data: barbers, isLoading, error } = useBarbers();
 
   const filteredBarbers = barbers?.filter((barber) =>
     barber.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -46,7 +42,7 @@ export function BarbersPage() {
           Discover skilled barbers in your area
         </p>
 
-        {/* Search and Filter Section */}
+        {/* Search Section */}
         <div className="max-w-2xl mx-auto space-y-4">
           <div className="relative">
             <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
@@ -56,18 +52,6 @@ export function BarbersPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="pl-10"
             />
-          </div>
-
-          <div className="flex gap-4">
-            <select
-              value={selectedShopId}
-              onChange={(e) => setSelectedShopId(e.target.value)}
-              className="flex-1 px-3 py-2 border border-input bg-background rounded-md"
-            >
-              <option value="">All Shops</option>
-              <option value="shop1">Classic Cuts Barbershop</option>
-              <option value="shop2">The Gentleman&apos;s Cut</option>
-            </select>
           </div>
         </div>
       </div>
