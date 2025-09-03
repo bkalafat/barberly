@@ -42,4 +42,53 @@ public class ServiceRepository : IServiceRepository
             .Include(x => x.BarberShop)
             .Include(x => x.Barbers)
             .ToListAsync(ct);
+
+    public async Task<IReadOnlyList<Service>> GetByShopIdAsync(Guid barberShopId, int page = 1, int pageSize = 20, CancellationToken ct = default)
+        => await _db.Services
+            .Include(x => x.BarberShop)
+            .Include(x => x.Barbers)
+            .Where(x => x.BarberShopId == barberShopId && x.IsActive)
+            .OrderBy(x => x.Name)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+
+    public async Task<IReadOnlyList<Service>> GetFilteredAsync(Guid? barberShopId, decimal? minPrice, decimal? maxPrice, int? minDurationMinutes, int? maxDurationMinutes, int page = 1, int pageSize = 20, CancellationToken ct = default)
+    {
+        var query = _db.Services
+            .Include(x => x.BarberShop)
+            .Include(x => x.Barbers)
+            .Where(x => x.IsActive);
+
+        if (barberShopId.HasValue)
+        {
+            query = query.Where(x => x.BarberShopId == barberShopId.Value);
+        }
+
+        if (minPrice.HasValue)
+        {
+            query = query.Where(x => x.Price >= minPrice.Value);
+        }
+
+        if (maxPrice.HasValue)
+        {
+            query = query.Where(x => x.Price <= maxPrice.Value);
+        }
+
+        if (minDurationMinutes.HasValue)
+        {
+            query = query.Where(x => x.DurationInMinutes >= minDurationMinutes.Value);
+        }
+
+        if (maxDurationMinutes.HasValue)
+        {
+            query = query.Where(x => x.DurationInMinutes <= maxDurationMinutes.Value);
+        }
+
+        return await query
+            .OrderBy(x => x.Name)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+    }
 }

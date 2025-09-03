@@ -1,155 +1,198 @@
 using Barberly.Application.Directory.Queries;
+using Barberly.Application.Interfaces;
 using Barberly.Application.Models;
+using Barberly.Domain.Entities;
 using MediatR;
+using Barberly.Application.Directory.Mappings;
 
 namespace Barberly.Application.Directory.Handlers;
 
 public class GetBarberShopByIdQueryHandler : IRequestHandler<GetBarberShopByIdQuery, BarberShopDto?>
 {
+    private readonly IBarberShopRepository _barberShopRepository;
+
+    public GetBarberShopByIdQueryHandler(IBarberShopRepository barberShopRepository)
+    {
+        _barberShopRepository = barberShopRepository;
+    }
+
     public async Task<BarberShopDto?> Handle(GetBarberShopByIdQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Get from repository and map to DTO
-        // var barberShop = await _barberShopRepository.GetByIdAsync(request.Id, cancellationToken);
-        // return barberShop?.ToDto();
-
-        return null; // Placeholder
+        var barberShop = await _barberShopRepository.GetByIdAsync(request.Id, cancellationToken);
+        return barberShop?.ToDto();
     }
 }
 
 public class GetBarberShopsQueryHandler : IRequestHandler<Barberly.Application.Directory.Queries.GetBarberShopsQuery, List<BarberShopDto>>
 {
+    private readonly IBarberShopRepository _barberShopRepository;
+
+    public GetBarberShopsQueryHandler(IBarberShopRepository barberShopRepository)
+    {
+        _barberShopRepository = barberShopRepository;
+    }
+
     public async Task<List<BarberShopDto>> Handle(Barberly.Application.Directory.Queries.GetBarberShopsQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Implement repository query with filtering and pagination
-        // return await _barberShopRepository.GetBarberShopsAsync(request, cancellationToken);
+        IReadOnlyList<BarberShop> barberShops;
 
-        // Return sample data for now
-        await Task.Delay(1, cancellationToken); // Simulate async operation
-
-        return new List<BarberShopDto>
+        if (request.Latitude.HasValue && request.Longitude.HasValue && request.RadiusKm.HasValue)
         {
-            new BarberShopDto(
-                Id: Guid.NewGuid(),
-                Name: "Classic Cuts Barbershop",
-                Description: "Traditional barbershop experience with modern style",
-                Address: new AddressDto("123 Main St", "New York", "NY", "10001", "USA"),
-                Phone: "+1 (555) 123-4567",
-                Email: "info@classiccuts.com",
-                Website: "https://classiccuts.com",
-                IsActive: true,
-                OpenTime: new TimeOnly(9, 0),
-                CloseTime: new TimeOnly(18, 0),
-                WorkingDays: new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
-                Latitude: 40.7128m,
-                Longitude: -74.0060m,
-                AverageRating: 4.5m,
-                TotalReviews: 128,
-                CreatedAt: DateTime.UtcNow.AddDays(-30),
-                UpdatedAt: DateTime.UtcNow.AddDays(-5)
-            ),
-            new BarberShopDto(
-                Id: Guid.NewGuid(),
-                Name: "The Gentleman's Cut",
-                Description: "Premium grooming services for the modern gentleman",
-                Address: new AddressDto("456 Oak Ave", "New York", "NY", "10002", "USA"),
-                Phone: "+1 (555) 987-6543",
-                Email: "contact@gentlemanscut.com",
-                Website: "https://gentlemanscut.com",
-                IsActive: true,
-                OpenTime: new TimeOnly(8, 0),
-                CloseTime: new TimeOnly(20, 0),
-                WorkingDays: new[] { DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday },
-                Latitude: 40.7589m,
-                Longitude: -73.9851m,
-                AverageRating: 4.8m,
-                TotalReviews: 95,
-                CreatedAt: DateTime.UtcNow.AddDays(-45),
-                UpdatedAt: DateTime.UtcNow.AddDays(-2)
-            ),
-            new BarberShopDto(
-                Id: Guid.NewGuid(),
-                Name: "Urban Edge Barbershop",
-                Description: "Trendy cuts and modern styling in the heart of the city",
-                Address: new AddressDto("789 Broadway", "New York", "NY", "10003", "USA"),
-                Phone: "+1 (555) 456-7890",
-                Email: "hello@urbanedge.com",
-                Website: "https://urbanedge.com",
-                IsActive: true,
-                OpenTime: new TimeOnly(10, 0),
-                CloseTime: new TimeOnly(19, 0),
-                WorkingDays: new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
-                Latitude: 40.7505m,
-                Longitude: -73.9934m,
-                AverageRating: 4.3m,
-                TotalReviews: 67,
-                CreatedAt: DateTime.UtcNow.AddDays(-20),
-                UpdatedAt: DateTime.UtcNow.AddDays(-1)
-            )
-        };
+            barberShops = await _barberShopRepository.GetNearbyAsync(
+                request.Latitude.Value,
+                request.Longitude.Value,
+                request.RadiusKm.Value,
+                request.Page,
+                request.PageSize,
+                cancellationToken);
+        }
+        else if (!string.IsNullOrWhiteSpace(request.ServiceName) || request.MinPrice.HasValue || request.MaxPrice.HasValue)
+        {
+            barberShops = await _barberShopRepository.GetFilteredAsync(
+                request.ServiceName,
+                request.MinPrice,
+                request.MaxPrice,
+                request.Page,
+                request.PageSize,
+                cancellationToken);
+        }
+        else
+        {
+            var allShops = await _barberShopRepository.GetAllAsync(cancellationToken);
+            barberShops = allShops
+                .Skip((request.Page - 1) * request.PageSize)
+                .Take(request.PageSize)
+                .ToList();
+        }
+
+        return barberShops.Select(x => x.ToDto()).ToList();
     }
 }
 
 public class SearchNearbyBarberShopsQueryHandler : IRequestHandler<SearchNearbyBarberShopsQuery, List<BarberShopDto>>
 {
+    private readonly IBarberShopRepository _barberShopRepository;
+
+    public SearchNearbyBarberShopsQueryHandler(IBarberShopRepository barberShopRepository)
+    {
+        _barberShopRepository = barberShopRepository;
+    }
+
     public async Task<List<BarberShopDto>> Handle(SearchNearbyBarberShopsQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Implement geospatial query
-        // Calculate distance using Haversine formula or PostGIS functions
+        var barberShops = await _barberShopRepository.GetNearbyAsync(
+            request.Latitude,
+            request.Longitude,
+            request.RadiusKm,
+            request.Page,
+            request.PageSize,
+            cancellationToken);
 
-        return new List<BarberShopDto>(); // Placeholder
+        return barberShops.Select(x => x.ToDto()).ToList();
     }
 }
 
 public class GetBarberByIdQueryHandler : IRequestHandler<GetBarberByIdQuery, BarberDto?>
 {
+    private readonly IBarberRepository _barberRepository;
+
+    public GetBarberByIdQueryHandler(IBarberRepository barberRepository)
+    {
+        _barberRepository = barberRepository;
+    }
+
     public async Task<BarberDto?> Handle(GetBarberByIdQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Get from repository and map to DTO
-        return null; // Placeholder
+        var barber = await _barberRepository.GetByIdAsync(request.Id, cancellationToken);
+        return barber?.ToDto();
     }
 }
 
 public class GetBarbersByShopIdQueryHandler : IRequestHandler<GetBarbersByShopIdQuery, List<BarberDto>>
 {
+    private readonly IBarberRepository _barberRepository;
+
+    public GetBarbersByShopIdQueryHandler(IBarberRepository barberRepository)
+    {
+        _barberRepository = barberRepository;
+    }
+
     public async Task<List<BarberDto>> Handle(GetBarbersByShopIdQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Get barbers by shop ID
-        return new List<BarberDto>(); // Placeholder
+        var barbers = await _barberRepository.GetByShopIdAsync(request.BarberShopId, request.Page, request.PageSize, cancellationToken);
+        return barbers.Select(x => x.ToDto()).ToList();
     }
 }
 
 public class GetBarbersQueryHandler : IRequestHandler<Barberly.Application.Directory.Queries.GetBarbersQuery, List<BarberDto>>
 {
+    private readonly IBarberRepository _barberRepository;
+
+    public GetBarbersQueryHandler(IBarberRepository barberRepository)
+    {
+        _barberRepository = barberRepository;
+    }
+
     public async Task<List<BarberDto>> Handle(Barberly.Application.Directory.Queries.GetBarbersQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Implement with filtering
-        return new List<BarberDto>(); // Placeholder
+        var barbers = await _barberRepository.GetFilteredAsync(request.BarberShopId, request.ServiceName, request.Page, request.PageSize, cancellationToken);
+        return barbers.Select(x => x.ToDto()).ToList();
     }
 }
 
 public class GetServiceByIdQueryHandler : IRequestHandler<GetServiceByIdQuery, ServiceDto?>
 {
+    private readonly IServiceRepository _serviceRepository;
+
+    public GetServiceByIdQueryHandler(IServiceRepository serviceRepository)
+    {
+        _serviceRepository = serviceRepository;
+    }
+
     public async Task<ServiceDto?> Handle(GetServiceByIdQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Get from repository and map to DTO
-        return null; // Placeholder
+        var service = await _serviceRepository.GetByIdAsync(request.Id, cancellationToken);
+        return service?.ToDto();
     }
 }
 
 public class GetServicesByShopIdQueryHandler : IRequestHandler<GetServicesByShopIdQuery, List<ServiceDto>>
 {
+    private readonly IServiceRepository _serviceRepository;
+
+    public GetServicesByShopIdQueryHandler(IServiceRepository serviceRepository)
+    {
+        _serviceRepository = serviceRepository;
+    }
+
     public async Task<List<ServiceDto>> Handle(GetServicesByShopIdQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Get services by shop ID
-        return new List<ServiceDto>(); // Placeholder
+        var services = await _serviceRepository.GetByShopIdAsync(request.BarberShopId, request.Page, request.PageSize, cancellationToken);
+        return services.Select(x => x.ToDto()).ToList();
     }
 }
 
 public class GetServicesQueryHandler : IRequestHandler<Barberly.Application.Directory.Queries.GetServicesQuery, List<ServiceDto>>
 {
+    private readonly IServiceRepository _serviceRepository;
+
+    public GetServicesQueryHandler(IServiceRepository serviceRepository)
+    {
+        _serviceRepository = serviceRepository;
+    }
+
     public async Task<List<ServiceDto>> Handle(Barberly.Application.Directory.Queries.GetServicesQuery request, CancellationToken cancellationToken)
     {
-        // TODO: Implement with filtering
-        return new List<ServiceDto>(); // Placeholder
+        var services = await _serviceRepository.GetFilteredAsync(
+            request.BarberShopId,
+            request.MinPrice,
+            request.MaxPrice,
+            request.MinDurationMinutes,
+            request.MaxDurationMinutes,
+            request.Page,
+            request.PageSize,
+            cancellationToken);
+
+        return services.Select(x => x.ToDto()).ToList();
     }
 }

@@ -42,4 +42,61 @@ public class BarberShopRepository : IBarberShopRepository
             .Include(x => x.Barbers)
             .Include(x => x.Services)
             .ToListAsync(ct);
+
+    public async Task<IReadOnlyList<BarberShop>> GetNearbyAsync(decimal latitude, decimal longitude, double radiusKm, int page = 1, int pageSize = 20, CancellationToken ct = default)
+    {
+        // Haversine formula for distance calculation
+        var lat = (double)latitude;
+        var lng = (double)longitude;
+
+        var query = _db.BarberShops
+            .Include(x => x.Barbers)
+            .Include(x => x.Services)
+            .Where(x => x.IsActive)
+            .Select(x => new
+            {
+                Shop = x,
+                Distance = 6371 * 2 * Math.Asin(Math.Sqrt(
+                    Math.Pow(Math.Sin(((lat - (double)x.Latitude) * Math.PI / 180) / 2), 2) +
+                    Math.Cos(lat * Math.PI / 180) * Math.Cos((double)x.Latitude * Math.PI / 180) *
+                    Math.Pow(Math.Sin(((lng - (double)x.Longitude) * Math.PI / 180) / 2), 2)
+                ))
+            })
+            .Where(x => x.Distance <= radiusKm)
+            .OrderBy(x => x.Distance)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .Select(x => x.Shop);
+
+        return await query.ToListAsync(ct);
+    }
+
+    public async Task<IReadOnlyList<BarberShop>> GetFilteredAsync(string? serviceName, decimal? minPrice, decimal? maxPrice, int page = 1, int pageSize = 20, CancellationToken ct = default)
+    {
+        var query = _db.BarberShops
+            .Include(x => x.Barbers)
+            .Include(x => x.Services)
+            .Where(x => x.IsActive);
+
+        if (!string.IsNullOrWhiteSpace(serviceName))
+        {
+            query = query.Where(x => x.Services.Any(s => s.Name.Contains(serviceName) && s.IsActive));
+        }
+
+        if (minPrice.HasValue)
+        {
+            query = query.Where(x => x.Services.Any(s => s.Price >= minPrice.Value && s.IsActive));
+        }
+
+        if (maxPrice.HasValue)
+        {
+            query = query.Where(x => x.Services.Any(s => s.Price <= maxPrice.Value && s.IsActive));
+        }
+
+        return await query
+            .OrderBy(x => x.Name)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+    }
 }

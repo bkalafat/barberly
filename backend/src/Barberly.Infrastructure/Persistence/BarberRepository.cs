@@ -42,4 +42,38 @@ public class BarberRepository : IBarberRepository
             .Include(x => x.BarberShop)
             .Include(x => x.Services)
             .ToListAsync(ct);
+
+    public async Task<IReadOnlyList<Barber>> GetByShopIdAsync(Guid barberShopId, int page = 1, int pageSize = 20, CancellationToken ct = default)
+        => await _db.Barbers
+            .Include(x => x.BarberShop)
+            .Include(x => x.Services)
+            .Where(x => x.BarberShopId == barberShopId && x.IsActive)
+            .OrderBy(x => x.FullName)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+
+    public async Task<IReadOnlyList<Barber>> GetFilteredAsync(Guid? barberShopId, string? serviceName, int page = 1, int pageSize = 20, CancellationToken ct = default)
+    {
+        var query = _db.Barbers
+            .Include(x => x.BarberShop)
+            .Include(x => x.Services)
+            .Where(x => x.IsActive);
+
+        if (barberShopId.HasValue)
+        {
+            query = query.Where(x => x.BarberShopId == barberShopId.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(serviceName))
+        {
+            query = query.Where(x => x.Services.Any(s => s.Name.Contains(serviceName) && s.IsActive));
+        }
+
+        return await query
+            .OrderBy(x => x.FullName)
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(ct);
+    }
 }
