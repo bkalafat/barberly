@@ -20,34 +20,29 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
     public async Task GetAvailability_Returns_OK()
     {
         var client = _factory.CreateClient();
-        var barberId = Guid.NewGuid();
-        var res = await client.GetAsync($"/api/v1/barbers/{barberId}/availability?date={DateTime.UtcNow:yyyy-MM-dd}");
-        if (!res.IsSuccessStatusCode)
-        {
-            var body = await res.Content.ReadAsStringAsync();
-            Console.WriteLine($"GET /availability failed: {(int)res.StatusCode} - {res.ReasonPhrase}\n{body}");
-        }
-        Assert.True(res.IsSuccessStatusCode, "Expected successful status code from availability endpoint");
+        // Use a known barber ID from the seeded data
+        var barberId = new Guid("9e862653-65c0-41b0-82e9-754f638baa49"); // Ahmet Yılmaz
+        var url = $"/api/v1/barbers/{barberId}/availability?date={DateTime.UtcNow:yyyy-MM-dd}";
+        Console.WriteLine($"Testing URL: {url}");
+        var res = await client.GetAsync(url);
+        Console.WriteLine($"Response status: {(int)res.StatusCode} - {res.ReasonPhrase}");
+        var body = await res.Content.ReadAsStringAsync();
+        Console.WriteLine($"Response body: {body}");
+        Assert.True(res.IsSuccessStatusCode, $"Expected successful status code from availability endpoint. Got {(int)res.StatusCode} - {res.ReasonPhrase}. Body: {body}");
     }
 
     [Fact]
     public async Task PostAppointment_WithIdempotencyKey_Returns_201_or_200()
     {
         var client = _factory.CreateClient();
-        // get a test token
-        var tokenRes = await client.PostAsync("/auth/test-token?email=test@local&role=Customer", null);
-        string token = string.Empty;
-        if (tokenRes.IsSuccessStatusCode)
-        {
-            var tokenJson = await tokenRes.Content.ReadAsStringAsync();
-            using var doc = JsonDocument.Parse(tokenJson);
-            if (doc.RootElement.TryGetProperty("token", out var t)) token = t.GetString() ?? string.Empty;
-        }
+        // Use known IDs from seeded data
+        var barberId = new Guid("9e862653-65c0-41b0-82e9-754f638baa49"); // Ahmet Yılmaz
+        var serviceId = new Guid("service-id-from-seeder"); // We'll need to get this from seeder
         var req = new
         {
             UserId = Guid.NewGuid(),
-            BarberId = Guid.NewGuid(),
-            ServiceId = Guid.NewGuid(),
+            BarberId = barberId,
+            ServiceId = Guid.NewGuid(), // For now, use a dummy service ID
             Start = DateTimeOffset.UtcNow.AddHours(24),
             End = DateTimeOffset.UtcNow.AddHours(24).AddMinutes(30)
         };
@@ -56,8 +51,6 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         var message = new HttpRequestMessage(HttpMethod.Post, "/api/v1/appointments");
         message.Content = content;
         message.Headers.Add("Idempotency-Key", Guid.NewGuid().ToString());
-        if (!string.IsNullOrEmpty(token))
-            message.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
 
         var res = await client.SendAsync(message);
         if (res.StatusCode != System.Net.HttpStatusCode.Created && res.StatusCode != System.Net.HttpStatusCode.OK)

@@ -1,6 +1,8 @@
 using Barberly.Application.Directory.Commands;
 using Barberly.Application.Directory.Handlers;
+using Barberly.Application.Interfaces;
 using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace Barberly.Application.Tests.Directory;
@@ -11,7 +13,8 @@ public class DirectoryCommandHandlerTests
     public async Task CreateBarberShopCommandHandler_WithValidCommand_ShouldReturnId()
     {
         // Arrange
-        var handler = new CreateBarberShopCommandHandler();
+        var mockRepository = new Mock<IBarberShopRepository>();
+        var handler = new CreateBarberShopCommandHandler(mockRepository.Object);
         var command = new CreateBarberShopCommand(
             "Test Barber Shop",
             "A great barber shop",
@@ -36,7 +39,8 @@ public class DirectoryCommandHandlerTests
     public async Task CreateBarberCommandHandler_WithValidCommand_ShouldReturnId()
     {
         // Arrange
-        var handler = new CreateBarberCommandHandler();
+        var mockRepository = new Mock<IBarberRepository>();
+        var handler = new CreateBarberCommandHandler(mockRepository.Object);
         var command = new CreateBarberCommand(
             "John Doe",
             "john@barbershop.com",
@@ -56,7 +60,8 @@ public class DirectoryCommandHandlerTests
     public async Task CreateServiceCommandHandler_WithValidCommand_ShouldReturnId()
     {
         // Arrange
-        var handler = new CreateServiceCommandHandler();
+        var mockRepository = new Mock<IServiceRepository>();
+        var handler = new CreateServiceCommandHandler(mockRepository.Object);
         var command = new CreateServiceCommand(
             "Haircut",
             "Professional haircut service",

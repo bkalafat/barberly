@@ -12,6 +12,13 @@ public sealed class Appointment : Entity
     public string? IdempotencyKey { get; private set; }
     public DateTimeOffset CreatedAtUtc { get; private set; }
 
+    // Cancellation fields
+    public bool IsCancelled { get; private set; }
+    public DateTimeOffset? CancelledAtUtc { get; private set; }
+
+    // Concurrency control
+    public byte[] RowVersion { get; private set; } = Array.Empty<byte>();
+
     private Appointment() { }
 
     private Appointment(Guid userId, Guid barberId, Guid serviceId, DateTimeOffset start, DateTimeOffset end, string? idempotencyKey)
@@ -29,8 +36,44 @@ public sealed class Appointment : Entity
         End = end;
         IdempotencyKey = idempotencyKey;
         CreatedAtUtc = DateTimeOffset.UtcNow;
+        IsCancelled = false;
+        RowVersion = Guid.NewGuid().ToByteArray();
     }
 
     public static Appointment Create(Guid userId, Guid barberId, Guid serviceId, DateTimeOffset start, DateTimeOffset end, string? idempotencyKey = null)
         => new Appointment(userId, barberId, serviceId, start, end, idempotencyKey);
+
+    public void Cancel()
+    {
+        if (IsCancelled)
+            throw new InvalidOperationException("Appointment is already cancelled");
+
+        if (Start <= DateTimeOffset.UtcNow)
+            throw new InvalidOperationException("Cannot cancel appointment that has already started");
+
+        IsCancelled = true;
+        CancelledAtUtc = DateTimeOffset.UtcNow;
+        UpdateRowVersion();
+    }
+
+    public void Reschedule(DateTimeOffset newStart, DateTimeOffset newEnd)
+    {
+        if (IsCancelled)
+            throw new InvalidOperationException("Cannot reschedule cancelled appointment");
+
+        if (newStart >= newEnd)
+            throw new ArgumentException("New start time must be before end time");
+
+        if (newStart <= DateTimeOffset.UtcNow)
+            throw new ArgumentException("Cannot reschedule to a past time");
+
+        Start = newStart;
+        End = newEnd;
+        UpdateRowVersion();
+    }
+
+    private void UpdateRowVersion()
+    {
+        RowVersion = Guid.NewGuid().ToByteArray();
+    }
 }

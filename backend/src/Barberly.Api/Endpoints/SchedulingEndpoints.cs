@@ -21,10 +21,30 @@ public static class SchedulingEndpoints
             .WithName("CreateAppointment")
             .WithOpenApi()
             .RequireAuthorization();
+
+        group.MapGet("/appointments/{id:guid}", GetAppointment)
+            .WithName("GetAppointment")
+            .WithOpenApi()
+            .RequireAuthorization();
+
+        group.MapDelete("/appointments/{id:guid}", CancelAppointment)
+            .WithName("CancelAppointment")
+            .WithOpenApi()
+            .RequireAuthorization();
+
+        group.MapPatch("/appointments/{id:guid}", RescheduleAppointment)
+            .WithName("RescheduleAppointment")
+            .WithOpenApi()
+            .RequireAuthorization();
     }
 
-    private static async Task<IResult> GetAvailability(Guid id, [FromQuery] DateTime? date, [FromQuery] Guid? serviceId, IAppointmentRepository apptRepo, IServiceRepository serviceRepo, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
+    private static async Task<IResult> GetAvailability(Guid id, [FromQuery] DateTime? date, [FromQuery] Guid? serviceId, IAppointmentRepository apptRepo, IServiceRepository serviceRepo, IBarberRepository barberRepo, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
     {
+        // Check if barber exists
+        var barber = await barberRepo.GetByIdAsync(id);
+        if (barber == null)
+            return Results.NotFound(new { message = "Barber not found" });
+
         var targetDate = date?.Date ?? DateTime.UtcNow.Date;
         var serviceDuration = 30; // default
         if (serviceId.HasValue)
@@ -110,6 +130,119 @@ public static class SchedulingEndpoints
         return Results.Created($"/api/v1/appointments/{appt.Id}", new { id = appt.Id });
     }
 
+    private static async Task<IResult> GetAppointment(Guid id, IAppointmentRepository apptRepo)
+    {
+        var appointment = await apptRepo.GetByIdAsync(id);
+        if (appointment == null)
+            return Results.NotFound(new { message = "Appointment not found" });
+
+        return Results.Ok(new
+        {
+            id = appointment.Id,
+            userId = appointment.UserId,
+            barberId = appointment.BarberId,
+            serviceId = appointment.ServiceId,
+            start = appointment.Start,
+            end = appointment.End,
+            isCancelled = appointment.IsCancelled,
+            cancelledAtUtc = appointment.CancelledAtUtc,
+            createdAtUtc = appointment.CreatedAtUtc
+        });
+    }
+
+    private static async Task<IResult> CancelAppointment(Guid id, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
+    {
+        var appointment = await apptRepo.GetByIdAsync(id);
+        if (appointment == null)
+            return Results.NotFound(new { message = "Appointment not found" });
+
+        if (appointment.IsCancelled)
+            return Results.BadRequest(new { message = "Appointment is already cancelled" });
+
+        if (appointment.Start <= DateTimeOffset.UtcNow)
+            return Results.BadRequest(new { message = "Cannot cancel appointment that has already started" });
+
+        try
+        {
+            appointment.Cancel();
+            await db.SaveChangesAsync();
+
+            // Invalidate cache for this barber/date/service
+            var key = $"barbers:{appointment.BarberId}:slots:{appointment.Start.UtcDateTime:yyyy-MM-dd}:{appointment.ServiceId}";
+            try
+            {
+                await cache.RemoveAsync(key);
+            }
+            catch (Exception)
+            {
+                // ignore cache remove errors
+            }
+
+            return Results.Ok(new { message = "Appointment cancelled successfully" });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Results.BadRequest(new { message = ex.Message });
+        }
+    }
+
+    private static async Task<IResult> RescheduleAppointment(Guid id, [FromBody] RescheduleAppointmentRequest req, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
+    {
+        if (req == null)
+            return Results.BadRequest(new { message = "Request body is required" });
+
+        var appointment = await apptRepo.GetByIdAsync(id);
+        if (appointment == null)
+            return Results.NotFound(new { message = "Appointment not found" });
+
+        if (appointment.IsCancelled)
+            return Results.BadRequest(new { message = "Cannot reschedule cancelled appointment" });
+
+        // Check for conflicts at new time
+        var conflicts = await apptRepo.GetByBarberAndRangeAsync(appointment.BarberId, req.NewStart, req.NewEnd);
+        if (conflicts.Any(a => a.Id != id))
+            return Results.Conflict(new { message = "New time slot is already booked" });
+
+        try
+        {
+            appointment.Reschedule(req.NewStart, req.NewEnd);
+            await db.SaveChangesAsync();
+
+            // Invalidate cache for both old and new time slots
+            var oldKey = $"barbers:{appointment.BarberId}:slots:{appointment.Start.UtcDateTime:yyyy-MM-dd}:{appointment.ServiceId}";
+            var newKey = $"barbers:{appointment.BarberId}:slots:{req.NewStart.UtcDateTime:yyyy-MM-dd}:{appointment.ServiceId}";
+
+            try
+            {
+                await cache.RemoveAsync(oldKey);
+                await cache.RemoveAsync(newKey);
+            }
+            catch (Exception)
+            {
+                // ignore cache remove errors
+            }
+
+            return Results.Ok(new
+            {
+                message = "Appointment rescheduled successfully",
+                appointment = new
+                {
+                    id = appointment.Id,
+                    start = appointment.Start,
+                    end = appointment.End
+                }
+            });
+        }
+        catch (InvalidOperationException ex)
+        {
+            return Results.BadRequest(new { message = ex.Message });
+        }
+        catch (ArgumentException ex)
+        {
+            return Results.BadRequest(new { message = ex.Message });
+        }
+    }
+
     public sealed class CreateAppointmentRequest
     {
         public Guid UserId { get; set; }
@@ -117,5 +250,11 @@ public static class SchedulingEndpoints
         public Guid ServiceId { get; set; }
         public DateTimeOffset Start { get; set; }
         public DateTimeOffset End { get; set; }
+    }
+
+    public sealed class RescheduleAppointmentRequest
+    {
+        public DateTimeOffset NewStart { get; set; }
+        public DateTimeOffset NewEnd { get; set; }
     }
 }

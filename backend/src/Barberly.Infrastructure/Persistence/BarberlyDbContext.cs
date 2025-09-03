@@ -91,6 +91,9 @@ public class BarberlyDbContext : DbContext
             entity.Property(e => e.Start).IsRequired();
             entity.Property(e => e.End).IsRequired();
             entity.Property(e => e.IdempotencyKey).HasMaxLength(100);
+            entity.Property(e => e.IsCancelled).IsRequired();
+            entity.Property(e => e.CancelledAtUtc);
+            entity.Property(e => e.RowVersion).IsRowVersion().IsConcurrencyToken();
             entity.HasIndex(e => e.IdempotencyKey).IsUnique().HasFilter("\"IdempotencyKey\" IS NOT NULL");
             entity.HasIndex(e => new { e.BarberId, e.Start });
         });

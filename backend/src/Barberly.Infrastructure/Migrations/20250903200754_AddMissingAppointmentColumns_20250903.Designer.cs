@@ -3,6 +3,7 @@ using System;
 using Barberly.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Barberly.Infrastructure.Migrations
 {
     [DbContext(typeof(BarberlyDbContext))]
-    partial class BarberlyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250903200754_AddMissingAppointmentColumns_20250903")]
+    partial class AddMissingAppointmentColumns_20250903
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
