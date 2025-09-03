@@ -35,14 +35,19 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
     public async Task PostAppointment_WithIdempotencyKey_Returns_201_or_200()
     {
         var client = _factory.CreateClient();
+
+        // First register and login to get a token
+        var token = await GetAuthTokenForRole(client, "customer");
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
         // Use known IDs from seeded data
         var barberId = new Guid("9e862653-65c0-41b0-82e9-754f638baa49"); // Ahmet Yılmaz
-        var serviceId = new Guid("service-id-from-seeder"); // We'll need to get this from seeder
+        var serviceId = new Guid("1a2b3c4d-5e6f-7890-1234-567890abcdef"); // Use a valid GUID format for service
         var req = new
         {
             UserId = Guid.NewGuid(),
             BarberId = barberId,
-            ServiceId = Guid.NewGuid(), // For now, use a dummy service ID
+            ServiceId = serviceId,
             Start = DateTimeOffset.UtcNow.AddHours(24),
             End = DateTimeOffset.UtcNow.AddHours(24).AddMinutes(30)
         };
@@ -59,5 +64,33 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
             Console.WriteLine($"POST /appointments failed: {(int)res.StatusCode} - {res.ReasonPhrase}\n{body}");
         }
         Assert.True(res.StatusCode == System.Net.HttpStatusCode.Created || res.StatusCode == System.Net.HttpStatusCode.OK, "Expected 201 Created or 200 OK from create appointment");
+    }
+
+    private async Task<string> GetAuthTokenForRole(HttpClient client, string role)
+    {
+        var email = $"role-test-{role}-{Guid.NewGuid()}@example.com";
+        var registerRequest = new
+        {
+            Email = email,
+            Password = "SecurePassword123!",
+            FullName = $"Test {role}",
+            Role = role
+        };
+
+        var registerContent = new StringContent(JsonSerializer.Serialize(registerRequest), Encoding.UTF8, "application/json");
+        await client.PostAsync("/auth/register", registerContent);
+
+        var loginRequest = new
+        {
+            Email = email,
+            Password = registerRequest.Password
+        };
+
+        var loginContent = new StringContent(JsonSerializer.Serialize(loginRequest), Encoding.UTF8, "application/json");
+        var loginResponse = await client.PostAsync("/auth/login", loginContent);
+        var loginResponseContent = await loginResponse.Content.ReadAsStringAsync();
+        var loginData = JsonSerializer.Deserialize<JsonElement>(loginResponseContent);
+
+        return loginData.GetProperty("token").GetString()!;
     }
 }
