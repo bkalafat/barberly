@@ -21,7 +21,13 @@ export interface Barber {
   phone: string;
   barberShopId: string;
   yearsOfExperience: number;
-  bio: string;
+  bio?: string;
+  profileImageUrl?: string;
+  isActive: boolean;
+  averageRating: number;
+  totalReviews: number;
+  createdAt: string;
+  updatedAt?: string;
 }
 
 export interface BarberShop {
@@ -88,6 +94,11 @@ export const barbersApi = {
     api.get(`/barbers/${barberId}/availability`, { params: { date, serviceId } }),
 
   getById: (id: string): Promise<AxiosResponse<Barber>> => api.get(`/barbers/${id}`),
+
+  getAll: (params?: {
+    barberShopId?: string;
+    serviceName?: string;
+  }): Promise<AxiosResponse<Barber[]>> => api.get('/barbers', { params }),
 };
 
 export const appointmentsApi = {

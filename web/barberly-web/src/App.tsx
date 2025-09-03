@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './index.css';
+import { BarbersPage } from './pages/BarbersPage';
 import { HomePage } from './pages/HomePage';
 import { ShopDetailsPage } from './pages/ShopDetailsPage';
 
@@ -33,6 +34,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/shops/:shopId" element={<ShopDetailsPage />} />
+              <Route path="/barbers" element={<BarbersPage />} />
             </Routes>
           </main>
         </div>

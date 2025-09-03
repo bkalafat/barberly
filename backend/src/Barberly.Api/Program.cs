@@ -252,6 +252,13 @@ app.MapDirectoryEndpoints();
 // Scheduling endpoints
 app.MapSchedulingEndpoints();
 
+// Seed database with sample data
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<BarberlyDbContext>();
+    await DatabaseSeeder.SeedAsync(context);
+}
+
 // Auth endpoints with simplified approach (to be enhanced later)
 app.MapPost("/auth/register", async (RegisterRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, PasswordHasher hasher) =>
 {

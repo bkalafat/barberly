@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { appointmentsApi, barbersApi, shopsApi, type CreateAppointmentRequest } from './client';
+import { appointmentsApi, barbersApi, shopsApi, type Barber, type CreateAppointmentRequest } from './client';
 
 // Query keys factory
 export const queryKeys = {
@@ -27,6 +27,14 @@ export const useBarber = (id: string) => {
     queryKey: queryKeys.barbers.byId(id),
     queryFn: () => barbersApi.getById(id).then((res) => res.data),
     enabled: !!id,
+  });
+};
+
+export const useBarbers = (params?: { barberShopId?: string; serviceName?: string }) => {
+  return useQuery({
+    queryKey: [...queryKeys.barbers.all, params],
+    queryFn: (): Promise<Barber[]> => barbersApi.getAll(params).then((res) => res.data),
+    staleTime: 5 * 60_000, // 5 minutes
   });
 };
 
