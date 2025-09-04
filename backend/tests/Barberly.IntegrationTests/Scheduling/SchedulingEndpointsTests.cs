@@ -45,7 +45,7 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         barbersResponse.EnsureSuccessStatusCode();
         var barbersJson = await barbersResponse.Content.ReadAsStringAsync();
         var barbers = JsonSerializer.Deserialize<JsonElement>(barbersJson);
-        
+
         // Find Ahmet Yılmaz from the seeded barbers
         var ahmetBarber = barbers.EnumerateArray()
             .FirstOrDefault(b => b.GetProperty("fullName").GetString() == "Ahmet Yılmaz");
@@ -57,7 +57,7 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         servicesResponse.EnsureSuccessStatusCode();
         var servicesJson = await servicesResponse.Content.ReadAsStringAsync();
         var services = JsonSerializer.Deserialize<JsonElement>(servicesJson);
-        
+
         // Use the first available service (Classic Haircut or Beard Trim)
         var firstService = services.EnumerateArray().First();
         var serviceId = Guid.Parse(firstService.GetProperty("id").GetString()!);
