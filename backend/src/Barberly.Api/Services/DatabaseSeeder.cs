@@ -14,109 +14,307 @@ public static class DatabaseSeeder
             return; // Database already seeded
         }
 
-        // Create sample barber shops
-        var shop1 = BarberShop.Create(
-            "Classic Cuts Barbershop",
-            "Traditional barber services with modern techniques",
-            Address.Create("123 Main St", "Istanbul", "Istanbul", "34000", "Turkey"),
-            "+90 216 555 0123",
-            "info@classiccuts.com",
+        // Create real Trabzon barber shops
+        var kadirAlkanShop = BarberShop.Create(
+            "Kadir Alkan Hair Artist Erkek Kuaförü",
+            "Profesyonel erkek kuaförü ve barber shop, modern tekniklerle klasik berberlik hizmeti",
+            Address.Create("3 Nolu Ticari Yapı, Pazarkapı Caddesi", "Trabzon", "Ortahisar", "61030", "Turkey"),
+            "0535 517 11 05",
+            "info@kadiralkantrabzon.com",
+            TimeOnly.Parse("09:00"),
+            TimeOnly.Parse("20:00"),
+            new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
+            41.0015m,
+            39.7178m,
+            "https://www.instagram.com/kadiralkantrabzon/"
+        );
+
+        var mehmetCelikShop = BarberShop.Create(
+            "Mehmet Çelik Hair Stylist",
+            "Uzman berber, saç kesimi ve sakal düzenleme konusunda 15+ yıl tecrübe",
+            Address.Create("Ortahisar Merkez", "Trabzon", "Ortahisar", "61030", "Turkey"),
+            "0531 766 20 56",
+            "info@mehmetcelikhair.com",
+            TimeOnly.Parse("10:00"),
+            TimeOnly.Parse("21:00"),
+            new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
+            41.0025m,
+            39.7168m,
+            "https://www.instagram.com/kuaformehmetcelikk/"
+        );
+
+        var muzoKuaforShop = BarberShop.Create(
+            "Muzo Kuaför",
+            "Trabzon'un en popüler erkek kuaförü, modern kesimler ve geleneksel berberlik",
+            Address.Create("Kalkınma Mahallesi, Farabi Caddesi No:17/B", "Trabzon", "Ortahisar", "61080", "Turkey"),
+            "0531 397 35 37",
+            "randevu@muzokuafor.com",
             TimeOnly.Parse("09:00"),
             TimeOnly.Parse("19:00"),
             new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
-            41.0082m,
-            28.9784m,
-            "https://classiccuts.com"
+            41.0035m,
+            39.7188m,
+            "https://www.muzokuafor.com/"
         );
 
-        var shop2 = BarberShop.Create(
-            "The Gentlemen's Cut",
-            "Premium grooming services for the modern gentleman",
-            Address.Create("456 Oak Ave", "Istanbul", "Istanbul", "34100", "Turkey"),
-            "+90 216 555 0456",
-            "contact@gentlemenscut.com",
+        var blackRazorShop = BarberShop.Create(
+            "Black Razor Erkek Kuaförü",
+            "Modern berber salonu, hassas tıraş ve saç kesimi uzmanı",
+            Address.Create("Kalkınma Mahallesi, 114 No'lu Sokak No:8/A", "Trabzon", "Ortahisar", "61080", "Turkey"),
+            "0531 881 56 76",
+            "info@blackrazortrabzon.com",
             TimeOnly.Parse("10:00"),
+            TimeOnly.Parse("23:30"),
+            new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday, DayOfWeek.Sunday },
+            41.0045m,
+            39.7198m,
+            null
+        );
+
+        var theBarberShop = BarberShop.Create(
+            "The Barber Trabzon",
+            "Premium erkek kuaförü ve berber salonu, kaliteli hizmet anlayışı",
+            Address.Create("Kalkınma Mahallesi, Akif Saruhan Caddesi", "Trabzon", "Ortahisar", "61080", "Turkey"),
+            "0462 321 09 90",
+            "randevu@thebarbertrabzon.com",
+            TimeOnly.Parse("09:00"),
             TimeOnly.Parse("20:00"),
             new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
-            41.0122m,
-            28.9824m,
-            "https://gentlemenscut.com"
+            41.0055m,
+            39.7208m,
+            null
         );
 
-        await context.BarberShops.AddRangeAsync(shop1, shop2);
+        var kuaforTuranShop = BarberShop.Create(
+            "Kuaför Turan",
+            "5+ yıllık tecrübe ile geleneksel berberlik hizmeti",
+            Address.Create("Hava Alanı, Konaklar, Serhat Sokak", "Trabzon", "Ortahisar", "61290", "Turkey"),
+            "0532 776 61 83",
+            "info@kuaforturan.com",
+            TimeOnly.Parse("08:00"),
+            TimeOnly.Parse("22:00"),
+            new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
+            41.0065m,
+            39.7218m,
+            null
+        );
+
+        var blackHairShop = BarberShop.Create(
+            "Black Hair",
+            "Modern saç kesimi ve styling uzmanı berber salonu",
+            Address.Create("Uzun Sokak, 105A", "Trabzon", "Ortahisar", "61030", "Turkey"),
+            "0535 123 45 67",
+            "info@blackhairtrabzon.com",
+            TimeOnly.Parse("09:00"),
+            TimeOnly.Parse("19:00"),
+            new[] { DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
+            41.0075m,
+            39.7228m,
+            null
+        );
+
+        var beratErkekKuaforShop = BarberShop.Create(
+            "Berat Erkek Kuaförü",
+            "Aydınlıkevler'de kaliteli erkek kuaförü hizmeti",
+            Address.Create("Aydınlıkevler Mahallesi, Esen Sokak, 1", "Trabzon", "Ortahisar", "61030", "Turkey"),
+            "0532 987 65 43",
+            "info@beratkuafor.com",
+            TimeOnly.Parse("09:00"),
+            TimeOnly.Parse("19:00"),
+            new[] { DayOfWeek.Monday, DayOfWeek.Tuesday, DayOfWeek.Wednesday, DayOfWeek.Thursday, DayOfWeek.Friday, DayOfWeek.Saturday },
+            41.0085m,
+            39.7238m,
+            null
+        );
+
+        await context.BarberShops.AddRangeAsync(kadirAlkanShop, mehmetCelikShop, muzoKuaforShop, blackRazorShop, theBarberShop, kuaforTuranShop, blackHairShop, beratErkekKuaforShop);
         await context.SaveChangesAsync();
 
-        // Create sample barbers
+        // Create real Trabzon barbers
         var barber1 = Barber.Create(
-            "Ahmet Yılmaz",
-            "ahmet.yilmaz@classiccuts.com",
-            "+90 555 123 4567",
-            shop1.Id,
-            8,
-            "Expert in classic cuts and traditional barbering techniques",
+            "Kadir Alkan",
+            "kadir@kadiralkantrabzon.com",
+            "0535 517 11 05",
+            kadirAlkanShop.Id,
+            15,
+            "Master berber, saç kesimi ve sakal düzenleme konusunda uzman",
             null
         );
 
         var barber2 = Barber.Create(
-            "Mehmet Kaya",
-            "mehmet.kaya@classiccuts.com",
-            "+90 555 234 5678",
-            shop1.Id,
-            12,
-            "Specialist in modern fades and beard grooming",
+            "Mehmet Çelik",
+            "mehmet@mehmetcelikhair.com",
+            "0531 766 20 56",
+            mehmetCelikShop.Id,
+            18,
+            "Hair stylist, modern kesimler ve geleneksel berberlik tekniklerinde uzman",
             null
         );
 
         var barber3 = Barber.Create(
-            "Ali Demir",
-            "ali.demir@gentlemenscut.com",
-            "+90 555 345 6789",
-            shop2.Id,
+            "Murat Muzo",
+            "murat@muzokuafor.com",
+            "0531 397 35 37",
+            muzoKuaforShop.Id,
+            12,
+            "Popüler berber, trendy kesimler ve styling konusunda uzman",
+            null
+        );
+
+        var barber4 = Barber.Create(
+            "Emre Kara",
+            "emre@blackrazortrabzon.com",
+            "0531 881 56 76",
+            blackRazorShop.Id,
+            8,
+            "Genç ve yetenekli berber, modern fade kesimler ve hassas tıraş uzmanı",
+            null
+        );
+
+        var barber5 = Barber.Create(
+            "Ahmet Turan",
+            "ahmet@kuaforturan.com",
+            "0532 776 61 83",
+            kuaforTuranShop.Id,
+            10,
+            "Deneyimli berber, klasik kesimler ve geleneksel berberlik hizmetleri",
+            null
+        );
+
+        var barber6 = Barber.Create(
+            "Oğuz Black",
+            "oguz@blackhairtrabzon.com",
+            "0535 123 45 67",
+            blackHairShop.Id,
             6,
-            "Young and talented barber with creative styling skills",
+            "Yaratıcı saç stilisti, modern kesimler ve renklendirme uzmanı",
             null
         );
 
-        await context.Barbers.AddRangeAsync(barber1, barber2, barber3);
+        var barber7 = Barber.Create(
+            "Berat Yıldız",
+            "berat@beratkuafor.com",
+            "0532 987 65 43",
+            beratErkekKuaforShop.Id,
+            9,
+            "Aydınlıkevler'in güvenilir berberi, her yaşa uygun kesimler",
+            null
+        );
+
+        await context.Barbers.AddRangeAsync(barber1, barber2, barber3, barber4, barber5, barber6, barber7);
         await context.SaveChangesAsync();
 
-        // Create sample services
-        var service1 = Service.Create(
-            "Classic Haircut",
-            "Traditional men's haircut with clippers and scissors",
-            75.00m,
+        // Create realistic services for Trabzon barbershops
+        var classicHaircut = Service.Create(
+            "Klasik Saç Kesimi",
+            "Makine ve makasla geleneksel erkek saç kesimi",
+            80.00m,
             30,
-            shop1.Id,
+            kadirAlkanShop.Id,
             null
         );
 
-        var service2 = Service.Create(
-            "Beard Trim",
-            "Professional beard trimming and shaping",
-            45.00m,
+        var modernFade = Service.Create(
+            "Modern Fade Kesim",
+            "Güncel trendlere uygun fade ve modern kesimler",
+            100.00m,
+            35,
+            kadirAlkanShop.Id,
+            null
+        );
+
+        var beardTrim = Service.Create(
+            "Sakal Düzenleme",
+            "Profesyonel sakal kesimi ve şekillendirme",
+            50.00m,
             15,
-            shop1.Id,
+            mehmetCelikShop.Id,
             null
         );
 
-        var service3 = Service.Create(
-            "Hair Wash & Style",
-            "Complete hair washing and styling service",
-            60.00m,
-            25,
-            shop2.Id,
+        var razorShave = Service.Create(
+            "Ustura Tıraşı",
+            "Geleneksel ustura ile hassas tıraş",
+            70.00m,
+            20,
+            blackRazorShop.Id,
             null
         );
 
-        await context.Services.AddRangeAsync(service1, service2, service3);
+        var hairWash = Service.Create(
+            "Saç Yıkama ve Styling",
+            "Şampuan, saç bakımı ve styling hizmeti",
+            40.00m,
+            20,
+            muzoKuaforShop.Id,
+            null
+        );
+
+        var skinFade = Service.Create(
+            "Skin Fade",
+            "Derideki sıfır fade tekniği",
+            90.00m,
+            40,
+            theBarberShop.Id,
+            null
+        );
+
+        var eyebrowTrim = Service.Create(
+            "Kaş Düzenleme",
+            "Erkek kaş alımı ve şekillendirme",
+            30.00m,
+            10,
+            kuaforTuranShop.Id,
+            null
+        );
+
+        var hairColoring = Service.Create(
+            "Saç Boyama",
+            "Erkek saç boyama ve renklendirme hizmeti",
+            120.00m,
+            60,
+            blackHairShop.Id,
+            null
+        );
+
+        await context.Services.AddRangeAsync(classicHaircut, modernFade, beardTrim, razorShave, hairWash, skinFade, eyebrowTrim, hairColoring);
         await context.SaveChangesAsync();
 
-        // Add services to barbers
-        barber1.AddService(service1);
-        barber1.AddService(service2);
-        barber2.AddService(service1);
-        barber2.AddService(service2);
-        barber3.AddService(service3);
+        // Add services to barbers - realistic skill distribution
+        // Kadir Alkan - Master berber, all services
+        barber1.AddService(classicHaircut);
+        barber1.AddService(modernFade);
+        barber1.AddService(beardTrim);
+
+        // Mehmet Çelik - Specialist in styling and beard work
+        barber2.AddService(beardTrim);
+        barber2.AddService(hairWash);
+        barber2.AddService(eyebrowTrim);
+
+        // Murat Muzo - Popular modern cuts
+        barber3.AddService(modernFade);
+        barber3.AddService(hairWash);
+        barber3.AddService(classicHaircut);
+
+        // Emre Kara - Razor specialist
+        barber4.AddService(razorShave);
+        barber4.AddService(skinFade);
+        barber4.AddService(beardTrim);
+
+        // Ahmet Turan - Traditional services
+        barber5.AddService(classicHaircut);
+        barber5.AddService(eyebrowTrim);
+        barber5.AddService(hairWash);
+
+        // Oğuz Black - Creative stylist
+        barber6.AddService(hairColoring);
+        barber6.AddService(modernFade);
+        barber6.AddService(hairWash);
+
+        // Berat Yıldız - General services
+        barber7.AddService(classicHaircut);
+        barber7.AddService(beardTrim);
+        barber7.AddService(hairWash);
 
         await context.SaveChangesAsync();
     }

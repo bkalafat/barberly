@@ -56,14 +56,14 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         var barbersJson = await barbersResponse.Content.ReadAsStringAsync();
         var barbers = JsonSerializer.Deserialize<JsonElement>(barbersJson);
 
-        // Find Ahmet Yılmaz from the seeded barbers
-        var ahmetBarber = barbers.EnumerateArray()
-            .FirstOrDefault(b => b.GetProperty("fullName").GetString() == "Ahmet Yılmaz");
-        Assert.False(ahmetBarber.ValueKind == JsonValueKind.Undefined, "Could not find Ahmet Yılmaz barber in seeded data");
-        var barberId = Guid.Parse(ahmetBarber.GetProperty("id").GetString()!);
+        // Find Kadir Alkan from the seeded barbers (real Trabzon data)
+        var kadirBarber = barbers.EnumerateArray()
+            .FirstOrDefault(b => b.GetProperty("fullName").GetString() == "Kadir Alkan");
+        Assert.False(kadirBarber.ValueKind == JsonValueKind.Undefined, "Could not find Kadir Alkan barber in seeded data");
+        var barberId = Guid.Parse(kadirBarber.GetProperty("id").GetString()!);
 
         // Get services for this barber's shop
-        var servicesResponse = await client.GetAsync($"/api/v1/services?barberShopId={ahmetBarber.GetProperty("barberShopId").GetString()}");
+        var servicesResponse = await client.GetAsync($"/api/v1/services?barberShopId={kadirBarber.GetProperty("barberShopId").GetString()}");
         servicesResponse.EnsureSuccessStatusCode();
         var servicesJson = await servicesResponse.Content.ReadAsStringAsync();
         var services = JsonSerializer.Deserialize<JsonElement>(servicesJson);
