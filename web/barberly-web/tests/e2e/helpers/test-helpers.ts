@@ -11,16 +11,16 @@ export class TestHelpers {
    * Wait for API calls to complete
    */
   async waitForApiCalls(patterns: string[] = ['**/api/v1/**']) {
-    const promises = patterns.map(pattern => 
-      this.page.waitForResponse(response => 
-        response.url().includes(pattern.replace('**/api/v1/**', '')) && 
-        response.status() < 400
+    const promises = patterns.map((pattern) =>
+      this.page.waitForResponse(
+        (response) =>
+          response.url().includes(pattern.replace('**/api/v1/**', '')) && response.status() < 400
       )
     );
-    
+
     try {
       await Promise.race(promises);
-    } catch (error) {
+    } catch {
       console.log('API calls timed out, continuing with test');
     }
   }
@@ -29,7 +29,7 @@ export class TestHelpers {
    * Mock successful shops API response
    */
   async mockShopsApi() {
-    await this.page.route('**/api/v1/shops', async route => {
+    await this.page.route('**/api/v1/shops', async (route) => {
       const mockShops = [
         {
           id: 'shop-1',
@@ -40,13 +40,13 @@ export class TestHelpers {
             city: 'Test City',
             state: 'TS',
             zipCode: '12345',
-            country: 'Test Country'
+            country: 'Test Country',
           },
           phoneNumber: '+1-555-TEST',
-          email: 'test@barbershop.com'
-        }
+          email: 'test@barbershop.com',
+        },
       ];
-      
+
       await route.fulfill({
         status: 200,
         body: JSON.stringify(mockShops),
@@ -58,7 +58,7 @@ export class TestHelpers {
    * Mock successful barbers API response
    */
   async mockBarbersApi() {
-    await this.page.route('**/api/v1/barbers', async route => {
+    await this.page.route('**/api/v1/barbers', async (route) => {
       const mockBarbers = [
         {
           id: '9e862653-65c0-41b0-82e9-754f638baa49',
@@ -69,7 +69,7 @@ export class TestHelpers {
           yearsOfExperience: 8,
           bio: 'Experienced barber specializing in modern cuts',
           averageRating: 4.8,
-          totalReviews: 127
+          totalReviews: 127,
         },
         {
           id: 'barber-2',
@@ -80,10 +80,10 @@ export class TestHelpers {
           yearsOfExperience: 5,
           bio: 'Creative stylist with modern techniques',
           averageRating: 4.5,
-          totalReviews: 85
-        }
+          totalReviews: 85,
+        },
       ];
-      
+
       await route.fulfill({
         status: 200,
         body: JSON.stringify(mockBarbers),
@@ -95,24 +95,24 @@ export class TestHelpers {
    * Mock services API response
    */
   async mockServicesApi() {
-    await this.page.route('**/api/v1/services', async route => {
+    await this.page.route('**/api/v1/services', async (route) => {
       const mockServices = [
         {
           id: 'service-1',
           name: 'Haircut',
           description: 'Professional haircut service',
           durationMinutes: 30,
-          price: 25.00
+          price: 25.0,
         },
         {
           id: 'service-2',
           name: 'Beard Trim',
           description: 'Professional beard trimming',
           durationMinutes: 15,
-          price: 15.00
-        }
+          price: 15.0,
+        },
       ];
-      
+
       await route.fulfill({
         status: 200,
         body: JSON.stringify(mockServices),
@@ -124,7 +124,7 @@ export class TestHelpers {
    * Mock availability API response
    */
   async mockAvailabilityApi(barberId: string = '9e862653-65c0-41b0-82e9-754f638baa49') {
-    await this.page.route(`**/api/v1/barbers/${barberId}/availability*`, async route => {
+    await this.page.route(`**/api/v1/barbers/${barberId}/availability*`, async (route) => {
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       tomorrow.setHours(10, 0, 0, 0);
@@ -135,10 +135,10 @@ export class TestHelpers {
         slot.setHours(10 + i);
         availableSlots.push({
           dateTime: slot.toISOString(),
-          isAvailable: true
+          isAvailable: true,
         });
       }
-      
+
       await route.fulfill({
         status: 200,
         body: JSON.stringify(availableSlots),
@@ -149,10 +149,12 @@ export class TestHelpers {
   /**
    * Fill out a booking form with test data
    */
-  async fillBookingForm(options: {
-    service?: string;
-    selectFirstSlot?: boolean;
-  } = {}) {
+  async fillBookingForm(
+    options: {
+      service?: string;
+      selectFirstSlot?: boolean;
+    } = {}
+  ) {
     const { service = 'Haircut', selectFirstSlot = true } = options;
 
     // Select service if dropdown exists
@@ -182,10 +184,10 @@ export class TestHelpers {
    * Mock successful appointment booking
    */
   async mockSuccessfulBooking() {
-    await this.page.route('**/api/v1/appointments', async route => {
+    await this.page.route('**/api/v1/appointments', async (route) => {
       const request = route.request();
       const idempotencyKey = request.headers()['idempotency-key'];
-      
+
       if (!idempotencyKey) {
         await route.fulfill({
           status: 400,
@@ -193,7 +195,7 @@ export class TestHelpers {
         });
         return;
       }
-      
+
       await route.fulfill({
         status: 201,
         body: JSON.stringify({
@@ -202,7 +204,7 @@ export class TestHelpers {
           serviceId: 'service-1',
           dateTime: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
           status: 'Confirmed',
-          totalPrice: 25.00
+          totalPrice: 25.0,
         }),
       });
     });
@@ -212,12 +214,12 @@ export class TestHelpers {
    * Mock booking conflict error
    */
   async mockBookingConflict() {
-    await this.page.route('**/api/v1/appointments', async route => {
+    await this.page.route('**/api/v1/appointments', async (route) => {
       await route.fulfill({
         status: 409,
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           error: 'Time slot no longer available',
-          details: 'Another customer has booked this time slot'
+          details: 'Another customer has booked this time slot',
         }),
       });
     });

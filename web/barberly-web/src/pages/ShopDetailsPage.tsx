@@ -28,7 +28,7 @@ export function ShopDetailsPage() {
     try {
       // For now, use a default service (Classic Haircut - 30min)
       const defaultServiceId = '9fe96b28-8f2b-4625-ab4d-9f336ae5bf5d';
-      
+
       await createAppointment.mutateAsync({
         userId: 'temp-user-id', // TODO: Get from auth context when authentication is implemented
         barberId: selectedBarber,
