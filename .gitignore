@@ -75,3 +75,4 @@ test-results/
 
 # Ignore local kube configs
 .kube/
+.playwright-mcp/
