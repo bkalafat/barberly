@@ -21,7 +21,7 @@
     "e2e:simple:headed": "playwright test --config=playwright-simple.config.ts --headed",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate-api-types": "openapi-typescript http://localhost:5000/swagger/v1/swagger.json -o src/lib/api/types.ts"
+    "generate-api-types": "openapi-typescript http://localhost:5156/swagger/v1/swagger.json -o src/lib/api/types.ts"
   },
   "dependencies": {
     "@azure/msal-browser": "^3.6.0",

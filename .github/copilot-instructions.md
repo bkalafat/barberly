@@ -87,7 +87,7 @@ npm run test                        # Run Vitest tests
 
 # Backend
 npm run backend:build               # Build .NET solution
-npm run backend:run                 # Start API server (localhost:5000)
+npm run backend:run                 # Start API server (localhost:5156)
 npm run backend:test                # Run all .NET tests
 ```
 
@@ -335,7 +335,7 @@ test("renders button with text", () => {
 ```typescript
 // src/lib/api/client.ts
 export const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://localhost:5156",
   timeout: 10000,
 });
 

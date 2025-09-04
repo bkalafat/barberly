@@ -21,7 +21,7 @@ Modern React 18 + TypeScript + Tailwind CSS frontend for the Barberly barber app
 
 - Node.js 18+
 - npm or yarn
-- Backend API running on http://localhost:5000
+- Backend API running on http://localhost:5156
 
 ### Installation
 
@@ -79,6 +79,7 @@ src/
 ## 🎨 UI Components
 
 Built with **shadcn/ui** and **Tailwind CSS** for:
+
 - ✅ Consistent design system
 - ✅ Accessibility built-in
 - ✅ Dark mode support
@@ -111,15 +112,18 @@ The frontend connects to the .NET 8 backend API with:
 ## 🧪 Testing Strategy
 
 ### Unit Tests
+
 - Component behavior with **Testing Library**
 - Business logic with **Vitest**
 - API integration with **MSW** mocking
 
 ### Integration Tests
+
 - User workflows with **Testing Library**
 - API integration with real endpoints
 
 ### E2E Tests
+
 - Critical user journeys with **Playwright**
 - Cross-browser testing
 - Visual regression testing
@@ -135,6 +139,7 @@ The frontend connects to the .NET 8 backend API with:
 ## 🔐 Authentication
 
 Integration with Azure AD B2C for:
+
 - User registration and login
 - JWT token management
 - Role-based access control
@@ -143,6 +148,7 @@ Integration with Azure AD B2C for:
 ## 📱 Responsive Design
 
 Mobile-first responsive design with:
+
 - Tailwind CSS breakpoints
 - Touch-friendly interactions
 - Optimized for both mobile and desktop
@@ -150,6 +156,7 @@ Mobile-first responsive design with:
 ## 🌐 Internationalization
 
 Ready for i18next integration for:
+
 - Multi-language support
 - Date/time localization
 - Currency formatting
@@ -157,6 +164,7 @@ Ready for i18next integration for:
 ## 🚀 Deployment
 
 Production build optimized with:
+
 - Code splitting
 - Tree shaking
 - Asset optimization
