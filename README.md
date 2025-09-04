@@ -2,7 +2,7 @@
 
 Modern barber shop management and appointment booking platform built with .NET 8 and React 18.
 
-> **🤖 AI-Powered Development**: ~80% of this codebase was generated using GitHub Co- **API Documentation** - Available via Swagger UI at `http://localhost:5156/swagger` when running the backendilot with Claude Sonnet 3.5 and GPT-4o mini (preview) in Beast Mode for rapid development.
+> **🤖 AI-Powered Development**: ~80% of this codebase was generated using GitHub Copilot with Claude Sonnet 4 and GPT-5 mini (preview) in Beast Mode for rapid development.
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/bkalafat/barberly)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -42,21 +42,23 @@ Barberly is a production-ready, full-stack barber shop management platform that 
 
 :::mermaid
 graph LR
-    A[React 18 + TypeScript] -->|HTTP| B[.NET 8 Minimal APIs]
-    B --> C[EF Core 8]
-    C --> D[PostgreSQL 16]
-    B --> E[OpenTelemetry]
-    B --> F[Azure Service Bus]
+A[React 18 + TypeScript] -->|HTTP| B[.NET 8 Minimal APIs]
+B --> C[EF Core 8]
+C --> D[PostgreSQL 16]
+B --> E[Distributed Cache]
+E --> F[Redis / In-Memory]
 :::
 
 ### Backend
+
 - **.NET 8** - Minimal APIs with OpenAPI documentation
 - **PostgreSQL 16** - Primary database with EF Core 8 ORM
 - **MediatR** - CQRS pattern implementation
-- **OpenTelemetry** - Observability and structured logging
-- **Azure Service Bus** - Messaging and notifications
+- **Distributed Caching** - Redis (production) + In-Memory (development fallback)
+- **JWT Authentication** - Azure AD B2C integration with role-based authorization
 
 ### Frontend
+
 - **React 18** - Modern UI framework with TypeScript
 - **Vite** - Fast build tool and dev server
 - **TanStack Query** - Server state management
@@ -70,12 +72,12 @@ graph LR
 
 Ensure you have these tools installed:
 
-| Tool | Version | Purpose |
-|------|---------|---------|
-| [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) | `8.0+` | Backend development & runtime |
-| [Node.js](https://nodejs.org/) | `18+` | Frontend tooling & development |
-| [PostgreSQL](https://postgresql.org/) | `15+` | Primary database (or use Docker) |
-| [Git](https://git-scm.com/) | `latest` | Version control |
+| Tool                                                           | Version  | Purpose                          |
+| -------------------------------------------------------------- | -------- | -------------------------------- |
+| [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) | `8.0+`   | Backend development & runtime    |
+| [Node.js](https://nodejs.org/)                                 | `18+`    | Frontend tooling & development   |
+| [PostgreSQL](https://postgresql.org/)                          | `15+`    | Primary database (or use Docker) |
+| [Git](https://git-scm.com/)                                    | `latest` | Version control                  |
 
 ### Installation
 
@@ -98,12 +100,12 @@ npm run dev               # Start dev server (http://localhost:5173)
 
 ### Quick Verification
 
-| Service | URL | Status |
-|---------|-----|---------|
-| Frontend App | http://localhost:5173 | React dev server |
-| Backend API | http://localhost:5156 | .NET API |
-| API Docs | http://localhost:5156/swagger | OpenAPI documentation |
-| Health Check | http://localhost:5156/health/ready | System status |
+| Service      | URL                                | Status                |
+| ------------ | ---------------------------------- | --------------------- |
+| Frontend App | http://localhost:5173              | React dev server      |
+| Backend API  | http://localhost:5156              | .NET API              |
+| API Docs     | http://localhost:5156/swagger      | OpenAPI documentation |
+| Health Check | http://localhost:5156/health/ready | System status         |
 
 ## 📋 API Documentation
 
@@ -185,7 +187,9 @@ npm run build          # Production build test
 ✅ **API Documentation** - OpenAPI/Swagger integration with detailed endpoint documentation  
 🔄 **Performance Optimization** - Query optimization and response caching (in progress)  
 🚧 **Customer Hair Profiles** - Advanced customer preference system (planned)  
-🚧 **Real-time Notifications** - Push notification system (planned)
+🚧 **Real-time Notifications** - Push notification system (planned)  
+🚧 **Observability & Monitoring** - OpenTelemetry integration for distributed tracing (planned)  
+🚧 **Message Bus Integration** - Azure Service Bus for event-driven architecture (planned)
 
 ## 📚 Documentation & Resources
 

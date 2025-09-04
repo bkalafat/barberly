@@ -12,9 +12,9 @@ AI assistant instructions for the Barberly barber shop management platform. This
 ```
 [React 18 + TypeScript SPA] --HTTP--> [.NET 8 Minimal APIs]
                                       |-- EF Core 8 --> PostgreSQL 16
-                                      |-- Redis --> Cache
-                                      |-- Service Bus --> Notifications
-                                      '-- OpenTelemetry --> Observability
+                                      |-- Distributed Cache --> Redis / In-Memory
+                                      |-- [PLANNED] Service Bus --> Azure Service Bus
+                                      '-- [PLANNED] OpenTelemetry --> Observability
 ```
 
 **Layer Boundaries**:
