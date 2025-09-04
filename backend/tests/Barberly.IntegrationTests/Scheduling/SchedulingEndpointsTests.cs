@@ -56,14 +56,16 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         var barbersJson = await barbersResponse.Content.ReadAsStringAsync();
         var barbers = JsonSerializer.Deserialize<JsonElement>(barbersJson);
 
-        // Find Kadir Alkan from the seeded barbers (real Trabzon data)
-        var kadirBarber = barbers.EnumerateArray()
-            .FirstOrDefault(b => b.GetProperty("fullName").GetString() == "Kadir Alkan");
-        Assert.False(kadirBarber.ValueKind == JsonValueKind.Undefined, "Could not find Kadir Alkan barber in seeded data");
-        var barberId = Guid.Parse(kadirBarber.GetProperty("id").GetString()!);
+        // Find any available barber from the seeded data (more robust than hardcoded names)
+        var availableBarbers = barbers.EnumerateArray().ToList();
+        Assert.True(availableBarbers.Any(), "No barbers found in seeded data");
+
+        // Use the first available barber (could be Kadir Alkan, Mehmet Çelik, etc.)
+        var selectedBarber = availableBarbers.First();
+        var barberId = Guid.Parse(selectedBarber.GetProperty("id").GetString()!);
 
         // Get services for this barber's shop
-        var servicesResponse = await client.GetAsync($"/api/v1/services?barberShopId={kadirBarber.GetProperty("barberShopId").GetString()}");
+        var servicesResponse = await client.GetAsync($"/api/v1/services?barberShopId={selectedBarber.GetProperty("barberShopId").GetString()}");
         servicesResponse.EnsureSuccessStatusCode();
         var servicesJson = await servicesResponse.Content.ReadAsStringAsync();
         var services = JsonSerializer.Deserialize<JsonElement>(servicesJson);
@@ -73,12 +75,13 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         var serviceId = Guid.Parse(firstService.GetProperty("id").GetString()!);
         var serviceDuration = firstService.GetProperty("durationInMinutes").GetInt32();
 
-        // Use a future time slot to avoid conflicts (must be UTC for PostgreSQL compatibility)
-        // Add random hours to prevent conflicts with previous test runs
-        var randomHour = new Random().Next(8, 18); // Random hour between 8 AM and 6 PM
-        var randomMinute = new Random().Next(0, 60); // Random minute
-        var futureDate = DateTimeOffset.UtcNow.AddDays(new Random().Next(1, 7)); // Random day within next week
-        var startTime = new DateTimeOffset(futureDate.Date.AddHours(randomHour).AddMinutes(randomMinute), TimeSpan.Zero);
+        // Use a far future time slot to avoid conflicts (must be UTC for PostgreSQL compatibility)
+        // Use a unique time far enough in the future to avoid any existing appointments
+        var baseTime = DateTimeOffset.UtcNow.AddDays(100); // 100 days in the future
+        // Create truly unique time using current timestamp's second and millisecond components
+        var now = DateTimeOffset.UtcNow;
+        var uniqueMinutes = (now.Second * 10 + now.Millisecond / 100) % 480; // 0-479 minutes (8 hours span)
+        var startTime = new DateTimeOffset(baseTime.Date.AddHours(9).AddMinutes(uniqueMinutes), TimeSpan.Zero);
         var endTime = startTime.AddMinutes(serviceDuration);
 
         var req = new
