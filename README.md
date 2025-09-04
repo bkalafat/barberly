@@ -2,7 +2,7 @@
 
 Modern barber shop management and appointment booking platform built with .NET 8 and React 18.
 
-> **🤖 AI-Powered Development**: ~80% of this codebase was generated using GitHub Co- **API Documentation** - Available via Swagger UI at `http://localhost:5156/swagger` when running the backendilot with Claude Sonnet 3.5 and GPT-4o mini (preview) in Beast Mode for rapid development.
+> **🤖 AI-Powered Development**: ~80% of this codebase was generated using GitHub Co- **API Documentation** - Available via Swagger UI at `http://localhost:5156/swagger` when running the backendilot with Claude Sonnet 4 and GPT 5 mini (preview) in Beast Mode for rapid development.
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/bkalafat/barberly)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
