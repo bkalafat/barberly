@@ -40,14 +40,14 @@ Barberly is a production-ready, full-stack barber shop management platform that 
 
 **Architecture**: Domain-Driven Design (DDD) + Clean Architecture + CQRS + Minimal APIs
 
-:::mermaid
+```mermaid
 graph LR
     A[React 18 + TypeScript] -->|HTTP| B[.NET 8 Minimal APIs]
     B --> C[EF Core 8]
     C --> D[PostgreSQL 16]
     B --> E[OpenTelemetry]
     B --> F[Azure Service Bus]
-:::
+```
 
 ### Backend
 - **.NET 8** - Minimal APIs with OpenAPI documentation
