@@ -40,16 +40,44 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
         var token = await GetAuthTokenForRole(client, "customer");
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-        // Use known IDs from seeded data
-        var barberId = new Guid("9e862653-65c0-41b0-82e9-754f638baa49"); // Ahmet Yılmaz
-        var serviceId = new Guid("1a2b3c4d-5e6f-7890-1234-567890abcdef"); // Use a valid GUID format for service
+        // Get actual IDs from seeded data by querying the API
+        var barbersResponse = await client.GetAsync("/api/v1/barbers");
+        barbersResponse.EnsureSuccessStatusCode();
+        var barbersJson = await barbersResponse.Content.ReadAsStringAsync();
+        var barbers = JsonSerializer.Deserialize<JsonElement>(barbersJson);
+        
+        // Find Ahmet Yılmaz from the seeded barbers
+        var ahmetBarber = barbers.EnumerateArray()
+            .FirstOrDefault(b => b.GetProperty("fullName").GetString() == "Ahmet Yılmaz");
+        Assert.False(ahmetBarber.ValueKind == JsonValueKind.Undefined, "Could not find Ahmet Yılmaz barber in seeded data");
+        var barberId = Guid.Parse(ahmetBarber.GetProperty("id").GetString()!);
+
+        // Get services for this barber's shop
+        var servicesResponse = await client.GetAsync($"/api/v1/services?barberShopId={ahmetBarber.GetProperty("barberShopId").GetString()}");
+        servicesResponse.EnsureSuccessStatusCode();
+        var servicesJson = await servicesResponse.Content.ReadAsStringAsync();
+        var services = JsonSerializer.Deserialize<JsonElement>(servicesJson);
+        
+        // Use the first available service (Classic Haircut or Beard Trim)
+        var firstService = services.EnumerateArray().First();
+        var serviceId = Guid.Parse(firstService.GetProperty("id").GetString()!);
+        var serviceDuration = firstService.GetProperty("durationInMinutes").GetInt32();
+
+        // Use a future time slot to avoid conflicts (must be UTC for PostgreSQL compatibility)
+        // Add random hours to prevent conflicts with previous test runs
+        var randomHour = new Random().Next(8, 18); // Random hour between 8 AM and 6 PM
+        var randomMinute = new Random().Next(0, 60); // Random minute
+        var futureDate = DateTimeOffset.UtcNow.AddDays(new Random().Next(1, 7)); // Random day within next week
+        var startTime = new DateTimeOffset(futureDate.Date.AddHours(randomHour).AddMinutes(randomMinute), TimeSpan.Zero);
+        var endTime = startTime.AddMinutes(serviceDuration);
+
         var req = new
         {
             UserId = Guid.NewGuid(),
             BarberId = barberId,
             ServiceId = serviceId,
-            Start = DateTimeOffset.UtcNow.AddHours(24),
-            End = DateTimeOffset.UtcNow.AddHours(24).AddMinutes(30)
+            Start = startTime,
+            End = endTime
         };
         var content = new StringContent(JsonSerializer.Serialize(req), Encoding.UTF8, "application/json");
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
