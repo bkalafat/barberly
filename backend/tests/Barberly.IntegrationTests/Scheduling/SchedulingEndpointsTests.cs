@@ -20,10 +20,20 @@ public class SchedulingEndpointsTests : IClassFixture<WebApplicationFactory<Prog
     public async Task GetAvailability_Returns_OK()
     {
         var client = _factory.CreateClient();
-        // Use a known barber ID from the seeded data
-        var barberId = new Guid("9e862653-65c0-41b0-82e9-754f638baa49"); // Ahmet Yılmaz
+
+        // Get actual barber ID from seeded data by querying the API
+        var barbersResponse = await client.GetAsync("/api/v1/barbers");
+        barbersResponse.EnsureSuccessStatusCode();
+        var barbersJson = await barbersResponse.Content.ReadAsStringAsync();
+        var barbers = JsonSerializer.Deserialize<JsonElement>(barbersJson);
+
+        // Find first barber from the seeded data
+        var firstBarber = barbers.EnumerateArray().FirstOrDefault();
+        Assert.False(firstBarber.ValueKind == JsonValueKind.Undefined, "No barbers found in seeded data");
+        var barberId = Guid.Parse(firstBarber.GetProperty("id").GetString()!);
+
         var url = $"/api/v1/barbers/{barberId}/availability?date={DateTime.UtcNow:yyyy-MM-dd}";
-        Console.WriteLine($"Testing URL: {url}");
+        Console.WriteLine($"Testing URL: {url} with barber: {firstBarber.GetProperty("fullName").GetString()}");
         var res = await client.GetAsync(url);
         Console.WriteLine($"Response status: {(int)res.StatusCode} - {res.ReasonPhrase}");
         var body = await res.Content.ReadAsStringAsync();
