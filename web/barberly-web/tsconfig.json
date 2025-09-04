@@ -19,7 +19,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vitest", "node"]
+    "types": ["vitest"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.stories.tsx", "**/*.stories.ts"]
