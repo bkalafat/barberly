@@ -1,4 +1,53 @@
-# Barberly Proje Haritası ve Takip Planı
+# Barberly Pro## 2. Kimlik ve## 2. Kimlik ve Yetkilendirme (Identity & Access- [ ] Randevu iptal (`DELETE /appointments/{id}`)
+- [ ] Randevu erteleme/değiştirme (`PATCH /appointments/{id}`)
+- [x] Idempotency-key (server-side check implemented)
+- [x] Concurrency control (conflict detection with existing appointments)
+- [ ] SignalR ile canlı slot güncellemeleri (v2) - **TODO**
+
+> **Status**: Core scheduling endpoints are fully implemented in `SchedulingEndpoints.cs` with Redis-backed caching, idempotency handling, and comprehensive integration tests. Cancel/reschedule endpoints are implemented. Missing: schedule templates for business hours.OMPLETE**
+
+- [x] JWT-based authentication implementation
+- [x] Kullanıcı ve berber kayıt/login API'ları (`POST /auth/register`, `POST /auth/login`)
+- [x] Policy/role tabanlı yetkilendirme (`CustomerPolicy`, `BarberPolicy`, `ShopOwnerPolicy`, `AdminPolicy`)
+- [x] Rate limiting ve güvenlik yapılandırması (5 req/min auth, 100/min global)
+- [x] Integration tests for authentication endpoints
+
+## 3. Directory (Salon/Barber/Service Profilleri) ✅ **COMPLETE**
+
+- [x] BarberShop, Barber, Service entity ve API'larını oluştur
+- [x] Salon/berber/hizmet CRUD endpoint'leri (`GET /shops`, `GET /barbers/{id}`, `GET /services`)
+- [x] Database seeding with sample data (Ahmet Yılmaz as test barber)
+- [x] Frontend BarbersPage component with search/filter functionality
+- [ ] Salon/berber/hizmet arama ve filtreleme (konum, hizmet, fiyat) - **Partial** (search implemented)
+- [ ] Salon ve berber görsel yükleme (Blob Storage) - **TODO**
+
+## 4. Scheduling (Randevu & Slot Yönetimi) 🔄 **MOSTLY COMPLETE**
+
+- [ ] Çalışma saatleri ve takvim kuralları (ScheduleTemplate) - **TODO**
+- [x] Slot üretimi (Redis cache fallback implemented, 5-min TTL)
+- [x] Barber müsaitlik API'si (`GET /barbers/{id}/availability`)
+- [x] Randevu oluşturma (`POST /appointments`)
+- [x] Randevu görüntüleme (`GET /appointments/{id}`)
+- [x] Randevu iptal (`DELETE /appointments/{id}`)
+- [x] Randevu erteleme/değiştirme (`PATCH /appointments/{id}`)
+- [x] Idempotency-key (server-side check implemented)
+- [x] Concurrency control (conflict detection with existing appointments)
+- [ ] SignalR ile canlı slot güncellemeleri (v2) - **TODO**tity & Access) ✅ **COMPLETE**
+
+- [x] JWT-based authentication implementation
+- [x] Kullanıcı ve berber kayıt/login API'ları (`POST /auth/register`, `POST /auth/login`)
+- [x] Policy/role tabanlı yetkilendirme (`CustomerPolicy`, `BarberPolicy`, `ShopOwnerPolicy`, `AdminPolicy`)
+- [x] Rate limiting ve güvenlik yapılandırması (5 req/min auth, 100/min global)
+- [x] Integration tests for authentication endpoints
+
+## 3. Directory (Salon/Barber/Service Profilleri) ✅ **COMPLETE**
+
+- [x] BarberShop, Barber, Service entity ve API'larını oluştur
+- [x] Salon/berber/hizmet CRUD endpoint'leri (`GET /shops`, `GET /barbers/{id}`, `GET /services`)
+- [x] Database seeding with sample data (Ahmet Yılmaz as test barber)
+- [x] Frontend BarbersPage component with search/filter functionality
+- [ ] Salon/berber/hizmet arama ve filtreleme (konum, hizmet, fiyat) - **Partial** (search implemented)
+- [ ] Salon ve berber görsel yükleme (Blob Storage) - **TODO**e Takip Planı
 
 Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, işaretlenebilir bir proje planıdır. Her adım tamamlandıkça işaretleyebilirsiniz. Plan, Copilot ile modüler ve sürdürülebilir geliştirme için optimize edilmiştir.
 
@@ -59,14 +108,16 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 - [ ] Serilog + OpenTelemetry + Azure App Insights entegrasyonu
 - [ ] API health check endpoint’leri
 
-## 8. Test & Kalite
+## 8. Test & Kalite ✅ **MOSTLY COMPLETE**
 
 - [x] Unit testler (Domain, Application layer)
 - [x] Integration testler (API + EFCore)
-- [ ] Contract testler (Pact)
-- [ ] E2E testler (Playwright)
-- [ ] Load testler (k6/Gatling)
-- [ ] SonarQube, Snyk, OWASP Dependency Check entegrasyonu
+- [x] Comprehensive authentication integration tests
+- [x] Scheduling endpoints integration tests (availability, booking, cancel, reschedule)
+- [ ] Contract testler (Pact) - **TODO**
+- [ ] E2E testler (Playwright) - **TODO**
+- [ ] Load testler (k6/Gatling) - **TODO**
+- [ ] SonarQube, Snyk, OWASP Dependency Check entegrasyonu - **TODO**
 
 ## 9. DevOps & Altyapı
 
@@ -100,19 +151,19 @@ Bu dosya, Barberly MVP ve sonraki fazlar için adım adım takip edilebilecek, i
 - [x] **Phase 4**: Appointment booking form + confirmation
 - [ ] **Phase 5**: Hair profile wizard (multi-step form)
 
-### 10.4 UI/UX User Flows (Customer-Facing Demo)
+### 10.4 UI/UX User Flows (Customer-Facing Demo) 🔄 **MOSTLY COMPLETE**
 - [x] **Flow 1**: Browse shops → Select barber → View availability
 - [x] **Flow 2**: Choose time slot → Fill appointment details → Confirm booking
-- [ ] **Flow 3**: Create hair profile → Upload photo → Add preferences
-- [ ] **Flow 4**: View appointment history + upcoming bookings
-- [ ] **Flow 5**: Responsive mobile experience (MVP requirement)
+- [ ] **Flow 3**: Create hair profile → Upload photo → Add preferences - **TODO**
+- [ ] **Flow 4**: View appointment history + upcoming bookings - **TODO**
+- [ ] **Flow 5**: Responsive mobile experience (MVP requirement) - **TODO**
 
-### 10.5 Testing Strategy (AI-Assisted Development)
+### 10.5 Testing Strategy (AI-Assisted Development) 🔄 **PARTIALLY COMPLETE**
 - [x] Component tests with Storybook + Testing Library
 - [x] Integration tests with MSW (mock backend)
 - [x] E2E tests with Playwright (critical user journeys)
-- [ ] Visual regression tests (Chromatic + Storybook)
-- [ ] Accessibility tests (axe-core + manual testing)
+- [ ] Visual regression tests (Chromatic + Storybook) - **TODO**
+- [ ] Accessibility tests (axe-core + manual testing) - **TODO**
 
 ## 11. Ekstra (V2/V3 için hazırlık)
 

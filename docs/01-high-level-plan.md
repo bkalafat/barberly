@@ -1,4 +1,9 @@
-# Barberly — High Level Plan & Scope
+# Barb## Bounded Context'ler
+- ✅ Identity & Access (JWT auth, role policies, middleware complete)
+- ✅ Directory (BarberShop, Barber, Service CRUD complete)
+- ✅ Scheduling (Availability, Appointment CRUD, Redis caching complete)  
+- 🚧 Hair Profile (TODO - not implemented)
+- 🚧 Messaging (Basic notifications TODO) High Level Plan & Scope
 
 ## MVP Hedefleri
 - Müşteri randevu alabilmeli
@@ -18,7 +23,7 @@
 - Randevu rezervasyonu
 - Saç profili oluşturma
 
-Note: Basic scheduling endpoints (availability query and appointment creation) exist in the API (see `backend/src/Barberly.Api/Endpoints/SchedulingEndpoints.cs`). Redis-backed slot caching is planned but still TODO as part of the Scheduling work.
+Note: ✅ COMPLETE - Scheduling endpoints with Redis caching, conflict detection, and idempotency are fully implemented (see `backend/src/Barberly.Api/Endpoints/SchedulingEndpoints.cs`). Integration tests confirm all functionality works.
 
 ## Yol Haritası
 - Sprint 1–2: Auth, Directory, Scheduling, Appointment, HairProfile, Messaging
