@@ -61,18 +61,18 @@ export function BarbersPage() {
       {/* Barbers Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredBarbers?.map((barber) => (
-          <Card key={barber.id} className="hover:shadow-lg transition-shadow">
+          <Card key={barber.id} className="hover:shadow-lg transition-shadow" data-testid="barber-card">
             <CardHeader className="text-center">
               <div className="w-20 h-20 bg-primary/10 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <span className="text-2xl font-bold text-primary">{barber.fullName.charAt(0)}</span>
               </div>
-              <CardTitle className="text-xl">{barber.fullName}</CardTitle>
+              <CardTitle className="text-xl" data-testid="barber-name">{barber.fullName}</CardTitle>
               <CardDescription>{barber.yearsOfExperience} years of experience</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 {barber.bio && (
-                  <p className="text-sm text-muted-foreground line-clamp-2">{barber.bio}</p>
+                  <p className="text-sm text-muted-foreground line-clamp-2" data-testid="barber-bio">{barber.bio}</p>
                 )}
 
                 <div className="flex items-center justify-between text-sm">

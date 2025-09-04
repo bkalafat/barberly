@@ -37,7 +37,7 @@ export function HomePage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {shops?.map((shop) => (
-          <Card key={shop.id} className="hover:shadow-lg transition-shadow">
+          <Card key={shop.id} className="hover:shadow-lg transition-shadow" data-testid="shop-card">
             <CardHeader>
               <CardTitle>{shop.name}</CardTitle>
               <CardDescription>{shop.description}</CardDescription>

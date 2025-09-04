@@ -47,6 +47,8 @@ Thumbs.db
 
 # Test/coverage
 coverage/
+playwright-report/
+test-results/
 # .NET test results
 *.trx
 **/TestResults/

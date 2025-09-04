@@ -2,6 +2,7 @@
   "name": "barberly-web",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,6 +16,9 @@
     "test:coverage": "vitest --coverage",
     "e2e": "playwright test",
     "e2e:ui": "playwright test --ui",
+    "e2e:simple": "playwright test --config=playwright-simple.config.ts",
+    "e2e:simple:ui": "playwright test --config=playwright-simple.config.ts --ui",
+    "e2e:simple:headed": "playwright test --config=playwright-simple.config.ts --headed",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "generate-api-types": "openapi-typescript http://localhost:5000/swagger/v1/swagger.json -o src/lib/api/types.ts"
