@@ -12,7 +12,10 @@ export const api = axios.create({
 // Request interceptor for auth token
 api.interceptors.request.use(
   (config) => {
-    // Token will be added by MSAL interceptor
+    const token = localStorage.getItem('auth-token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   (error) => {
@@ -25,8 +28,9 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Handle unauthorized - will be handled by MSAL
-      console.warn('Unauthorized request - token may be expired');
+      // Handle unauthorized - clear token and redirect to auth
+      localStorage.removeItem('auth-token');
+      window.location.href = '/auth';
     }
 
     if (error.response?.status === 403) {
