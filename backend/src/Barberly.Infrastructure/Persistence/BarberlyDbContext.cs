@@ -12,6 +12,7 @@ public class BarberlyDbContext : DbContext
     public DbSet<Service> Services => Set<Service>();
     public DbSet<User> Users => Set<User>();
     public DbSet<Appointment> Appointments => Set<Appointment>();
+    public DbSet<NotificationOutbox> NotificationOutbox => Set<NotificationOutbox>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -96,6 +97,25 @@ public class BarberlyDbContext : DbContext
             entity.Property(e => e.RowVersion).IsRowVersion().IsConcurrencyToken();
             entity.HasIndex(e => e.IdempotencyKey).IsUnique().HasFilter("\"IdempotencyKey\" IS NOT NULL");
             entity.HasIndex(e => new { e.BarberId, e.Start });
+        });
+
+        // NotificationOutbox
+        modelBuilder.Entity<NotificationOutbox>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.EventType).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.RecipientEmail).IsRequired().HasMaxLength(256);
+            entity.Property(e => e.RecipientName).IsRequired().HasMaxLength(200);
+            entity.Property(e => e.Subject).IsRequired().HasMaxLength(500);
+            entity.Property(e => e.Body).IsRequired();
+            entity.Property(e => e.Metadata).IsRequired();
+            entity.Property(e => e.Status).IsRequired()
+                .HasConversion<string>(); // Store as string in database
+            entity.Property(e => e.RetryCount).IsRequired();
+            entity.Property(e => e.MaxRetries).IsRequired();
+            entity.Property(e => e.ProcessedAtUtc);
+            entity.Property(e => e.ErrorMessage).HasMaxLength(2000);
+            entity.HasIndex(e => new { e.Status, e.CreatedAt });
         });
     }
 }
