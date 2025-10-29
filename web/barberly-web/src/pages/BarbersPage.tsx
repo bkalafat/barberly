@@ -1,15 +1,28 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { useBarbers } from '@/lib/api/hooks';
+import { useBarbers, useShops } from '@/lib/api/hooks';
+import type { BarberShop } from '@/lib/api/client';
 import { MapPin, Search, Star } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export function BarbersPage() {
   const [searchTerm, setSearchTerm] = useState('');
 
   const { data: barbers, isLoading, error } = useBarbers();
+  const { data: shops } = useShops();
+
+  const shopsById = useMemo<Record<string, BarberShop>>(() => {
+    if (!shops) {
+      return {};
+    }
+
+    return shops.reduce<Record<string, BarberShop>>((accumulator, shop) => {
+      accumulator[shop.id] = shop;
+      return accumulator;
+    }, {});
+  }, [shops]);
 
   const filteredBarbers = barbers?.filter((barber) => {
     return (
@@ -94,9 +107,18 @@ export function BarbersPage() {
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                  <MapPin className="h-4 w-4" />
-                  <span>Shop ID: {barber.barberShopId}</span>
+                <div className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <MapPin className="mt-0.5 h-4 w-4" />
+                  <div>
+                    <span className="font-medium text-foreground">
+                      {shopsById[barber.barberShopId]?.name ?? 'Unknown shop'}
+                    </span>
+                    <p className="text-xs text-muted-foreground">
+                      {shopsById[barber.barberShopId]
+                        ? `${shopsById[barber.barberShopId].address.city}, ${shopsById[barber.barberShopId].address.state}`
+                        : 'Location unavailable'}
+                    </p>
+                  </div>
                 </div>
 
                 <div className="pt-2">

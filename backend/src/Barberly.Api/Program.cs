@@ -25,8 +25,8 @@ builder.Services.AddScoped<Barberly.Application.Interfaces.IUserRepository, Barb
 builder.Services.AddScoped<Barberly.Application.Interfaces.IAppointmentRepository, Barberly.Infrastructure.Persistence.AppointmentRepository>();
 
 // Add services
-builder.Services.AddScoped<MockJwtService>();
-builder.Services.AddScoped<PasswordHasher>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.ITokenService, MockJwtService>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.IPasswordHasher, PasswordHasher>();
 
 // Add Authentication
 if (builder.Environment.IsDevelopment())
@@ -260,7 +260,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Auth endpoints with simplified approach (to be enhanced later)
-app.MapPost("/auth/register", async (RegisterRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, PasswordHasher hasher) =>
+app.MapPost("/auth/register", async (RegisterRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, Barberly.Application.Interfaces.IPasswordHasher hasher) =>
 {
     try
     {
@@ -301,7 +301,7 @@ app.MapPost("/auth/register", async (RegisterRequest request, Barberly.Applicati
 .WithOpenApi()
 .AllowAnonymous();
 
-app.MapPost("/auth/login", async (LoginRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, PasswordHasher hasher, MockJwtService jwtService) =>
+app.MapPost("/auth/login", async (LoginRequest request, Barberly.Application.Interfaces.IUserRepository userRepo, Barberly.Application.Interfaces.IPasswordHasher hasher, Barberly.Application.Interfaces.ITokenService jwtService) =>
 {
     try
     {
@@ -339,7 +339,7 @@ app.MapPost("/auth/login", async (LoginRequest request, Barberly.Application.Int
 .AllowAnonymous();
 
 // Helper endpoint for generating test tokens
-app.MapPost("/auth/test-token", (string email, string role, MockJwtService jwtService) =>
+app.MapPost("/auth/test-token", (string email, string role, Barberly.Application.Interfaces.ITokenService jwtService) =>
 {
     var userId = Guid.NewGuid().ToString();
     var token = jwtService.GenerateToken(email, role, userId);

@@ -5,6 +5,7 @@ import { useAvailability, useBarbers, useCreateAppointment, useShop } from '@/li
 import { addDays, format } from 'date-fns';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { generateIdempotencyKey } from '@/lib/utils';
 
 export function ShopDetailsPage() {
   const { shopId } = useParams<{ shopId: string }>();
@@ -35,7 +36,7 @@ export function ShopDetailsPage() {
         serviceId: defaultServiceId,
         start: slot.start,
         end: slot.end,
-        idempotencyKey: `${Date.now()}-${Math.random()}`,
+        idempotencyKey: generateIdempotencyKey(),
       });
       alert('Appointment booked successfully!');
     } catch (error) {

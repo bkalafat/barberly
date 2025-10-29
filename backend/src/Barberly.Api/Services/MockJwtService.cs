@@ -2,10 +2,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Barberly.Application.Interfaces;
 
 namespace Barberly.Api.Services;
 
-public class MockJwtService
+public class MockJwtService : ITokenService
 {
     private readonly IConfiguration _configuration;
     private readonly string _secretKey = "this-is-a-very-long-secret-key-for-testing-purposes-only-do-not-use-in-production";
