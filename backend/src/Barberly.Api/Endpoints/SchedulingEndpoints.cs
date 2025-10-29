@@ -99,7 +99,7 @@ public static class SchedulingEndpoints
         }
         return Results.Ok(slots);
     }
-    private static async Task<IResult> CreateAppointment([FromHeader(Name = "Idempotency-Key")] string? idemKey, [FromBody] CreateAppointmentRequest req, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
+    private static async Task<IResult> CreateAppointment([FromHeader(Name = "Idempotency-Key")] string? idemKey, [FromBody] CreateAppointmentRequest req, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache, MediatR.IMediator mediator)
     {
         if (req == null) return Results.BadRequest();
 
@@ -116,6 +116,17 @@ public static class SchedulingEndpoints
         var appt = Appointment.Create(req.UserId, req.BarberId, req.ServiceId, req.Start, req.End, idemKey);
         await apptRepo.AddAsync(appt);
         await db.SaveChangesAsync();
+        
+        // Publish domain event for email notification
+        var appointmentBookedEvent = new Barberly.Domain.Events.AppointmentBookedEvent(
+            appt.Id,
+            appt.UserId,
+            appt.BarberId,
+            appt.ServiceId,
+            appt.Start,
+            appt.End);
+        await mediator.Publish(appointmentBookedEvent);
+        
         // invalidate cache for this barber/date/service
         var key = $"barbers:{req.BarberId}:slots:{req.Start.UtcDateTime:yyyy-MM-dd}:{req.ServiceId}";
         try
@@ -150,7 +161,7 @@ public static class SchedulingEndpoints
         });
     }
 
-    private static async Task<IResult> CancelAppointment(Guid id, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache)
+    private static async Task<IResult> CancelAppointment(Guid id, IAppointmentRepository apptRepo, BarberlyDbContext db, Microsoft.Extensions.Caching.Distributed.IDistributedCache cache, MediatR.IMediator mediator)
     {
         var appointment = await apptRepo.GetByIdAsync(id);
         if (appointment == null)
@@ -166,6 +177,17 @@ public static class SchedulingEndpoints
         {
             appointment.Cancel();
             await db.SaveChangesAsync();
+
+            // Publish domain event for email notification
+            var appointmentCancelledEvent = new Barberly.Domain.Events.AppointmentCancelledEvent(
+                appointment.Id,
+                appointment.UserId,
+                appointment.BarberId,
+                appointment.ServiceId,
+                appointment.Start,
+                appointment.End,
+                appointment.CancelledAtUtc ?? DateTimeOffset.UtcNow);
+            await mediator.Publish(appointmentCancelledEvent);
 
             // Invalidate cache for this barber/date/service
             var key = $"barbers:{appointment.BarberId}:slots:{appointment.Start.UtcDateTime:yyyy-MM-dd}:{appointment.ServiceId}";
