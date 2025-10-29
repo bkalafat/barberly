@@ -23,6 +23,11 @@ builder.Services.AddScoped<Barberly.Application.Interfaces.IBarberRepository, Ba
 builder.Services.AddScoped<Barberly.Application.Interfaces.IServiceRepository, Barberly.Infrastructure.Persistence.ServiceRepository>();
 builder.Services.AddScoped<Barberly.Application.Interfaces.IUserRepository, Barberly.Infrastructure.Persistence.UserRepository>();
 builder.Services.AddScoped<Barberly.Application.Interfaces.IAppointmentRepository, Barberly.Infrastructure.Persistence.AppointmentRepository>();
+builder.Services.AddScoped<Barberly.Application.Interfaces.INotificationOutboxRepository, Barberly.Infrastructure.Persistence.NotificationOutboxRepository>();
+
+// Add notification services
+builder.Services.AddScoped<Barberly.Application.Notifications.Interfaces.IEmailService, Barberly.Infrastructure.Services.SmtpEmailService>();
+builder.Services.AddScoped<Barberly.Application.Notifications.Interfaces.IEmailTemplateService, Barberly.Infrastructure.Services.EmailTemplateService>();
 
 // Add services
 builder.Services.AddScoped<MockJwtService>();
@@ -100,6 +105,8 @@ builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<Program>();
     // Always register handlers from Barberly.Application by type
     cfg.RegisterServicesFromAssemblyContaining<Barberly.Application.Directory.Handlers.GetBarberShopsQueryHandler>();
+    // Register domain event handlers from Barberly.Domain
+    cfg.RegisterServicesFromAssemblyContaining<Barberly.Domain.Events.AppointmentBookedEvent>();
 });
 
 // Add Redis distributed cache (optional - development config in appsettings.Development.json)
