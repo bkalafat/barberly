@@ -18,6 +18,11 @@ namespace Barberly.Infrastructure.Persistence
             return await _db.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
+        public async Task<User?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            return await _db.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+        }
+
         public async Task AddAsync(User user)
         {
             _db.Users.Add(user);
