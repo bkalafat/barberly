@@ -178,6 +178,10 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
+// Add background workers for email notifications
+builder.Services.AddHostedService<Barberly.Infrastructure.Workers.EmailNotificationWorker>();
+builder.Services.AddHostedService<Barberly.Infrastructure.Workers.AppointmentReminderWorker>();
+
 // Add health checks
 builder.Services.AddHealthChecks();
 
